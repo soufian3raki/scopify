@@ -83,7 +83,7 @@ const recipes = (await getCollection('rezepte')).sort((a, b) =>
 
 <style>
 .search-bar {
-  margin: 0 24px 16px; padding: 14px 18px; background: var(--paper);
+  margin: 0 var(--page-pad-x) 16px; padding: 14px 18px; background: var(--paper);
   border-radius: 100px; border: 1px solid var(--line);
   display: flex; align-items: center; gap: 10px;
 }
@@ -92,9 +92,9 @@ const recipes = (await getCollection('rezepte')).sort((a, b) =>
   font-family: inherit; outline: none; color: var(--ink);
 }
 .search-bar input::-webkit-search-cancel-button { cursor: pointer; }
-.filter-chips { display: flex; gap: 8px; padding: 0 24px 16px; overflow-x: auto; }
+.filter-chips { display: flex; gap: 8px; padding: 0 var(--page-pad-x) 16px; overflow-x: auto; }
 .filter-chips::-webkit-scrollbar { display: none; }
-.recipe-list { padding: 0 24px 24px; display: flex; flex-direction: column; gap: 14px; }
+.recipe-list { padding: 0 var(--page-pad-x) 24px; display: flex; flex-direction: column; gap: 14px; }
 .recipe-row {
   display: flex; gap: 14px; padding: 12px; border-radius: 18px;
   background: var(--paper); border: 1px solid var(--line); cursor: pointer;

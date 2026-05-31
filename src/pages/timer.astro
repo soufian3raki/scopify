@@ -75,7 +75,7 @@ const showTimer = isEnabled('timerPage');
 
 <style>
 .timer-display {
-  margin: 0 24px 24px; padding: 32px; border-radius: 24px;
+  margin: 0 var(--page-pad-x) 24px; padding: 32px; border-radius: 24px;
   background: linear-gradient(135deg, var(--rye), var(--crust-dark));
   color: var(--paper); text-align: center;
 }
@@ -83,7 +83,7 @@ const showTimer = isEnabled('timerPage');
 .timer-clock { font-family: var(--font-display); font-size: var(--font-size); font-weight: var(--font-weight); letter-spacing: 0.02em; line-height: var(--line-height); }
 .timer-next { font-size: 13px; opacity: .7; margin-top: 8px; }
 
-.timer-actions { margin: 0 24px 24px; display: flex; gap: 10px; }
+.timer-actions { margin: 0 var(--page-pad-x) 24px; display: flex; gap: 10px; }
 .timer-btn {
   flex: 1; padding: 14px; background: var(--paper); border: 1px solid var(--line);
   border-radius: 14px; font-size: 13px; font-weight: var(--font-weight); color: var(--ink);
@@ -91,7 +91,7 @@ const showTimer = isEnabled('timerPage');
 }
 .timer-btn-emoji { font-size: 20px; }
 
-.journal { padding: 0 24px 24px; }
+.journal { padding: 0 var(--page-pad-x) 24px; }
 .journal-title { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); margin-bottom: 14px; letter-spacing: 0.02em; }
 .journal-entry {
   padding: 14px; background: var(--paper); border: 1px solid var(--line);

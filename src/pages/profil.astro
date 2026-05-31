@@ -64,7 +64,7 @@ import { isEnabled } from '../config/feature-flags';
 </BaseLayout>
 
 <style>
-.profile-head { padding: 24px; text-align: center; }
+.profile-head { padding: 24px var(--page-pad-x); text-align: center; }
 .profile-pic {
   width: 90px; height: 90px; border-radius: 50%;
   background: linear-gradient(135deg, var(--accent), var(--crust));
@@ -76,12 +76,12 @@ import { isEnabled } from '../config/feature-flags';
 .profile-name { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); letter-spacing: 0.02em; }
 .profile-since { font-size: 12px; color: var(--muted); margin-top: 4px; }
 
-.stats-grid { margin: 8px 24px 24px; display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.stats-grid { margin: 8px var(--page-pad-x) 24px; display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
 .stat-card { padding: 14px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; text-align: center; }
 .stat-num { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); }
 .stat-name { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 2px; }
 
-.menu-list { margin: 0 24px 24px; background: var(--paper); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.menu-list { margin: 0 var(--page-pad-x) 24px; background: var(--paper); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
 .menu-item { padding: 16px 18px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--line); cursor: pointer; transition: background .2s; text-decoration: none; }
 .menu-item:last-child { border-bottom: none; }
 .menu-item:active { background: var(--bg-2); }

@@ -49,7 +49,7 @@ const showHermine = isEnabled('herminePage');
 @keyframes rotate { to { transform: rotate(360deg); } }
 
 .hermine-hero {
-  margin: 0 24px 24px; padding: 24px; border-radius: 24px;
+  margin: 0 var(--page-pad-x) 24px; padding: 24px var(--page-pad-x); border-radius: 24px;
   background: linear-gradient(135deg, #591727, #3d0f1a);
   color: var(--paper); text-align: center; position: relative; overflow: hidden;
 }
@@ -69,7 +69,7 @@ const showHermine = isEnabled('herminePage');
 .hermine-role { font-size: 13px; opacity: .7; position: relative; z-index: 1; }
 
 .upload-card {
-  margin: 0 24px 20px; padding: 24px; border-radius: 20px;
+  margin: 0 var(--page-pad-x) 20px; padding: 24px var(--page-pad-x); border-radius: 20px;
   background: var(--paper); border: 2px dashed var(--line);
   text-align: center; cursor: pointer; transition: all .2s;
 }
@@ -78,7 +78,7 @@ const showHermine = isEnabled('herminePage');
 .upload-title { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); margin-bottom: 4px; }
 .upload-desc { font-size: 12px; color: var(--muted); }
 
-.suggestions { padding: 0 24px 24px; }
+.suggestions { padding: 0 var(--page-pad-x) 24px; }
 .suggest-title { font-size: 13px; font-weight: var(--font-weight); color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px; }
 .suggest-item {
   padding: 14px 16px; background: var(--paper); border: 1px solid var(--line);

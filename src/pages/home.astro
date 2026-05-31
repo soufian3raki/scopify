@@ -173,7 +173,7 @@ const featuredPost = (await getCollection('blog'))
 <style>
 /* Hermann Card */
 .hermann-card {
-  margin: 8px 24px 24px; padding: 20px; border-radius: 24px;
+  margin: 8px var(--page-pad-x) 24px; padding: 20px; border-radius: 24px;
   background: linear-gradient(135deg, var(--rye) 0%, var(--crust-dark) 100%);
   color: var(--paper); position: relative; overflow: hidden; cursor: pointer;
   box-shadow: 0 12px 32px rgba(62,40,23,.3); text-decoration: none; display: block;
@@ -192,7 +192,7 @@ const featuredPost = (await getCollection('blog'))
 .hermann-footer { display: flex; justify-content: space-between; margin-top: 10px; font-size: 11px; opacity: .7; position: relative; z-index: 1; }
 
 /* Quick Grid */
-.quick-grid { margin: 0 24px 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(72px, 1fr)); gap: 12px; }
+.quick-grid { margin: 0 var(--page-pad-x) 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(72px, 1fr)); gap: 12px; }
 .quick-item {
   aspect-ratio: 1; background: var(--paper); border-radius: 18px;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
@@ -203,7 +203,7 @@ const featuredPost = (await getCollection('blog'))
 .quick-label { font-size: 10px; font-weight: var(--font-weight); color: var(--ink-2); text-align: center; line-height: 1.2; }
 
 /* Categories */
-.cat-grid { padding: 0 24px; display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 32px; }
+.cat-grid { padding: 0 var(--page-pad-x); display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 32px; }
 .cat-card {
   padding: 18px; border-radius: 20px; background: var(--paper);
   border: 1px solid var(--line); cursor: pointer; transition: transform .2s;
@@ -224,7 +224,7 @@ const featuredPost = (await getCollection('blog'))
 .cat-count { font-size: 12px; color: var(--ink-2); font-weight: var(--font-weight); }
 
 /* Featured */
-.featured-scroll { display: flex; gap: 14px; padding: 0 24px 8px; overflow-x: auto; scroll-snap-type: x mandatory; margin-bottom: 28px; }
+.featured-scroll { display: flex; gap: 14px; padding: 0 var(--page-pad-x) 8px; overflow-x: auto; scroll-snap-type: x mandatory; margin-bottom: 28px; }
 .featured-scroll::-webkit-scrollbar { display: none; }
 .feat-card {
   min-width: 260px; border-radius: 22px; overflow: hidden;
@@ -244,7 +244,7 @@ const featuredPost = (await getCollection('blog'))
 
 /* Blog Teaser */
 .blog-teaser {
-  margin: 0 24px 28px; padding: 20px; border-radius: 20px;
+  margin: 0 var(--page-pad-x) 28px; padding: 20px; border-radius: 20px;
   background: linear-gradient(135deg, var(--burgundy) 0%, var(--brown) 100%);
   color: var(--paper); cursor: pointer; position: relative; overflow: hidden;
   text-decoration: none; display: block;

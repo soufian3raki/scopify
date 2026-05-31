@@ -90,7 +90,7 @@ function buildBlogSearchText(
 
 <style>
 .search-bar {
-  margin: 0 24px 16px; padding: 14px 18px; background: var(--paper);
+  margin: 0 var(--page-pad-x) 16px; padding: 14px 18px; background: var(--paper);
   border-radius: 100px; border: 1px solid var(--line);
   display: flex; align-items: center; gap: 10px;
 }
@@ -99,9 +99,9 @@ function buildBlogSearchText(
   font-family: inherit; outline: none; color: var(--ink);
 }
 .search-bar input::-webkit-search-cancel-button { cursor: pointer; }
-.blog-cat-row { display: flex; gap: 8px; padding: 0 24px 16px; overflow-x: auto; }
+.blog-cat-row { display: flex; gap: 8px; padding: 0 var(--page-pad-x) 16px; overflow-x: auto; }
 .blog-cat-row::-webkit-scrollbar { display: none; }
-.blog-list { padding: 0 24px 32px; display: flex; flex-direction: column; gap: 16px; }
+.blog-list { padding: 0 var(--page-pad-x) 32px; display: flex; flex-direction: column; gap: 16px; }
 .blog-card {
   background: var(--paper); border: 1px solid var(--line); border-radius: 18px;
   overflow: hidden; cursor: pointer; transition: transform .2s, opacity .2s;
