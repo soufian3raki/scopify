@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const tools = [
+  { icon: '🧺', name: 'Rattan-Gärkorb (Banneton)', desc: 'Handgeflochten aus Indonesischem Rattan. Gibt deinem Brot Form und das typische Spiralmuster.', importance: 'essential', label: 'Essentiell' },
+  { icon: '⚖️', name: 'Digitale Küchenwaage', desc: 'Präzise auf 1g genau. Sauerteig braucht exakte Bäckerprozente.', importance: 'essential', label: 'Essentiell' },
+  { icon: '🔪', name: 'Teigschaber (Metall)', desc: 'Mit Holzgriff. Teilt den Teig sauber und löst ihn von der Arbeitsfläche.', importance: 'essential', label: 'Essentiell' },
+  { icon: '🪒', name: 'Lame (Bäckermesser)', desc: 'Mit Ersatzklingen für das perfekte "Ohr" beim Einschneiden.', importance: 'essential', label: 'Essentiell' },
+  { icon: '🥄', name: 'Teigkarte (Bowl Scraper)', desc: 'Flexibel aus Silikon. Schabt die Schüssel restlos sauber.', importance: 'helpful', label: 'Hilfreich' },
+  { icon: '🌀', name: 'Teig-Schneebesen (Whisk)', desc: 'Dänischer Schneebesen. Mischt zähen Teig ohne Klumpen.', importance: 'helpful', label: 'Hilfreich' },
+  { icon: '🖌️', name: 'Backpinsel', desc: 'Für Wasser, Eiweiß oder Mehl auf dem fertigen Brot.', importance: 'optional', label: 'Optional' },
+];
+---
+
+<BaseLayout title="Mein Kit — Superbaking" showNav={false}>
+  <div class="fade-in">
+
+    <div class="page-head">
+      <a href="/home" class="page-back">←</a>
+      <div class="page-title">Mein Kit</div>
+      <p class="page-sub">Alle 7 Werkzeuge aus deinem Starterkit erklärt.</p>
+    </div>
+
+    <div class="kit-grid">
+      {tools.map(t => (
+        <div class="kit-card">
+          <div class="kit-icon">{t.icon}</div>
+          <div class="kit-info">
+            <div class="kit-name">{t.name}</div>
+            <div class="kit-desc">{t.desc}</div>
+            <span class:list={['kit-importance', t.importance]}>{t.label}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</BaseLayout>
+
+<style>
+.kit-grid { padding: 0 24px 32px; display: grid; grid-template-columns: 1fr; gap: 14px; }
+.kit-card { display: flex; gap: 14px; padding: 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 18px; }
+.kit-icon {
+  width: 64px; height: 64px; border-radius: 14px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--yeast), var(--crust));
+  display: flex; align-items: center; justify-content: center; font-size: 30px;
+}
+.kit-info { flex: 1; }
+.kit-name { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); margin-bottom: 4px; letter-spacing: 0.02em; }
+.kit-desc { font-size: 12px; color: var(--ink-2); line-height: 1.4; margin-bottom: 8px; }
+.kit-importance { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 10px; font-weight: var(--font-weight); text-transform: uppercase; letter-spacing: .08em; }
+.kit-importance.essential { background: color-mix(in srgb, var(--burgundy) 12%, var(--cream)); color: var(--red); }
+.kit-importance.helpful { background: color-mix(in srgb, var(--brown) 12%, var(--cream)); color: var(--green); }
+.kit-importance.optional { background: color-mix(in srgb, var(--sand) 25%, var(--cream)); color: var(--brown); }
+</style>

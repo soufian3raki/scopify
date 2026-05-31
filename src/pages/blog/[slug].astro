@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCover from '../../components/BlogCover.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const { title, category, readTime, pubDate } = post.data;
+
+const formattedDate = pubDate.toLocaleDateString('de-DE', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<BaseLayout title={`${title} — Superbaking`} showNav={false}>
+  <div class="fade-in">
+
+    <div class="blog-detail-hero">
+      <BlogCover post={post} variant="hero" />
+      <a href="/blog" class="detail-back">←</a>
+      <div class="blog-detail-tag">{post.data.badge ?? category}</div>
+    </div>
+
+    <div class="article-body">
+      <h1 class="article-title">{title}</h1>
+      <div class="article-meta">
+        <span>📖 {readTime} Lesezeit</span>
+        <span>{formattedDate}</span>
+      </div>
+
+      <div class="article-content">
+        <Content />
+      </div>
+    </div>
+
+  </div>
+</BaseLayout>
+
+<style>
+.blog-detail-hero {
+  height: 220px; position: relative; overflow: hidden;
+  display: flex; align-items: flex-end; padding: 24px;
+}
+.detail-back {
+  position: absolute; top: 16px; left: 20px; width: 40px; height: 40px;
+  background: rgba(255,255,255,.95); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; text-decoration: none; color: var(--ink); z-index: 2;
+}
+.blog-detail-tag {
+  position: relative; z-index: 1;
+  padding: 5px 12px; background: rgba(255,255,255,.95); border-radius: 100px;
+  font-size: 10px; font-weight: var(--font-weight); text-transform: uppercase; letter-spacing: .1em; color: var(--ink);
+}
+.article-body { padding: 24px; }
+.article-title { font-family: var(--font-display); font-size: var(--font-size); font-weight: var(--font-weight); color: var(--ink); letter-spacing: 0.02em; line-height: var(--line-height); margin-bottom: 12px; }
+.article-meta { display: flex; gap: 14px; font-size: 12px; color: var(--muted); margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.article-content :global(p) { font-size: 15px; line-height: 1.7; color: var(--ink-2); margin-bottom: 16px; }
+.article-content :global(h2) { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); margin: 24px 0 12px; letter-spacing: 0.02em; }
+.article-content :global(blockquote) {
+  padding: 16px 20px; background: var(--paper); border-left: 3px solid var(--accent);
+  border-radius: 0 12px 12px 0; font-family: var(--font-body); font-style: italic;
+  font-size: 16px; color: var(--ink); margin: 20px 0; line-height: 1.5;
+}
+</style>

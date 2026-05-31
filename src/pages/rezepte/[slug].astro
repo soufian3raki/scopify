@@ -1,0 +1,292 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RecipeCover from '../../components/RecipeCover.astro';
+import { isEnabled } from '../../config/feature-flags';
+import { DIFFICULTY_ICONS } from '../../lib/recipe-meta';
+
+export async function getStaticPaths() {
+  const recipes = await getCollection('rezepte');
+  return recipes.map((recipe) => ({
+    params: { slug: recipe.slug },
+    props: { recipe },
+  }));
+}
+
+const { recipe } = Astro.props;
+const { title, description, tag, times, yield: recipeYield, difficulty, ingredients, steps, tips } = recipe.data;
+const recipeSlug = recipe.slug;
+---
+
+<BaseLayout title={`${title} — Superbaking`} showNav={false}>
+  <div class="fade-in">
+
+    <div class="detail-hero">
+      <a href="/rezepte" class="detail-back">←</a>
+      {isEnabled('recipeFavorites') && (
+        <button class="detail-fav" id="favBtn" onclick="toggleFav()">🤍</button>
+      )}
+      <RecipeCover recipe={recipe} variant="hero" />
+    </div>
+
+    <div class="detail-content">
+      {tag && <div class="detail-tag">{tag}</div>}
+      <div class="detail-title">{title}</div>
+      <div class="detail-desc">{description}</div>
+
+      <div class="detail-stats">
+        <div class="stat-box">
+          <div class="stat-icon">👐</div>
+          <div class="stat-value">{times.prep}</div>
+          <div class="stat-label">Vorbereitung</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon">🫧</div>
+          <div class="stat-value">{times.rest}</div>
+          <div class="stat-label">Ruhe</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon">🔥</div>
+          <div class="stat-value">{times.bake}</div>
+          <div class="stat-label">Backen</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon">🍞</div>
+          <div class="stat-value">{recipeYield}</div>
+          <div class="stat-label">Ertrag</div>
+        </div>
+        <div class="stat-box stat-box--full">
+          <div class="stat-icon">{DIFFICULTY_ICONS[difficulty] ?? '⭐'}</div>
+          <div class="stat-value">{difficulty}</div>
+          <div class="stat-label">Schwierigkeit</div>
+        </div>
+      </div>
+      <div class="detail-total">Gesamtzeit: {times.total}</div>
+
+      <section class="recipe-section">
+        <div class="ing-section-head">
+          <h2 class="recipe-section-title">Zutaten</h2>
+          <span class="ing-progress" id="ingProgress" aria-live="polite"></span>
+        </div>
+        <div class="ing-list" id="ingList" data-recipe-slug={recipeSlug}>
+          {ingredients.map((ing, i) => (
+            <label class="ing-item" data-index={i}>
+              <input type="checkbox" class="ing-checkbox" aria-label={`${ing.name} vorbereitet`} />
+              <span class="ing-check" aria-hidden="true"></span>
+              <span class="ing-name">{ing.name}</span>
+              <span class="ing-amount">{ing.amount}</span>
+            </label>
+          ))}
+        </div>
+      </section>
+
+      <section class="recipe-section">
+        <h2 class="recipe-section-title">Schritte</h2>
+        {steps.map((step, i) => (
+          <div class="step-item">
+            <div class="step-num">{i + 1}</div>
+            <div class="step-text">{step.text} <span class="step-time">{step.time}</span></div>
+          </div>
+        ))}
+      </section>
+
+      <section class="recipe-section">
+        <h2 class="recipe-section-title">🍳 Schritt für Schritt backen</h2>
+        {steps.map((step, i) => (
+          <div class="step-item">
+            <div class="step-num">{i + 1}</div>
+            <div class="step-text">
+              <span class="cook-step-title">{step.cookTitle}</span>
+              {step.cookText}
+              <span class="step-time">{step.cookTime}</span>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      <section class="recipe-section">
+        <h2 class="recipe-section-title">Tipps</h2>
+        {tips.map((tip) => (
+          <div class="tip-card">
+            <div class="tip-title">{tip.icon} {tip.title}</div>
+            <div class="tip-text">{tip.text}</div>
+          </div>
+        ))}
+      </section>
+    </div>
+
+  </div>
+</BaseLayout>
+
+<style>
+.detail-hero {
+  height: 280px; position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #e1ab7b, #87674a);
+}
+.detail-hero::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.4) 100%);
+}
+.detail-back {
+  position: absolute; top: 16px; left: 20px; width: 40px; height: 40px;
+  background: rgba(255,255,255,.95); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; z-index: 2; text-decoration: none; color: var(--ink);
+}
+.detail-fav {
+  position: absolute; top: 16px; right: 20px; width: 40px; height: 40px;
+  background: rgba(255,255,255,.95); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2; border: none; cursor: pointer; font-size: 18px;
+}
+.detail-content {
+  padding: 24px; background: var(--bg); position: relative;
+  border-radius: 24px 24px 0 0; margin-top: -24px; z-index: 1;
+}
+.detail-tag { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); font-weight: var(--font-weight); margin-bottom: 8px; }
+.detail-title { font-family: var(--font-display); font-size: var(--font-size); font-weight: var(--font-weight); color: var(--ink); letter-spacing: 0.02em; line-height: var(--line-height); margin-bottom: 12px; }
+.detail-desc { font-size: 14px; color: var(--ink-2); line-height: 1.5; margin-bottom: 20px; }
+.detail-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 12px; }
+.detail-total {
+  font-size: 12px; color: var(--muted); text-align: center;
+  margin-bottom: 24px; font-weight: var(--font-weight);
+}
+.stat-box { padding: 14px 10px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; text-align: center; }
+.stat-box--full { grid-column: 1 / -1; }
+.stat-icon { font-size: 20px; margin-bottom: 4px; }
+.stat-value { font-family: var(--font-display); font-size: 16px; line-height: 1.2; font-weight: var(--font-weight); color: var(--ink); }
+.stat-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 4px; }
+.detail-stats + .recipe-section { margin-top: 0; }
+
+.recipe-section { margin-bottom: 28px; }
+.recipe-section:last-child { margin-bottom: 8px; }
+.recipe-section-title {
+  font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height);
+  font-weight: var(--font-weight); color: var(--ink); letter-spacing: 0.02em; margin-bottom: 14px;
+}
+
+.ing-list {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 18px;
+  padding: 4px 12px;
+}
+.ing-section-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 12px; margin-bottom: 14px;
+}
+.ing-section-head .recipe-section-title { margin-bottom: 0; }
+.ing-progress {
+  font-size: 12px; color: var(--muted); font-weight: var(--font-weight); white-space: nowrap;
+}
+
+.ing-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 4px; border-bottom: 1px solid var(--line);
+  font-size: 14px; cursor: pointer; user-select: none;
+  transition: opacity .2s;
+}
+.ing-item:last-child { border-bottom: none; }
+.ing-checkbox {
+  position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none;
+}
+.ing-check {
+  width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+  border: 2px solid var(--brown); background: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, border-color .2s;
+}
+.ing-check::after {
+  content: ""; width: 5px; height: 9px;
+  border: solid var(--paper); border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0); margin-top: -2px;
+  transition: transform .15s ease;
+}
+.ing-checkbox:checked + .ing-check {
+  background: var(--burgundy); border-color: var(--burgundy);
+}
+.ing-checkbox:checked + .ing-check::after { transform: rotate(45deg) scale(1); }
+.ing-name { flex: 1; color: var(--ink-2); transition: color .2s, opacity .2s; }
+.ing-amount {
+  font-family: var(--font-display); font-weight: var(--font-weight);
+  color: var(--ink); transition: color .2s, opacity .2s;
+}
+.ing-item--checked .ing-name,
+.ing-item--checked .ing-amount {
+  color: var(--muted); text-decoration: line-through; opacity: .75;
+}
+
+.step-item { display: flex; gap: 14px; margin-bottom: 18px; }
+.step-item:last-child { margin-bottom: 0; }
+.step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: var(--paper); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: var(--font-weight); flex-shrink: 0; font-size: 14px; line-height: 1; }
+.step-text { flex: 1; font-size: 14px; line-height: 1.5; color: var(--ink-2); padding-top: 5px; }
+.cook-step-title {
+  display: block; font-family: var(--font-display); font-size: 18px; line-height: 1.2;
+  font-weight: var(--font-weight); color: var(--ink); letter-spacing: 0.02em; margin-bottom: 6px;
+}
+.step-time { font-size: 11px; color: var(--accent); font-weight: var(--font-weight); margin-top: 4px; display: block; }
+
+.tip-card { padding: 16px; background: linear-gradient(135deg, #faf6ec, #f5eeda); border-radius: 14px; margin-bottom: 12px; border-left: 3px solid var(--accent); }
+.tip-title { font-family: var(--font-display); font-weight: var(--font-weight); color: var(--ink); margin-bottom: 6px; font-size: 18px; line-height: 1.2; display: flex; align-items: center; gap: 6px; }
+.tip-text { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+</style>
+
+<script define:vars={{ recipeSlug, ingredientCount: ingredients.length }}>
+const STORAGE_KEY = `superbaking-ingredients-${recipeSlug}`;
+
+function loadChecked() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveChecked(indices) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(indices));
+}
+
+function updateProgress(checkedSet) {
+  const el = document.getElementById('ingProgress');
+  if (!el) return;
+  el.textContent = `${checkedSet.size}/${ingredientCount} bereit`;
+}
+
+function initIngredientChecklist() {
+  const items = document.querySelectorAll('.ing-item');
+  const checked = new Set(loadChecked());
+
+  items.forEach((item) => {
+    const index = Number(item.dataset.index);
+    const checkbox = item.querySelector('.ing-checkbox');
+
+    if (checked.has(index)) {
+      checkbox.checked = true;
+      item.classList.add('ing-item--checked');
+    }
+
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        checked.add(index);
+        item.classList.add('ing-item--checked');
+      } else {
+        checked.delete(index);
+        item.classList.remove('ing-item--checked');
+      }
+      saveChecked([...checked].sort((a, b) => a - b));
+      updateProgress(checked);
+    });
+  });
+
+  updateProgress(checked);
+}
+
+initIngredientChecklist();
+
+if (document.getElementById('favBtn')) {
+  let favOn = false;
+  window.toggleFav = () => {
+    favOn = !favOn;
+    document.getElementById('favBtn').textContent = favOn ? '❤️' : '🤍';
+  };
+}
+</script>

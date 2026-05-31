@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { isEnabled } from '../config/feature-flags';
+---
+
+<BaseLayout title="Profil — Superbaking" activeNav="profile">
+  <div class="fade-in">
+
+    <div class="profile-head">
+      <div class="profile-pic">B</div>
+      <div class="profile-name">Baker</div>
+      <div class="profile-since">Mitglied seit Mai 2026</div>
+    </div>
+
+    {isEnabled('profileStats') && (
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">12</div><div class="stat-name">Brote</div></div>
+        <div class="stat-card"><div class="stat-num">28</div><div class="stat-name">Tage</div></div>
+        <div class="stat-card"><div class="stat-num">7</div><div class="stat-name">Favoriten</div></div>
+      </div>
+    )}
+
+    <div class="menu-list">
+      {isEnabled('profileFavorites') && (
+        <a href="#" class="menu-item"><div class="menu-emoji">❤️</div><div class="menu-text">Meine Favoriten</div><div class="menu-arrow">›</div></a>
+      )}
+      {isEnabled('profileMyRecipes') && (
+        <a href="#" class="menu-item"><div class="menu-emoji">📝</div><div class="menu-text">Meine Rezepte</div><div class="menu-arrow">›</div></a>
+      )}
+      <a href="/kit" class="menu-item"><div class="menu-emoji">🧰</div><div class="menu-text">Mein Kit</div><div class="menu-arrow">›</div></a>
+      {isEnabled('profileShoppingList') && (
+        <a href="#" class="menu-item"><div class="menu-emoji">🛒</div><div class="menu-text">Einkaufsliste</div><div class="menu-arrow">›</div></a>
+      )}
+    </div>
+
+    {(isEnabled('profileNotifications') || isEnabled('profileLanguage') || isEnabled('profileUnits') || isEnabled('profileDarkMode')) && (
+      <div class="menu-list">
+        {isEnabled('profileNotifications') && (
+          <a href="#" class="menu-item"><div class="menu-emoji">🔔</div><div class="menu-text">Benachrichtigungen</div><div class="menu-arrow">›</div></a>
+        )}
+        {isEnabled('profileLanguage') && (
+          <a href="#" class="menu-item"><div class="menu-emoji">🌍</div><div class="menu-text">Sprache · Deutsch</div><div class="menu-arrow">›</div></a>
+        )}
+        {isEnabled('profileUnits') && (
+          <a href="#" class="menu-item"><div class="menu-emoji">⚖️</div><div class="menu-text">Einheiten · Gramm</div><div class="menu-arrow">›</div></a>
+        )}
+        {isEnabled('profileDarkMode') && (
+          <a href="#" class="menu-item"><div class="menu-emoji">🌙</div><div class="menu-text">Dark Mode</div><div class="menu-arrow">›</div></a>
+        )}
+      </div>
+    )}
+
+    <div class="menu-list">
+      {isEnabled('profilePremium') && (
+        <a href="#" class="menu-item"><div class="menu-emoji">💎</div><div class="menu-text">Premium upgraden</div><div class="menu-arrow">›</div></a>
+      )}
+      {isEnabled('profileSupport') && (
+        <a href="#" class="menu-item"><div class="menu-emoji">📧</div><div class="menu-text">Support kontaktieren</div><div class="menu-arrow">›</div></a>
+      )}
+      <a href="/geschichte" class="menu-item"><div class="menu-emoji">📜</div><div class="menu-text">Über Superbaking</div><div class="menu-arrow">›</div></a>
+    </div>
+
+  </div>
+</BaseLayout>
+
+<style>
+.profile-head { padding: 24px; text-align: center; }
+.profile-pic {
+  width: 90px; height: 90px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--crust));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); color: #fff; font-weight: var(--font-weight);
+  font-size: 18px; line-height: 1;
+  margin: 0 auto 12px; box-shadow: var(--shadow);
+}
+.profile-name { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); letter-spacing: 0.02em; }
+.profile-since { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+.stats-grid { margin: 8px 24px 24px; display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.stat-card { padding: 14px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; text-align: center; }
+.stat-num { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); }
+.stat-name { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 2px; }
+
+.menu-list { margin: 0 24px 24px; background: var(--paper); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.menu-item { padding: 16px 18px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--line); cursor: pointer; transition: background .2s; text-decoration: none; }
+.menu-item:last-child { border-bottom: none; }
+.menu-item:active { background: var(--bg-2); }
+.menu-emoji { font-size: 22px; width: 36px; text-align: center; }
+.menu-text { flex: 1; font-size: 14px; color: var(--ink); font-weight: var(--font-weight); }
+.menu-arrow { color: var(--muted); font-size: 18px; }
+</style>

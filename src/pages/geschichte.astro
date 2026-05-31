@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const timeline = [
+  { year: '4000 v. Chr.', title: 'Die Geburt im alten Ägypten', text: 'Die Ägypter entdecken zufällig die Wirkung wilder Hefen. Brot wird zum Grundnahrungsmittel.' },
+  { year: '500 v. Chr.', title: 'Griechenland & Rom', text: 'Profi-Bäcker entwickeln über 70 verschiedene Brotsorten. Bäckereien werden zum sozialen Mittelpunkt.' },
+  { year: '800 n. Chr.', title: 'Klöster bewahren das Wissen', text: 'Mönche in Europa verfeinern die Sauerteigkultur. Roggenbrot wird zum Volksnahrungsmittel.' },
+  { year: '1849', title: 'Gold Rush in San Francisco', text: 'Goldgräber bringen ihren Sauerteig nach Kalifornien. Daher kommt der berühmte "San Francisco Sourdough".' },
+  { year: '1900', title: 'Industrialisierung des Brotes', text: 'Backhefe wird industriell produziert. Sauerteig gerät fast in Vergessenheit.' },
+  { year: '2010', title: 'Die Renaissance', text: 'Heimbäcker entdecken Sauerteig wieder. Bekömmlichkeit und Geschmack werden geschätzt.' },
+  { year: '2026', title: 'Heute mit Superbaking', text: 'KI-gestützte Apps und hochwertige Werkzeuge machen Sauerteig für jeden zugänglich.' },
+];
+---
+
+<BaseLayout title="Geschichte des Sauerteigs — Superbaking" showNav={false}>
+  <div class="fade-in">
+
+    <div class="page-head">
+      <a href="/home" class="page-back">←</a>
+      <div class="page-title">Geschichte des Sauerteigs</div>
+      <p class="page-sub">Von den alten Ägyptern bis zu deiner Küche — eine Reise durch 6000 Jahre Brotbacken.</p>
+    </div>
+
+    <div class="timeline">
+      {timeline.map(item => (
+        <div class="time-item">
+          <div class="time-dot"></div>
+          <div class="time-year">{item.year}</div>
+          <div class="time-title">{item.title}</div>
+          <div class="time-text">{item.text}</div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</BaseLayout>
+
+<style>
+.timeline { padding: 0 24px 32px; position: relative; }
+.timeline::before { content: ""; position: absolute; left: 46px; top: 0; bottom: 0; width: 2px; background: var(--line); }
+.time-item { padding-left: 80px; margin-bottom: 28px; position: relative; }
+.time-dot { position: absolute; left: 36px; top: 8px; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); border: 4px solid var(--bg); box-shadow: 0 0 0 1px var(--line); }
+.time-year { font-family: var(--font-display); font-size: 13px; font-weight: var(--font-weight); color: var(--accent); letter-spacing: .04em; margin-bottom: 6px; }
+.time-title { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); margin-bottom: 6px; letter-spacing: 0.02em; }
+.time-text { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+</style>

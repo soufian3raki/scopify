@@ -1,0 +1,75 @@
+---
+import '../styles/global.css';
+import { isEnabled } from '../config/feature-flags';
+
+export interface Props {
+  title?: string;
+  activeNav?: string;
+  showNav?: boolean;
+  noBottomPad?: boolean;
+}
+
+const { 
+  title = 'Superbaking — Deine Sauerteig App', 
+  activeNav = '', 
+  showNav = true,
+  noBottomPad = false
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+  <div class="app" class:list={[{ 'no-pad': noBottomPad }]}>
+    <slot />
+  </div>
+
+  {showNav && (
+    <nav class="bottom-nav">
+      <a href="/home" class:list={['nav-item', { active: activeNav === 'home' }]}>
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span class="nav-label">Home</span>
+      </a>
+      <a href="/rezepte" class:list={['nav-item', { active: activeNav === 'recipes' }]}>
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+        </svg>
+        <span class="nav-label">Rezepte</span>
+      </a>
+      <a href="/blog" class:list={['nav-item', { active: activeNav === 'blog' }]}>
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+        </svg>
+        <span class="nav-label">Blog</span>
+      </a>
+      {isEnabled('timerPage') && (
+        <a href="/timer" class:list={['nav-item', { active: activeNav === 'timer' }]}>
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <span class="nav-label">Hermann</span>
+        </a>
+      )}
+      <a href="/profil" class:list={['nav-item', { active: activeNav === 'profile' }]}>
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span class="nav-label">Profil</span>
+      </a>
+    </nav>
+  )}
+</body>
+</html>

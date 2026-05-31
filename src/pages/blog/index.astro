@@ -1,0 +1,138 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCover from '../../components/BlogCover.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('de-DE', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+
+function buildBlogSearchText(
+  title: string,
+  description: string | undefined,
+  category: string,
+  badge: string | undefined
+) {
+  return [title, description, category, badge].filter(Boolean).join(' ').toLowerCase();
+}
+---
+
+<BaseLayout title="Blog — Superbaking" activeNav="blog">
+  <div class="fade-in">
+
+    <div class="head">
+      <div>
+        <div class="head-greet">Magazin</div>
+        <div class="head-name">Blog</div>
+      </div>
+      <a href="/profil" class="head-avatar">B</a>
+    </div>
+
+    <div class="search-bar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>
+      </svg>
+      <input id="blogSearch" type="search" placeholder="Suche Artikel, Themen..." autocomplete="off" />
+    </div>
+
+    <div class="blog-cat-row" id="blogFilters">
+      <button type="button" class="chip active" data-filter="all">Alle</button>
+      <button type="button" class="chip" data-filter="wissenschaft">Wissenschaft</button>
+      <button type="button" class="chip" data-filter="geschichte">Geschichte</button>
+      <button type="button" class="chip" data-filter="technik">Technik</button>
+      <button type="button" class="chip" data-filter="reisen">Reisen</button>
+    </div>
+
+    <p class="list-empty is-hidden" id="blogEmpty">Keine Artikel gefunden.</p>
+
+    <div class="blog-list" id="blogList">
+      {posts.map((post) => {
+        const searchText = buildBlogSearchText(
+          post.data.title,
+          post.data.description,
+          post.data.category,
+          post.data.badge
+        );
+        return (
+          <a
+            href={`/blog/${post.slug}`}
+            class="blog-card"
+            data-search={searchText}
+            data-category={post.data.category.toLowerCase()}
+          >
+            <div class="blog-img">
+              <BlogCover post={post} variant="card" />
+              <span class="feat-badge">{post.data.badge ?? post.data.category}</span>
+            </div>
+            <div class="blog-content">
+              <div class="blog-card-cat">{post.data.featured ? 'Featured' : post.data.category}</div>
+              <div class="blog-card-title">{post.data.title}</div>
+              <div class="blog-card-meta">
+                <span>📖 {post.data.readTime}</span>
+                <span>{formatDate(post.data.pubDate)}</span>
+              </div>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+
+  </div>
+</BaseLayout>
+
+<style>
+.search-bar {
+  margin: 0 24px 16px; padding: 14px 18px; background: var(--paper);
+  border-radius: 100px; border: 1px solid var(--line);
+  display: flex; align-items: center; gap: 10px;
+}
+.search-bar input {
+  border: none; background: transparent; flex: 1; font-size: 14px;
+  font-family: inherit; outline: none; color: var(--ink);
+}
+.search-bar input::-webkit-search-cancel-button { cursor: pointer; }
+.blog-cat-row { display: flex; gap: 8px; padding: 0 24px 16px; overflow-x: auto; }
+.blog-cat-row::-webkit-scrollbar { display: none; }
+.blog-list { padding: 0 24px 32px; display: flex; flex-direction: column; gap: 16px; }
+.blog-card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 18px;
+  overflow: hidden; cursor: pointer; transition: transform .2s, opacity .2s;
+  text-decoration: none; display: block;
+}
+.blog-card:active { transform: scale(.98); }
+.blog-img { height: 160px; position: relative; overflow: hidden; }
+.feat-badge {
+  position: absolute; left: 14px; bottom: 14px; z-index: 1;
+  padding: 4px 10px; background: rgba(255,255,255,.95); border-radius: 100px; font-size: 10px; font-weight: var(--font-weight); color: var(--ink); text-transform: uppercase; letter-spacing: .08em;
+}
+.blog-content { padding: 16px; }
+.blog-card-cat { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); font-weight: var(--font-weight); margin-bottom: 6px; }
+.blog-card-title { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); margin-bottom: 8px; letter-spacing: 0.02em; }
+.blog-card-meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
+</style>
+
+<script>
+  import { initListFilter } from '../../scripts/list-filter.ts';
+
+  initListFilter({
+    searchInputId: 'blogSearch',
+    filterContainerId: 'blogFilters',
+    listContainerId: 'blogList',
+    emptyStateId: 'blogEmpty',
+    itemSelector: '.blog-card',
+    getSearchText: (item) => item.dataset.search ?? '',
+    matchesFilter: (filter, item) => {
+      if (filter === 'all') return true;
+      const category = (item.dataset.category ?? '').toLowerCase();
+      return category === filter.toLowerCase();
+    },
+  });
+</script>

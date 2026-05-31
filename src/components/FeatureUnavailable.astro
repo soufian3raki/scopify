@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Props {
+  title: string;
+  message?: string;
+  backHref?: string;
+  backLabel?: string;
+  activeNav?: string;
+  showNav?: boolean;
+}
+
+const {
+  title,
+  message = 'Diese Funktion ist noch nicht verfügbar.',
+  backHref = '/home',
+  backLabel = 'Zurück zur Startseite',
+  activeNav = '',
+  showNav = true,
+} = Astro.props;
+---
+
+<BaseLayout {title} {activeNav} {showNav}>
+  <div class="fade-in unavailable">
+    <div class="unavailable-icon">🚧</div>
+    <h1 class="unavailable-title">{title}</h1>
+    <p class="unavailable-msg">{message}</p>
+    <a href={backHref} class="unavailable-back">{backLabel}</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .unavailable {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 32px;
+    text-align: center;
+  }
+  .unavailable-icon { font-size: 48px; margin-bottom: 16px; }
+  .unavailable-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    font-weight: var(--font-weight);
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .unavailable-msg { font-size: 14px; color: var(--ink-2); line-height: 1.5; max-width: 280px; margin-bottom: 24px; }
+  .unavailable-back {
+    padding: 14px 24px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: var(--font-weight);
+    text-decoration: none;
+  }
+</style>

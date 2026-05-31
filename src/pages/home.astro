@@ -1,0 +1,256 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import RecipeCover from '../components/RecipeCover.astro';
+import { isEnabled } from '../config/feature-flags';
+import { formatDifficulty } from '../lib/recipe-meta';
+
+const featuredRecipes = (await getCollection('rezepte'))
+  .filter((r) => r.data.featured)
+  .slice(0, 4);
+
+const featuredPost = (await getCollection('blog'))
+  .filter((p) => p.data.featured)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())[0];
+---
+
+<BaseLayout title="Superbaking — Home" activeNav="home">
+  <div class="fade-in">
+
+    <!-- Header -->
+    <div class="head">
+      <div>
+        <div class="head-greet">Guten Morgen</div>
+        <div class="head-name">Hallo, Baker</div>
+      </div>
+      <a href="/profil" class="head-avatar">B</a>
+    </div>
+
+    {isEnabled('homeHermannCard') && (
+      <a href="/timer" class="hermann-card">
+        <div class="hermann-row">
+          <div>
+            <div class="hermann-name">Dein Sauerteig</div>
+            <div class="hermann-status">Hermann ist aktiv 🫧</div>
+            <div class="hermann-meta">Zuletzt gefüttert vor 6h</div>
+          </div>
+          <div class="hermann-emoji">🍞</div>
+        </div>
+        <div class="hermann-progress"><div class="hermann-progress-fill"></div></div>
+        <div class="hermann-footer">
+          <span>68% bereit zum Backen</span>
+          <span>Nächste Fütterung in 2h</span>
+        </div>
+      </a>
+    )}
+
+    <!-- Quick Access -->
+    <div class="quick-grid">
+      {isEnabled('homeHermineQuickAccess') && (
+        <a href="/hermine" class="quick-item">
+          <div class="quick-emoji">🤖</div>
+          <div class="quick-label">KI-Coach</div>
+        </a>
+      )}
+      <a href="/kit" class="quick-item">
+        <div class="quick-emoji">🧰</div>
+        <div class="quick-label">Mein Kit</div>
+      </a>
+      <a href="/geschichte" class="quick-item">
+        <div class="quick-emoji">📜</div>
+        <div class="quick-label">Geschichte</div>
+      </a>
+      {isEnabled('homeTimerQuickAccess') && (
+        <a href="/timer" class="quick-item">
+          <div class="quick-emoji">⏱️</div>
+          <div class="quick-label">Timer</div>
+        </a>
+      )}
+    </div>
+
+    {isEnabled('homeCategories') && (
+      <>
+        <div class="section-head">
+          <div class="section-title">Kategorien</div>
+          <a href="/rezepte" class="section-link">Alle</a>
+        </div>
+        <div class="cat-grid">
+          <a href="/rezepte" class="cat-card c1">
+            <div class="cat-emoji">🌾</div>
+            <div>
+              <div class="cat-name">Grundlagen</div>
+              <div class="cat-count">12 Rezepte</div>
+            </div>
+          </a>
+          <a href="/rezepte" class="cat-card c2">
+            <div class="cat-emoji">🍞</div>
+            <div>
+              <div class="cat-name">Klassiker</div>
+              <div class="cat-count">28 Rezepte</div>
+            </div>
+          </a>
+          <a href="/rezepte" class="cat-card c3">
+            <div class="cat-emoji">🥐</div>
+            <div>
+              <div class="cat-name">Brötchen</div>
+              <div class="cat-count">14 Rezepte</div>
+            </div>
+          </a>
+          <a href="/rezepte" class="cat-card c4">
+            <div class="cat-emoji">🍕</div>
+            <div>
+              <div class="cat-name">Pizza & Flach</div>
+              <div class="cat-count">10 Rezepte</div>
+            </div>
+          </a>
+          <a href="/rezepte" class="cat-card c5">
+            <div class="cat-emoji">🥨</div>
+            <div>
+              <div class="cat-name">Süßes</div>
+              <div class="cat-count">14 Rezepte</div>
+            </div>
+          </a>
+          <a href="/rezepte" class="cat-card c6">
+            <div class="cat-emoji">🔧</div>
+            <div>
+              <div class="cat-name">Hilfe</div>
+              <div class="cat-count">12 Rezepte</div>
+            </div>
+          </a>
+          <a href="/rezepte" class="cat-card c7">
+            <div class="cat-emoji">🌍</div>
+            <div>
+              <div class="cat-name">International</div>
+              <div class="cat-count">6 Rezepte</div>
+            </div>
+          </a>
+          <a href="/rezepte" class="cat-card c8">
+            <div class="cat-emoji">♻️</div>
+            <div>
+              <div class="cat-name">Reste</div>
+              <div class="cat-count">4 Rezepte</div>
+            </div>
+          </a>
+        </div>
+      </>
+    )}
+
+    <!-- Featured -->
+    <div class="section-head">
+      <div class="section-title">Empfohlen für dich</div>
+      <a href="/rezepte" class="section-link">Mehr</a>
+    </div>
+    <div class="featured-scroll">
+      {featuredRecipes.map((recipe) => (
+        <a href={`/rezepte/${recipe.slug}`} class="feat-card">
+          <div class="feat-img">
+            <RecipeCover recipe={recipe} variant="card" />
+            {recipe.data.featuredBadge && <span class="feat-badge">{recipe.data.featuredBadge}</span>}
+          </div>
+          <div class="feat-content">
+            <div class="feat-title">{recipe.data.title}</div>
+            <div class="feat-meta">
+              <span>⏱ {recipe.data.times.total}</span>
+              <span>{formatDifficulty(recipe.data.difficulty)}</span>
+              <span>🍞 {recipe.data.yield}</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    {featuredPost && (
+      <a href={`/blog/${featuredPost.slug}`} class="blog-teaser">
+        <div class="blog-tag">Aus dem Magazin</div>
+        <div class="blog-headline">{featuredPost.data.title}</div>
+        <div class="blog-desc">{featuredPost.data.description}</div>
+      </a>
+    )}
+
+  </div>
+</BaseLayout>
+
+<style>
+/* Hermann Card */
+.hermann-card {
+  margin: 8px 24px 24px; padding: 20px; border-radius: 24px;
+  background: linear-gradient(135deg, var(--rye) 0%, var(--crust-dark) 100%);
+  color: var(--paper); position: relative; overflow: hidden; cursor: pointer;
+  box-shadow: 0 12px 32px rgba(62,40,23,.3); text-decoration: none; display: block;
+}
+.hermann-card::before {
+  content: ""; position: absolute; top: -40px; right: -40px; width: 140px; height: 140px;
+  border-radius: 50%; background: radial-gradient(circle, rgba(225, 171, 123, .28), transparent 70%);
+}
+.hermann-row { display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 1; }
+.hermann-name { font-size: 12px; text-transform: uppercase; letter-spacing: .12em; opacity: .7; margin-bottom: 6px; }
+.hermann-status { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); margin-bottom: 4px; }
+.hermann-meta { font-size: 13px; opacity: .8; }
+.hermann-emoji { font-size: 42px; filter: drop-shadow(0 4px 8px rgba(0,0,0,.2)); }
+.hermann-progress { margin-top: 16px; height: 6px; background: rgba(255,255,255,.15); border-radius: 100px; overflow: hidden; position: relative; z-index: 1; }
+.hermann-progress-fill { height: 100%; width: 68%; background: linear-gradient(90deg, var(--yeast), var(--accent)); border-radius: 100px; }
+.hermann-footer { display: flex; justify-content: space-between; margin-top: 10px; font-size: 11px; opacity: .7; position: relative; z-index: 1; }
+
+/* Quick Grid */
+.quick-grid { margin: 0 24px 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(72px, 1fr)); gap: 12px; }
+.quick-item {
+  aspect-ratio: 1; background: var(--paper); border-radius: 18px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  cursor: pointer; border: 1px solid var(--line); transition: transform .2s; text-decoration: none;
+}
+.quick-item:active { transform: scale(.95); }
+.quick-emoji { font-size: 24px; }
+.quick-label { font-size: 10px; font-weight: var(--font-weight); color: var(--ink-2); text-align: center; line-height: 1.2; }
+
+/* Categories */
+.cat-grid { padding: 0 24px; display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 32px; }
+.cat-card {
+  padding: 18px; border-radius: 20px; background: var(--paper);
+  border: 1px solid var(--line); cursor: pointer; transition: transform .2s;
+  display: flex; flex-direction: column; gap: 8px; min-height: 100px;
+  justify-content: space-between; text-decoration: none;
+}
+.cat-card:active { transform: scale(.97); }
+.cat-card.c1 { background: linear-gradient(135deg, #f5eeda, #e1ab7b); }
+.cat-card.c2 { background: linear-gradient(135deg, #e1ab7b, #c99a6a); }
+.cat-card.c3 { background: linear-gradient(135deg, #e8c4a0, #e1ab7b); }
+.cat-card.c4 { background: linear-gradient(135deg, #e1ab7b, #87674a); }
+.cat-card.c5 { background: linear-gradient(135deg, #c4a07a, #87674a); }
+.cat-card.c6 { background: linear-gradient(135deg, #87674a, #6d5340); }
+.cat-card.c7 { background: linear-gradient(135deg, #d4b088, #87674a); }
+.cat-card.c8 { background: linear-gradient(135deg, #87674a, #591727); }
+.cat-emoji { font-size: 30px; }
+.cat-name { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); letter-spacing: 0.02em; }
+.cat-count { font-size: 12px; color: var(--ink-2); font-weight: var(--font-weight); }
+
+/* Featured */
+.featured-scroll { display: flex; gap: 14px; padding: 0 24px 8px; overflow-x: auto; scroll-snap-type: x mandatory; margin-bottom: 28px; }
+.featured-scroll::-webkit-scrollbar { display: none; }
+.feat-card {
+  min-width: 260px; border-radius: 22px; overflow: hidden;
+  background: var(--paper); border: 1px solid var(--line); scroll-snap-align: start;
+  cursor: pointer; box-shadow: var(--shadow); transition: transform .2s; text-decoration: none;
+}
+.feat-card:active { transform: scale(.97); }
+.feat-img { height: 160px; position: relative; overflow: hidden; }
+.feat-badge {
+  position: absolute; left: 14px; bottom: 14px; z-index: 1;
+  padding: 4px 10px; background: rgba(255,255,255,.95); border-radius: 100px; font-size: 10px; font-weight: var(--font-weight); color: var(--ink); text-transform: uppercase; letter-spacing: .08em;
+}
+.feat-content { padding: 16px; }
+.feat-title { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); margin-bottom: 6px; letter-spacing: 0.02em; }
+.feat-meta { display: flex; gap: 14px; font-size: 12px; color: var(--muted); }
+.feat-meta span { display: flex; align-items: center; gap: 4px; }
+
+/* Blog Teaser */
+.blog-teaser {
+  margin: 0 24px 28px; padding: 20px; border-radius: 20px;
+  background: linear-gradient(135deg, var(--burgundy) 0%, var(--brown) 100%);
+  color: var(--paper); cursor: pointer; position: relative; overflow: hidden;
+  text-decoration: none; display: block;
+}
+.blog-teaser::after { content: "📖"; position: absolute; right: -10px; bottom: -10px; font-size: 80px; opacity: .1; }
+.blog-tag { font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: var(--yeast); margin-bottom: 10px; font-weight: var(--font-weight); }
+.blog-headline { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); letter-spacing: 0.02em; margin-bottom: 6px; }
+.blog-desc { font-size: 13px; opacity: .7; }
+</style>

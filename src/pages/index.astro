@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { isEnabled } from '../config/feature-flags';
+---
+
+<BaseLayout title="Superbaking — Deine Sauerteig App" showNav={false}>
+  <div class="onboarding fade-in">
+    <div class="onb-content">
+      <div class="onb-logo">S</div>
+      <h1 class="onb-title">Brot backen<br><em>leicht gemacht.</em></h1>
+      <p class="onb-sub">Dein digitaler Begleiter für perfektes Sauerteigbrot — von Hermann bis zum ersten Laib.</p>
+      {isEnabled('onboardingFeaturePills') && (
+        <div class="feature-pills">
+          <div class="pill"><span class="dot"></span>100+ Rezepte</div>
+          <div class="pill"><span class="dot"></span>KI-Coach</div>
+          <div class="pill"><span class="dot"></span>Smart-Timer</div>
+          <div class="pill"><span class="dot"></span>Offline</div>
+          <div class="pill"><span class="dot"></span>Werbefrei</div>
+        </div>
+      )}
+      <a href="/home" class="onb-cta">Loslegen →</a>
+      <a href="/home" class="onb-skip">Später</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+.onboarding {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(circle at 80% 10%, rgba(225, 171, 123, .2), transparent 50%),
+    radial-gradient(circle at 10% 90%, rgba(135, 103, 74, .12), transparent 50%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.onboarding::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='1' cy='1' r='.5' fill='%23591727' opacity='.08'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.onb-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 32px;
+  position: relative;
+  z-index: 1;
+}
+.onb-logo {
+  width: 88px; height: 88px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--crust), var(--rye));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); color: var(--paper); font-weight: var(--font-weight);
+  box-shadow: 0 12px 40px rgba(139,69,19,.4); margin-bottom: 32px;
+}
+.onb-title {
+  font-family: var(--font-display); font-size: var(--font-size); font-weight: var(--font-weight);
+  line-height: var(--line-height); color: var(--ink); margin-bottom: 16px; letter-spacing: 0.02em;
+}
+.onb-title em { font-family: var(--font-body); font-style: italic; color: var(--accent); font-weight: var(--font-weight); }
+.onb-sub { font-size: 17px; color: var(--ink-2); line-height: 1.5; margin-bottom: 32px; max-width: 300px; }
+.feature-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+.pill {
+  padding: 8px 14px; background: var(--paper); border: 1px solid var(--line);
+  border-radius: 100px; font-size: 12px; font-weight: var(--font-weight); color: var(--ink-2);
+  display: flex; align-items: center; gap: 6px;
+}
+.pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+.onb-cta {
+  padding: 18px 24px; background: var(--ink); color: var(--paper);
+  border-radius: 100px; font-size: 16px; font-weight: var(--font-weight);
+  font-family: var(--font-body); width: 100%;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: transform .2s; text-decoration: none;
+}
+.onb-cta:active { transform: scale(.97); }
+.onb-skip { display: block; text-align: center; padding: 16px; color: var(--muted); font-size: 14px; text-decoration: none; }
+</style>

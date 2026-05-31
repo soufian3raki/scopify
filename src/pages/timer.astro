@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FeatureUnavailable from '../components/FeatureUnavailable.astro';
+import { isEnabled } from '../config/feature-flags';
+
+const showTimer = isEnabled('timerPage');
+---
+
+{!showTimer ? (
+  <FeatureUnavailable
+    title="Hermann Timer"
+    message="Der Sauerteig-Timer wird bald verfügbar sein."
+    activeNav="timer"
+  />
+) : (
+  <BaseLayout title="Hermann Timer — Superbaking" activeNav="timer">
+    <div class="fade-in">
+
+      <div class="head">
+        <div>
+          <div class="head-greet">Hermann</div>
+          <div class="head-name">Sauerteig-Timer</div>
+        </div>
+        <a href="/profil" class="head-avatar">B</a>
+      </div>
+
+      <div class="timer-display">
+        <div class="timer-label">Nächste Fütterung in</div>
+        <div class="timer-clock" id="timerClock">02:14:38</div>
+        <div class="timer-next">Heute, 18:30 Uhr</div>
+      </div>
+
+      {isEnabled('timerActions') && (
+        <div class="timer-actions">
+          <button class="timer-btn">
+            <div class="timer-btn-emoji">🥄</div>
+            <div>Gefüttert</div>
+          </button>
+          <button class="timer-btn">
+            <div class="timer-btn-emoji">📸</div>
+            <div>Foto</div>
+          </button>
+          <button class="timer-btn">
+            <div class="timer-btn-emoji">📝</div>
+            <div>Notiz</div>
+          </button>
+        </div>
+      )}
+
+      {isEnabled('timerJournal') && (
+        <div class="journal">
+          <div class="journal-title">Tagebuch</div>
+          <div class="journal-entry">
+            <div class="journal-date">Heute<br/>12:00</div>
+            <div class="journal-text">Hermann zeigt schöne Bläschen. Verdoppelung in 4 Stunden — bereit zum Backen!</div>
+          </div>
+          <div class="journal-entry">
+            <div class="journal-date">Gestern<br/>18:30</div>
+            <div class="journal-text">50g Mehl + 50g Wasser gefüttert. Raum 23°C.</div>
+          </div>
+          <div class="journal-entry">
+            <div class="journal-date">13. Mai<br/>18:00</div>
+            <div class="journal-text">Klassisches Bauernbrot gebacken — bestes Ergebnis bisher! ⭐</div>
+          </div>
+          <div class="journal-entry">
+            <div class="journal-date">12. Mai<br/>09:00</div>
+            <div class="journal-text">Fütterung nach 24h Kühlschrank. Hermann wacht langsam auf.</div>
+          </div>
+        </div>
+      )}
+
+    </div>
+  </BaseLayout>
+)}
+
+<style>
+.timer-display {
+  margin: 0 24px 24px; padding: 32px; border-radius: 24px;
+  background: linear-gradient(135deg, var(--rye), var(--crust-dark));
+  color: var(--paper); text-align: center;
+}
+.timer-label { font-size: 13px; text-transform: uppercase; letter-spacing: .12em; opacity: .7; margin-bottom: 8px; }
+.timer-clock { font-family: var(--font-display); font-size: var(--font-size); font-weight: var(--font-weight); letter-spacing: 0.02em; line-height: var(--line-height); }
+.timer-next { font-size: 13px; opacity: .7; margin-top: 8px; }
+
+.timer-actions { margin: 0 24px 24px; display: flex; gap: 10px; }
+.timer-btn {
+  flex: 1; padding: 14px; background: var(--paper); border: 1px solid var(--line);
+  border-radius: 14px; font-size: 13px; font-weight: var(--font-weight); color: var(--ink);
+  cursor: pointer; font-family: inherit; display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.timer-btn-emoji { font-size: 20px; }
+
+.journal { padding: 0 24px 24px; }
+.journal-title { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); margin-bottom: 14px; letter-spacing: 0.02em; }
+.journal-entry {
+  padding: 14px; background: var(--paper); border: 1px solid var(--line);
+  border-radius: 14px; margin-bottom: 10px; display: flex; gap: 12px;
+}
+.journal-date { font-family: var(--font-display); font-size: 11px; font-weight: var(--font-weight); color: var(--accent); text-transform: uppercase; letter-spacing: .08em; width: 60px; flex-shrink: 0; }
+.journal-text { font-size: 13px; color: var(--ink-2); line-height: 1.4; }
+</style>
+
+{showTimer && (
+  <script>
+    let totalSeconds = 2 * 3600 + 14 * 60 + 38;
+
+    function updateTimer() {
+      if (totalSeconds <= 0) return;
+      totalSeconds--;
+      const h = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+      const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+      const s = String(totalSeconds % 60).padStart(2, '0');
+      document.getElementById('timerClock').textContent = `${h}:${m}:${s}`;
+    }
+
+    setInterval(updateTimer, 1000);
+  </script>
+)}

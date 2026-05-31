@@ -1,0 +1,92 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  recipe: CollectionEntry<'rezepte'>;
+  variant?: 'hero' | 'thumb' | 'card';
+}
+
+const { recipe, variant = 'thumb' } = Astro.props;
+const { cover, thumb, thumbClass, title } = recipe.data;
+
+const sizes = {
+  hero: { width: 960, height: 560 },
+  thumb: { width: 160, height: 160 },
+  card: { width: 400, height: 320 },
+} as const;
+
+const { width, height } = sizes[variant];
+---
+
+{cover ? (
+  <Image
+    src={cover}
+    alt={title}
+    width={width}
+    height={height}
+    class={`recipe-cover recipe-cover--${variant}`}
+    loading={variant === 'hero' ? 'eager' : 'lazy'}
+  />
+) : (
+  <div class:list={['recipe-cover-fallback', `recipe-cover-fallback--${variant}`, thumbClass]}>
+    <span class="recipe-cover-emoji">{thumb}</span>
+  </div>
+)}
+
+<style>
+.recipe-cover {
+  display: block;
+  object-fit: cover;
+}
+.recipe-cover--hero {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.recipe-cover--thumb {
+  width: 80px;
+  height: 80px;
+  border-radius: 14px;
+}
+.recipe-cover--card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.recipe-cover-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e1ab7b, #87674a);
+}
+.recipe-cover-fallback--hero {
+  position: absolute;
+  inset: 0;
+}
+.recipe-cover-fallback--thumb {
+  width: 80px;
+  height: 80px;
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+.recipe-cover-fallback--card {
+  position: absolute;
+  inset: 0;
+}
+.recipe-cover-fallback.t2 { background: linear-gradient(135deg, #f5eeda, #e1ab7b); }
+.recipe-cover-fallback.t3 { background: linear-gradient(135deg, #e1ab7b, #591727); }
+.recipe-cover-fallback.t4 { background: linear-gradient(135deg, #f5eeda, #87674a); }
+.recipe-cover-fallback.t5 { background: linear-gradient(135deg, #87674a, #591727); }
+.recipe-cover-fallback.t6 { background: linear-gradient(135deg, #e1ab7b, #87674a); }
+.recipe-cover-fallback.f2 { background: linear-gradient(135deg, #f5eeda, #e1ab7b); }
+.recipe-cover-fallback.f3 { background: linear-gradient(135deg, #e1ab7b, #591727); }
+.recipe-cover-fallback.f4 { background: linear-gradient(135deg, #f5eeda, #87674a); }
+
+.recipe-cover-emoji { line-height: 1; filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .2)); }
+.recipe-cover-fallback--hero .recipe-cover-emoji { font-size: 120px; filter: drop-shadow(0 8px 20px rgba(0, 0, 0, .3)); }
+.recipe-cover-fallback--thumb .recipe-cover-emoji { font-size: 32px; }
+</style>

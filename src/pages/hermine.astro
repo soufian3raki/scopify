@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FeatureUnavailable from '../components/FeatureUnavailable.astro';
+import { isEnabled } from '../config/feature-flags';
+
+const showHermine = isEnabled('herminePage');
+---
+
+{!showHermine ? (
+  <FeatureUnavailable
+    title="Hermine — KI-Coach"
+    message="Der KI-Coach wird bald verfügbar sein."
+    showNav={false}
+  />
+) : (
+  <BaseLayout title="Hermine — KI-Coach — Superbaking" showNav={false}>
+    <div class="fade-in">
+
+      <div class="page-head">
+        <a href="/home" class="page-back">←</a>
+      </div>
+
+      <div class="hermine-hero">
+        <div class="hermine-avatar">🤖</div>
+        <div class="hermine-name">Hermine</div>
+        <div class="hermine-role">Deine KI-Bäckerin</div>
+      </div>
+
+      <div class="upload-card">
+        <div class="upload-icon">📸</div>
+        <div class="upload-title">Foto hochladen</div>
+        <div class="upload-desc">Sauerteig, Teig oder fertiges Brot — Hermine analysiert es für dich</div>
+      </div>
+
+      <div class="suggestions">
+        <div class="suggest-title">Häufige Fragen</div>
+        <div class="suggest-item">Mein Sauerteig geht nicht auf — was tun?</div>
+        <div class="suggest-item">Wie weiß ich, dass mein Teig fertig ist?</div>
+        <div class="suggest-item">Mein Brot wird zu sauer</div>
+        <div class="suggest-item">Wie kriege ich eine bessere Kruste?</div>
+        <div class="suggest-item">Welche Mehltype für welches Brot?</div>
+      </div>
+
+    </div>
+  </BaseLayout>
+)}
+
+<style>
+@keyframes rotate { to { transform: rotate(360deg); } }
+
+.hermine-hero {
+  margin: 0 24px 24px; padding: 24px; border-radius: 24px;
+  background: linear-gradient(135deg, #591727, #3d0f1a);
+  color: var(--paper); text-align: center; position: relative; overflow: hidden;
+}
+.hermine-hero::before {
+  content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle, rgba(225, 171, 123, .2), transparent 40%);
+  animation: rotate 20s linear infinite;
+}
+.hermine-avatar {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--yeast), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 40px; margin: 0 auto 14px; position: relative; z-index: 1;
+  box-shadow: 0 8px 32px rgba(225, 171, 123, .4);
+}
+.hermine-name { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); letter-spacing: 0.02em; margin-bottom: 6px; position: relative; z-index: 1; }
+.hermine-role { font-size: 13px; opacity: .7; position: relative; z-index: 1; }
+
+.upload-card {
+  margin: 0 24px 20px; padding: 24px; border-radius: 20px;
+  background: var(--paper); border: 2px dashed var(--line);
+  text-align: center; cursor: pointer; transition: all .2s;
+}
+.upload-card:hover { border-color: var(--accent); background: var(--paper); }
+.upload-icon { font-size: 40px; margin-bottom: 8px; }
+.upload-title { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); margin-bottom: 4px; }
+.upload-desc { font-size: 12px; color: var(--muted); }
+
+.suggestions { padding: 0 24px 24px; }
+.suggest-title { font-size: 13px; font-weight: var(--font-weight); color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px; }
+.suggest-item {
+  padding: 14px 16px; background: var(--paper); border: 1px solid var(--line);
+  border-radius: 14px; margin-bottom: 10px; font-size: 13px; color: var(--ink-2);
+  cursor: pointer; display: flex; align-items: center; gap: 10px; transition: transform .2s;
+}
+.suggest-item:active { transform: scale(.98); }
+.suggest-item::before { content: "💭"; font-size: 18px; }
+</style>
