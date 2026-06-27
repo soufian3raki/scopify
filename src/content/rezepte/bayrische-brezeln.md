@@ -1,58 +1,58 @@
 ---
-title: Bayrische Brezeln
-description: Goldbraune Laugenbrezeln mit weichem Inneren und charakteristischem Salzgeschmack.
+title: Bavarian Pretzels
+description: Golden lye pretzels with a soft interior and classic salt flavour.
 cover: ./covers/bauernbrot.webp
-category: Brötchen
-tag: BRÖTCHEN · MITTEL
+category: Rolls
+tag: ROLLS · MEDIUM
 thumb: 🥨
 thumbClass: t5
-difficulty: Mittel
+difficulty: Medium
 times:
-  prep: 35 Min
+  prep: 35 min
   rest: 6h
-  bake: 15 Min
+  bake: 15 min
   total: 8h
-yield: 8 Stück
+yield: 8 pretzels
 rating: "4.8"
 ingredients:
-  - name: Weizenmehl Type 550
+  - name: Bread flour (Type 550)
     amount: 500g
-  - name: Wasser
+  - name: Water
     amount: 280g
-  - name: Sauerteig
+  - name: Sourdough starter
     amount: 60g
   - name: Butter
     amount: 30g
-  - name: Salz
+  - name: Salt
     amount: 10g
-  - name: Natron für Lauge
+  - name: Baking soda for lye bath
     amount: 40g
 steps:
-  - text: Teig kneten und 2 Stunden gehen lassen.
-    time: ⏱ 2 Stunden
-    cookTitle: Teig
-    cookText: Zutaten zu einem glatten Teig verkneten und gehen lassen.
-    cookTime: ⏱ 2 Stunden
-  - text: Brezeln formen und kalt stellen.
-    time: ⏱ 4 Stunden
-    cookTitle: Formen
-    cookText: Teiglinge zu Brezeln formen und kalt reifen lassen.
-    cookTime: ⏱ 4 Stunden
-  - text: In Lauge tauchen und salzen.
-    time: ⏱ 10 Min
-    cookTitle: Lauge
-    cookText: Brezeln kurz in Natronlauge tauchen und grobes Salz streuen.
-    cookTime: ⏱ 10 Minuten
-  - text: Bei 200°C 15 Minuten backen.
-    time: ⏱ 15 Min
-    cookTitle: Backen
-    cookText: Brezeln goldbraun backen und abkühlen lassen.
-    cookTime: ⏱ 15 Minuten
+  - text: Knead dough and proof 2 hours.
+    time: ⏱ 2 hours
+    cookTitle: Dough
+    cookText: Knead ingredients into a smooth dough and proof.
+    cookTime: ⏱ 2 hours
+  - text: Shape pretzels and cold proof.
+    time: ⏱ 4 hours
+    cookTitle: Shape
+    cookText: Form dough pieces into pretzels and proof cold.
+    cookTime: ⏱ 4 hours
+  - text: Dip in lye bath and salt.
+    time: ⏱ 10 min
+    cookTitle: Lye bath
+    cookText: Briefly dip pretzels in baking soda solution and add coarse salt.
+    cookTime: ⏱ 10 minutes
+  - text: Bake at 200°C for 15 minutes.
+    time: ⏱ 15 min
+    cookTitle: Bake
+    cookText: Bake until deep golden and cool on a rack.
+    cookTime: ⏱ 15 minutes
 tips:
   - icon: 🧂
-    title: Lauge
-    text: Handschuhe tragen und Lauge vorsichtig handhaben.
+    title: Lye
+    text: Wear gloves and handle the lye solution carefully.
   - icon: ✂️
-    title: Schnitt
-    text: Die dickste Stelle unten leicht einschneiden für schöne Öffnung.
+    title: Slash
+    text: Score the thickest part at the bottom for a nice opening.
 ---

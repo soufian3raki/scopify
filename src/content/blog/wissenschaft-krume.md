@@ -1,30 +1,30 @@
 ---
-title: Die Wissenschaft hinter der perfekten Krume
-description: Warum die Bläschen so wichtig sind
+title: The Science Behind the Perfect Crumb
+description: Why those bubbles matter so much
 cover: ./covers/SCL3UUDQSZESPN42KWECGYBDAY.avif
-category: Wissenschaft
-badge: Wissenschaft
-readTime: 8 Min
+category: Science
+badge: Science
+readTime: 8 min read
 pubDate: 2026-05-15
 featured: true
 ---
 
-Was unterscheidet ein durchschnittliches Brot von einem außergewöhnlichen? Die Antwort liegt in den Blasen — der Krume. Wenn du je ein perfektes Brot mit unregelmäßigen, glänzenden Löchern gesehen hast, weißt du was ich meine.
+What separates an average loaf from an exceptional one? The answer lies in the bubbles — the crumb. If you've ever seen perfect bread with irregular, glossy holes, you know what I mean.
 
-## Was passiert beim Gehen?
+## What happens during fermentation?
 
-Wilde Hefen und Milchsäurebakterien fressen Zucker im Mehl und produzieren CO2 und Säuren. Das CO2 bildet Blasen, die Säuren geben den charakteristischen Geschmack.
+Wild yeasts and lactic acid bacteria consume sugars in the flour and produce CO₂ and acids. The CO₂ creates bubbles; the acids give sourdough its characteristic flavour.
 
-> Ein gutes Brot ist eine Konversation zwischen Zeit, Temperatur und Geduld. — Chad Robertson
+> A good loaf is a conversation between time, temperature, and patience. — Chad Robertson
 
-## Die Rolle des Glutens
+## The role of gluten
 
-Gluten ist das Netz, das die Blasen einfängt. Ohne starkes Gluten platzen alle Blasen — mit zu viel Gluten wird das Brot zäh. Das richtige Maß ist die Kunst.
+Gluten is the network that traps bubbles. Without strong gluten, every bubble escapes — with too much, the bread becomes tough. Finding the right balance is the art.
 
-## Temperatur ist alles
+## Temperature is everything
 
-Bei 24°C sind die Hefen am aktivsten. Bei 4°C im Kühlschrank arbeiten sie langsamer — aber die Milchsäurebakterien produzieren mehr Aroma. Daher die lange Kühlschrank-Gare.
+At 24°C, yeasts are most active. At 4°C in the fridge they work slowly — but lactic acid bacteria produce more flavour. That's why long cold proofing works so well.
 
-## Praktische Tipps
+## Practical tips
 
-Für offene Krume: höhere Hydration (75-80%), sanftes Formen, längere Kühlschrank-Gare. Für gleichmäßige Krume: niedrigere Hydration (65-70%), straffes Formen, kürzere Gare.
+For an open crumb: higher hydration (75–80%), gentle shaping, longer cold proof. For an even crumb: lower hydration (65–70%), tighter shaping, shorter proof.

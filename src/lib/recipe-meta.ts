@@ -1,7 +1,7 @@
 export const DIFFICULTY_ICONS: Record<string, string> = {
-  Einfach: '⚡',
-  Mittel: '🔸',
-  Fortgeschritten: '🔥',
+  Easy: '⚡',
+  Medium: '🔸',
+  Advanced: '🔥',
 };
 
 export function formatDifficulty(level: string): string {

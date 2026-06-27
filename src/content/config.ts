@@ -12,7 +12,7 @@ const rezepte = defineCollection({
     thumbClass: z.string().optional(),
     featClass: z.string().optional(),
     featuredBadge: z.string().optional(),
-    difficulty: z.enum(['Einfach', 'Mittel', 'Fortgeschritten']),
+    difficulty: z.enum(['Easy', 'Medium', 'Advanced']),
     times: z.object({
       prep: z.string(),
       rest: z.string(),

@@ -1,0 +1,172 @@
+---
+import { Image } from 'astro:assets';
+import type { HomeSlide } from '../lib/home-slides';
+
+interface Props {
+  slides: HomeSlide[];
+}
+
+const { slides } = Astro.props;
+const sliderId = `home-slider-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+{slides.length > 0 && (
+  <section class="home-slider" aria-label="Gallery" data-slider={sliderId}>
+    <div class="home-slider-viewport">
+      <div class="home-slider-track" data-track>
+        {slides.map((slide, i) => (
+          <div class="home-slider-slide" data-slide={i}>
+            <Image
+              src={slide.src}
+              alt={slide.alt}
+              width={960}
+              height={540}
+              class="home-slider-img"
+              loading={i === 0 ? 'eager' : 'lazy'}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {slides.length > 1 && (
+      <div class="home-slider-dots" role="tablist" aria-label="Slides">
+        {slides.map((_, i) => (
+          <button
+            type="button"
+            class="home-slider-dot"
+            data-dot={i}
+            role="tab"
+            aria-label={`Slide ${i + 1}`}
+            aria-selected={i === 0 ? 'true' : 'false'}
+          />
+        ))}
+      </div>
+    )}
+  </section>
+)}
+
+<style>
+  .home-slider {
+    margin: 0 var(--page-pad-x) 28px;
+    position: relative;
+  }
+
+  .home-slider-viewport {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    aspect-ratio: 16 / 9;
+    background: var(--paper);
+  }
+
+  .home-slider-track {
+    display: flex;
+    height: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .home-slider-track::-webkit-scrollbar { display: none; }
+
+  .home-slider-slide {
+    flex: 0 0 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .home-slider-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .home-slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .home-slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: color-mix(in srgb, var(--brown) 35%, var(--cream));
+    cursor: pointer;
+    transition: transform .2s, background .2s;
+  }
+
+  .home-slider-dot.is-active {
+    background: var(--burgundy);
+    transform: scale(1.15);
+  }
+</style>
+
+{slides.length > 1 && (
+  <script define:vars={{ sliderId }}>
+    function initHomeSlider(root) {
+      const track = root.querySelector('[data-track]');
+      const dots = [...root.querySelectorAll('[data-dot]')];
+      if (!track || !dots.length) return;
+
+      let index = 0;
+      let timer = null;
+      const intervalMs = 4500;
+
+      function goTo(i) {
+        index = ((i % dots.length) + dots.length) % dots.length;
+        track.scrollTo({ left: index * track.clientWidth, behavior: 'smooth' });
+        dots.forEach((dot, j) => {
+          dot.classList.toggle('is-active', j === index);
+          dot.setAttribute('aria-selected', j === index ? 'true' : 'false');
+        });
+      }
+
+      function startAuto() {
+        stopAuto();
+        timer = window.setInterval(() => goTo(index + 1), intervalMs);
+      }
+
+      function stopAuto() {
+        if (timer) window.clearInterval(timer);
+        timer = null;
+      }
+
+      dots.forEach((dot) => {
+        dot.classList.toggle('is-active', Number(dot.dataset.dot) === 0);
+        dot.addEventListener('click', () => {
+          goTo(Number(dot.dataset.dot));
+          startAuto();
+        });
+      });
+
+      track.addEventListener('scroll', () => {
+        const i = Math.round(track.scrollLeft / track.clientWidth);
+        if (i !== index) {
+          index = i;
+          dots.forEach((dot, j) => {
+            dot.classList.toggle('is-active', j === index);
+            dot.setAttribute('aria-selected', j === index ? 'true' : 'false');
+          });
+        }
+      }, { passive: true });
+
+      root.addEventListener('mouseenter', stopAuto);
+      root.addEventListener('mouseleave', startAuto);
+      root.addEventListener('touchstart', stopAuto, { passive: true });
+      root.addEventListener('touchend', () => window.setTimeout(startAuto, 3000), { passive: true });
+
+      startAuto();
+    }
+
+    document.querySelectorAll(`[data-slider="${sliderId}"]`).forEach(initHomeSlider);
+  </script>
+)}

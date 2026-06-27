@@ -8,12 +8,12 @@ const showHermine = isEnabled('herminePage');
 
 {!showHermine ? (
   <FeatureUnavailable
-    title="Hermine — KI-Coach"
-    message="Der KI-Coach wird bald verfügbar sein."
+    title="Hermine — AI Coach"
+    message="The AI coach will be available soon."
     showNav={false}
   />
 ) : (
-  <BaseLayout title="Hermine — KI-Coach — Superbaking" showNav={false}>
+  <BaseLayout title="Hermine — AI Coach — Superbaking" showNav={false}>
     <div class="fade-in">
 
       <div class="page-head">
@@ -23,22 +23,22 @@ const showHermine = isEnabled('herminePage');
       <div class="hermine-hero">
         <div class="hermine-avatar">🤖</div>
         <div class="hermine-name">Hermine</div>
-        <div class="hermine-role">Deine KI-Bäckerin</div>
+        <div class="hermine-role">Your AI baking coach</div>
       </div>
 
       <div class="upload-card">
         <div class="upload-icon">📸</div>
-        <div class="upload-title">Foto hochladen</div>
-        <div class="upload-desc">Sauerteig, Teig oder fertiges Brot — Hermine analysiert es für dich</div>
+        <div class="upload-title">Upload a photo</div>
+        <div class="upload-desc">Starter, dough, or finished bread — Hermine will analyse it for you</div>
       </div>
 
       <div class="suggestions">
-        <div class="suggest-title">Häufige Fragen</div>
-        <div class="suggest-item">Mein Sauerteig geht nicht auf — was tun?</div>
-        <div class="suggest-item">Wie weiß ich, dass mein Teig fertig ist?</div>
-        <div class="suggest-item">Mein Brot wird zu sauer</div>
-        <div class="suggest-item">Wie kriege ich eine bessere Kruste?</div>
-        <div class="suggest-item">Welche Mehltype für welches Brot?</div>
+        <div class="suggest-title">Common questions</div>
+        <div class="suggest-item">My starter isn't rising — what should I do?</div>
+        <div class="suggest-item">How do I know when my dough is ready?</div>
+        <div class="suggest-item">My bread tastes too sour</div>
+        <div class="suggest-item">How do I get a better crust?</div>
+        <div class="suggest-item">Which flour for which bread?</div>
       </div>
 
     </div>

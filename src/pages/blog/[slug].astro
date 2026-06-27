@@ -15,7 +15,7 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 const { title, category, readTime, pubDate } = post.data;
 
-const formattedDate = pubDate.toLocaleDateString('de-DE', {
+const formattedDate = pubDate.toLocaleDateString('en-US', {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
@@ -34,7 +34,7 @@ const formattedDate = pubDate.toLocaleDateString('de-DE', {
     <div class="article-body">
       <h1 class="article-title">{title}</h1>
       <div class="article-meta">
-        <span>📖 {readTime} Lesezeit</span>
+        <span>📖 {readTime}</span>
         <span>{formattedDate}</span>
       </div>
 

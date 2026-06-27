@@ -1,56 +1,56 @@
 ---
-title: Neapolitanische Pizza
-description: Dünner, luftiger Boden mit knusprigem Rand — authentische Pizza Napoletana aus dem Ofen oder der Pfanne.
+title: Neapolitan Pizza
+description: Thin, airy base with a crisp rim — authentic pizza napoletana from oven or pan.
 cover: ./covers/bauernbrot.webp
-category: Pizza & Flach
-tag: PIZZA · MITTEL
+category: Pizza & Flat
+tag: PIZZA · MEDIUM
 thumb: 🍕
 thumbClass: t4
-difficulty: Mittel
+difficulty: Medium
 times:
-  prep: 30 Min
+  prep: 30 min
   rest: 10h
-  bake: 12 Min
+  bake: 12 min
   total: 12h
-yield: 4 Pizzen
+yield: 4 pizzas
 rating: "4.9"
 ingredients:
-  - name: Weizenmehl Type 00
+  - name: Type 00 flour
     amount: 500g
-  - name: Wasser
+  - name: Water
     amount: 325g
-  - name: Salz
+  - name: Salt
     amount: 12g
-  - name: Sauerteig
+  - name: Sourdough starter
     amount: 80g
-  - name: Olivenöl
+  - name: Olive oil
     amount: 15g
 steps:
-  - text: Teig ansetzen und kurz ruhen lassen.
-    time: ⏱ 30 Min
-    cookTitle: Teig
-    cookText: Alle Zutaten zu einem weichen Teig verkneten.
-    cookTime: ⏱ 30 Minuten
-  - text: Teig in Portionen teilen und langsam garen lassen.
-    time: ⏱ 8-10 Stunden
-    cookTitle: Gare
-    cookText: Teiglinge abgedeckt bei Raumtemperatur gehen lassen.
-    cookTime: ⏱ 8-10 Stunden
-  - text: Teiglinge vorsichtig ausziehen.
-    time: ⏱ 5 Min pro Pizza
-    cookTitle: Formen
-    cookText: Teig mit den Fingerspitzen in Form drücken, nicht ausrollen.
-    cookTime: ⏱ 5 Minuten
-  - text: Bei maximaler Hitze 2-3 Minuten backen.
-    time: ⏱ 2-3 Min
-    cookTitle: Backen
-    cookText: Pizza mit Belag bei höchster Temperatur schnell backen.
-    cookTime: ⏱ 2-3 Minuten
+  - text: Mix dough and rest briefly.
+    time: ⏱ 30 min
+    cookTitle: Dough
+    cookText: Knead all ingredients into a soft dough.
+    cookTime: ⏱ 30 minutes
+  - text: Divide and bulk ferment slowly.
+    time: ⏱ 8-10 hours
+    cookTitle: Proof
+    cookText: Divide into balls, cover, and proof at room temperature.
+    cookTime: ⏱ 8-10 hours
+  - text: Stretch dough balls by hand.
+    time: ⏱ 5 min per pizza
+    cookTitle: Shape
+    cookText: Press out with fingertips — don't use a rolling pin.
+    cookTime: ⏱ 5 minutes
+  - text: Bake at maximum heat 2–3 minutes.
+    time: ⏱ 2-3 min
+    cookTitle: Bake
+    cookText: Top and bake at the highest temperature available.
+    cookTime: ⏱ 2-3 minutes
 tips:
   - icon: 🔥
-    title: Hitze
-    text: Je heißer der Ofen, desto besser die typische leopard spots Kruste.
+    title: Heat
+    text: The hotter the oven, the better the leopard-spot crust.
   - icon: 🍅
-    title: Belag
-    text: Weniger ist mehr — dünn auftragen für knusprigen Boden.
+    title: Toppings
+    text: Less is more — spread thinly for a crisp base.
 ---

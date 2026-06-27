@@ -1,31 +1,30 @@
 ---
-title: Bäckerprozente verstehen — endlich einfach erklärt
-description: Mehl immer 100% — so klappt die Rezeptberechnung im Sauerteig-Backen
+title: Baker's Percentages Explained
+description: Flour is always 100% — how recipe math works in sourdough baking
 cover: ./covers/SCL3UUDQSZESPN42KWECGYBDAY.avif
-category: Technik
-badge: Technik
-imgClass: b3
-readTime: 6 Min
-pubDate: 2026-05-05
+category: Technique
+badge: Technique
+readTime: 6 min read
+pubDate: 2026-05-20
 featured: false
 ---
 
-Bäckerprozente klingen kompliziert, sind aber der Schlüssel zu reproduzierbaren Rezepten. Das Prinzip ist einfach: Mehl ist immer 100%, alles andere wird relativ dazu berechnet.
+Baker's percentages sound complicated, but they're the key to repeatable recipes. The principle is simple: flour is always 100%, everything else is calculated relative to it.
 
-## Das Grundprinzip
+## The basics
 
-Wenn ein Rezept 500g Mehl und 350g Wasser nutzt, beträgt die Hydration 70%. Salz, Sauerteig und andere Zutaten werden ebenfalls als Prozentsatz vom Mehl angegeben.
+If a recipe uses 500g flour and 350g water, hydration is 70%. Salt, starter, and other ingredients are also expressed as a percentage of the flour.
 
-## Hydration verstehen
+## Typical hydration ranges
 
-- **65-70%** — gut für Anfänger, fester Teig
-- **75-80%** — offene Krume, klebriger Teig
-- **80%+** — sehr feucht, fortgeschritten
+- **65–70%** — good for beginners, firmer dough
+- **75–80%** — open crumb, stickier to handle
+- **80%+** — advanced, very wet dough
 
-## Sauerteig-Anteil
+## Starter percentage
 
-Ein typischer Sauerteig-Anteil liegt bei 15-25% bezogen auf das Mehl. Mehr Starter = schnellere Gare, weniger Aroma. Weniger Starter = längere Gare, mehr Komplexität.
+A typical starter amount is 15–25% of the flour. More starter = faster rise, less complexity. Less starter = longer ferment, more flavour.
 
-## Praktisches Beispiel
+## Example
 
-500g Mehl, 100g Sauerteig (20%), 350g Wasser (70%), 10g Salz (2%) — das ist unser Bauernbrot-Rezept in Bäckerprozenten.
+500g flour, 100g starter (20%), 350g water (70%), 10g salt (2%) — that's our farmhouse bread in baker's percentages.

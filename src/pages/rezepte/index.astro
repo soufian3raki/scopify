@@ -7,17 +7,17 @@ import { isEnabled } from '../../config/feature-flags';
 import { formatDifficulty } from '../../lib/recipe-meta';
 
 const recipes = (await getCollection('rezepte')).sort((a, b) =>
-  a.data.title.localeCompare(b.data.title, 'de')
+  a.data.title.localeCompare(b.data.title, 'en')
 );
 ---
 
-<BaseLayout title="Alle Rezepte — Superbaking" activeNav="recipes">
+<BaseLayout title="All Recipes — Superbaking" activeNav="recipes">
   <div class="fade-in">
 
     <div class="head">
       <div>
-        <div class="head-greet">Stöbern</div>
-        <div class="head-name">Alle Rezepte</div>
+        <div class="head-greet">Browse</div>
+        <div class="head-name">All Recipes</div>
       </div>
       <a href="/profil" class="head-avatar">B</a>
     </div>
@@ -26,21 +26,21 @@ const recipes = (await getCollection('rezepte')).sort((a, b) =>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
         <circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>
       </svg>
-      <input id="recipeSearch" type="search" placeholder="Suche Rezepte, Zutaten..." autocomplete="off" />
+      <input id="recipeSearch" type="search" placeholder="Search recipes, ingredients..." autocomplete="off" />
     </div>
 
     <div class="filter-chips" id="recipeFilters">
-      <button type="button" class="chip active" data-filter="all">Alle</button>
-      <button type="button" class="chip" data-filter="anfaenger">Anfänger</button>
-      <button type="button" class="chip" data-filter="schnell">Schnell &lt;6h</button>
-      <button type="button" class="chip" data-filter="roggen">Roggen</button>
+      <button type="button" class="chip active" data-filter="all">All</button>
+      <button type="button" class="chip" data-filter="beginner">Beginner</button>
+      <button type="button" class="chip" data-filter="quick">Quick &lt;6h</button>
+      <button type="button" class="chip" data-filter="rye">Rye</button>
       {isEnabled('recipeFilterGlutenfrei') && (
-        <button type="button" class="chip" data-filter="glutenfrei">Glutenfrei</button>
+        <button type="button" class="chip" data-filter="glutenfree">Gluten-free</button>
       )}
-      <button type="button" class="chip" data-filter="suess">Süß</button>
+      <button type="button" class="chip" data-filter="sweet">Sweet</button>
     </div>
 
-    <p class="list-empty is-hidden" id="recipeEmpty">Keine Rezepte gefunden.</p>
+    <p class="list-empty is-hidden" id="recipeEmpty">No recipes found.</p>
 
     <div class="recipe-list" id="recipeList">
       {recipes.map((recipe) => {

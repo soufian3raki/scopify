@@ -1,46 +1,46 @@
 ---
-title: Sauerteig ansetzen (Tag 1-14)
-description: Schritt für Schritt zum eigenen Sauerteigstarter — von den ersten Bläschen bis zum backfertigen Hermann.
+title: Starting a Sourdough Starter (Day 1–14)
+description: Step by step to your own starter — from the first bubbles to bake-ready Hermann.
 cover: ./covers/bauernbrot.webp
-category: Grundlagen
-tag: GRUNDLAGEN · ANFÄNGER
+category: Basics
+tag: BASICS · BEGINNER
 thumb: 🌾
-difficulty: Einfach
+difficulty: Easy
 times:
-  prep: 15 Min/Tag
-  rest: 14 Tage
+  prep: 15 min/day
+  rest: 14 days
   bake: —
-  total: 14 Tage
-yield: 1 Starter
+  total: 14 days
+yield: 1 starter
 rating: "5.0"
 ingredients:
-  - name: Roggen- oder Weizenmehl
-    amount: 50g/Tag
-  - name: Wasser
-    amount: 50g/Tag
-  - name: Glas oder Schüssel
-    amount: 1x
+  - name: Rye or bread flour
+    amount: 50g/day
+  - name: Water
+    amount: 50g/day
+  - name: Jar or bowl
+    amount: 1×
 steps:
-  - text: Tag 1-3 Mehl und Wasser täglich mischen und offen stehen lassen.
-    time: ⏱ 3 Tage
+  - text: Days 1–3 mix flour and water daily and leave uncovered.
+    time: ⏱ 3 days
     cookTitle: Start
-    cookText: Je 50g Mehl und Wasser mischen und bei Raumtemperatur stehen lassen.
-    cookTime: ⏱ 3 Tage
-  - text: Ab Tag 4 täglich die Hälfte wegwerfen und neu füttern.
-    time: ⏱ 10 Tage
-    cookTitle: Füttern
-    cookText: Starter halbieren, mit frischem Mehl und Wasser füttern.
-    cookTime: ⏱ 10 Tage
-  - text: Wenn er sich verdoppelt, ist Hermann bereit.
-    time: ⏱ 4-6 Stunden nach Fütterung
+    cookText: Mix 50g flour and 50g water each day and leave at room temperature.
+    cookTime: ⏱ 3 days
+  - text: From day 4 discard half and feed daily.
+    time: ⏱ 10 days
+    cookTitle: Feed
+    cookText: Discard half the starter and feed with fresh flour and water.
+    cookTime: ⏱ 10 days
+  - text: When it doubles reliably, Hermann is ready.
+    time: ⏱ 4-6 hours after feeding
     cookTitle: Test
-    cookText: Nach dem Füttern beobachten — verdoppelt er sich zuverlässig?
-    cookTime: ⏱ 4-6 Stunden
+    cookText: After feeding, watch — does it double consistently?
+    cookTime: ⏱ 4-6 hours
 tips:
   - icon: 🫧
-    title: Bläschen
-    text: Viele kleine Bläschen sind ein gutes Zeichen für aktive Kulturen.
+    title: Bubbles
+    text: Lots of small bubbles are a good sign of active cultures.
   - icon: 🌡️
-    title: Wärme
-    text: 22-26°C ist ideal — im Winter etwas wärmer stellen.
+    title: Warmth
+    text: 22–26°C is ideal — keep slightly warmer in winter.
 ---

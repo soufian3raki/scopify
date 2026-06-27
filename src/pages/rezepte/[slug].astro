@@ -38,40 +38,40 @@ const recipeSlug = recipe.slug;
         <div class="stat-box">
           <div class="stat-icon">👐</div>
           <div class="stat-value">{times.prep}</div>
-          <div class="stat-label">Vorbereitung</div>
+          <div class="stat-label">Prep</div>
         </div>
         <div class="stat-box">
           <div class="stat-icon">🫧</div>
           <div class="stat-value">{times.rest}</div>
-          <div class="stat-label">Ruhe</div>
+          <div class="stat-label">Rest</div>
         </div>
         <div class="stat-box">
           <div class="stat-icon">🔥</div>
           <div class="stat-value">{times.bake}</div>
-          <div class="stat-label">Backen</div>
+          <div class="stat-label">Bake</div>
         </div>
         <div class="stat-box">
           <div class="stat-icon">🍞</div>
           <div class="stat-value">{recipeYield}</div>
-          <div class="stat-label">Ertrag</div>
+          <div class="stat-label">Yield</div>
         </div>
         <div class="stat-box stat-box--full">
           <div class="stat-icon">{DIFFICULTY_ICONS[difficulty] ?? '⭐'}</div>
           <div class="stat-value">{difficulty}</div>
-          <div class="stat-label">Schwierigkeit</div>
+          <div class="stat-label">Difficulty</div>
         </div>
       </div>
-      <div class="detail-total">Gesamtzeit: {times.total}</div>
+      <div class="detail-total">Total time: {times.total}</div>
 
       <section class="recipe-section">
         <div class="ing-section-head">
-          <h2 class="recipe-section-title">Zutaten</h2>
+          <h2 class="recipe-section-title">Ingredients</h2>
           <span class="ing-progress" id="ingProgress" aria-live="polite"></span>
         </div>
         <div class="ing-list" id="ingList" data-recipe-slug={recipeSlug}>
           {ingredients.map((ing, i) => (
             <label class="ing-item" data-index={i}>
-              <input type="checkbox" class="ing-checkbox" aria-label={`${ing.name} vorbereitet`} />
+              <input type="checkbox" class="ing-checkbox" aria-label={`${ing.name} prepared`} />
               <span class="ing-check" aria-hidden="true"></span>
               <span class="ing-name">{ing.name}</span>
               <span class="ing-amount">{ing.amount}</span>
@@ -81,7 +81,7 @@ const recipeSlug = recipe.slug;
       </section>
 
       <section class="recipe-section">
-        <h2 class="recipe-section-title">Schritte</h2>
+        <h2 class="recipe-section-title">Steps</h2>
         {steps.map((step, i) => (
           <div class="step-item">
             <div class="step-num">{i + 1}</div>
@@ -91,7 +91,7 @@ const recipeSlug = recipe.slug;
       </section>
 
       <section class="recipe-section">
-        <h2 class="recipe-section-title">🍳 Schritt für Schritt backen</h2>
+        <h2 class="recipe-section-title">🍳 Step-by-step baking</h2>
         {steps.map((step, i) => (
           <div class="step-item">
             <div class="step-num">{i + 1}</div>
@@ -105,7 +105,7 @@ const recipeSlug = recipe.slug;
       </section>
 
       <section class="recipe-section">
-        <h2 class="recipe-section-title">Tipps</h2>
+        <h2 class="recipe-section-title">Tips</h2>
         {tips.map((tip) => (
           <div class="tip-card">
             <div class="tip-title">{tip.icon} {tip.title}</div>
@@ -248,7 +248,7 @@ function saveChecked(indices) {
 function updateProgress(checkedSet) {
   const el = document.getElementById('ingProgress');
   if (!el) return;
-  el.textContent = `${checkedSet.size}/${ingredientCount} bereit`;
+  el.textContent = `${checkedSet.size}/${ingredientCount} ready`;
 }
 
 function initIngredientChecklist() {

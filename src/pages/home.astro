@@ -2,8 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import RecipeCover from '../components/RecipeCover.astro';
+import HomeImageSlider from '../components/HomeImageSlider.astro';
 import { isEnabled } from '../config/feature-flags';
 import { formatDifficulty } from '../lib/recipe-meta';
+import { getHomeSlides } from '../lib/home-slides';
 
 const featuredRecipes = (await getCollection('rezepte'))
   .filter((r) => r.data.featured)
@@ -12,6 +14,8 @@ const featuredRecipes = (await getCollection('rezepte'))
 const featuredPost = (await getCollection('blog'))
   .filter((p) => p.data.featured)
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())[0];
+
+const homeSlides = getHomeSlides();
 ---
 
 <BaseLayout title="Superbaking — Home" activeNav="home">
@@ -20,8 +24,8 @@ const featuredPost = (await getCollection('blog'))
     <!-- Header -->
     <div class="head">
       <div>
-        <div class="head-greet">Guten Morgen</div>
-        <div class="head-name">Hallo, Baker</div>
+        <div class="head-greet">Good morning</div>
+        <div class="head-name">Hello, Baker</div>
       </div>
       <a href="/profil" class="head-avatar">B</a>
     </div>
@@ -30,105 +34,100 @@ const featuredPost = (await getCollection('blog'))
       <a href="/timer" class="hermann-card">
         <div class="hermann-row">
           <div>
-            <div class="hermann-name">Dein Sauerteig</div>
-            <div class="hermann-status">Hermann ist aktiv 🫧</div>
-            <div class="hermann-meta">Zuletzt gefüttert vor 6h</div>
+            <div class="hermann-name">Your sourdough</div>
+            <div class="hermann-status">Hermann is active 🫧</div>
+            <div class="hermann-meta">Last fed 6h ago</div>
           </div>
           <div class="hermann-emoji">🍞</div>
         </div>
         <div class="hermann-progress"><div class="hermann-progress-fill"></div></div>
         <div class="hermann-footer">
-          <span>68% bereit zum Backen</span>
-          <span>Nächste Fütterung in 2h</span>
+          <span>68% ready to bake</span>
+          <span>Next feed in 2h</span>
         </div>
       </a>
     )}
 
-    <!-- Quick Access -->
-    <div class="quick-grid">
-      {isEnabled('homeHermineQuickAccess') && (
-        <a href="/hermine" class="quick-item">
-          <div class="quick-emoji">🤖</div>
-          <div class="quick-label">KI-Coach</div>
-        </a>
-      )}
-      <a href="/kit" class="quick-item">
-        <div class="quick-emoji">🧰</div>
-        <div class="quick-label">Mein Kit</div>
-      </a>
-      <a href="/geschichte" class="quick-item">
-        <div class="quick-emoji">📜</div>
-        <div class="quick-label">Geschichte</div>
-      </a>
-      {isEnabled('homeTimerQuickAccess') && (
-        <a href="/timer" class="quick-item">
-          <div class="quick-emoji">⏱️</div>
-          <div class="quick-label">Timer</div>
-        </a>
-      )}
-    </div>
+    <HomeImageSlider slides={homeSlides} />
+
+    {(isEnabled('homeHermineQuickAccess') || isEnabled('homeTimerQuickAccess')) && (
+      <div class="quick-grid">
+        {isEnabled('homeHermineQuickAccess') && (
+          <a href="/hermine" class="quick-item">
+            <div class="quick-emoji">🤖</div>
+            <div class="quick-label">AI Coach</div>
+          </a>
+        )}
+        {isEnabled('homeTimerQuickAccess') && (
+          <a href="/timer" class="quick-item">
+            <div class="quick-emoji">⏱️</div>
+            <div class="quick-label">Timer</div>
+          </a>
+        )}
+      </div>
+    )}
 
     {isEnabled('homeCategories') && (
       <>
         <div class="section-head">
-          <div class="section-title">Kategorien</div>
-          <a href="/rezepte" class="section-link">Alle</a>
+          <div class="section-title">Categories</div>
+          <a href="/rezepte" class="section-link">All</a>
         </div>
         <div class="cat-grid">
           <a href="/rezepte" class="cat-card c1">
             <div class="cat-emoji">🌾</div>
             <div>
-              <div class="cat-name">Grundlagen</div>
-              <div class="cat-count">12 Rezepte</div>
+              <div class="cat-name">Basics</div>
+              <div class="cat-count">12 recipes</div>
             </div>
           </a>
           <a href="/rezepte" class="cat-card c2">
             <div class="cat-emoji">🍞</div>
             <div>
-              <div class="cat-name">Klassiker</div>
-              <div class="cat-count">28 Rezepte</div>
+              <div class="cat-name">Classics</div>
+              <div class="cat-count">28 recipes</div>
             </div>
           </a>
           <a href="/rezepte" class="cat-card c3">
             <div class="cat-emoji">🥐</div>
             <div>
-              <div class="cat-name">Brötchen</div>
-              <div class="cat-count">14 Rezepte</div>
+              <div class="cat-name">Rolls</div>
+              <div class="cat-count">14 recipes</div>
             </div>
           </a>
           <a href="/rezepte" class="cat-card c4">
             <div class="cat-emoji">🍕</div>
             <div>
-              <div class="cat-name">Pizza & Flach</div>
-              <div class="cat-count">10 Rezepte</div>
+              <div class="cat-name">Pizza & Flat</div>
+              <div class="cat-count">10 recipes</div>
             </div>
           </a>
           <a href="/rezepte" class="cat-card c5">
             <div class="cat-emoji">🥨</div>
             <div>
-              <div class="cat-name">Süßes</div>
-              <div class="cat-count">14 Rezepte</div>
+              <div class="cat-name">Sweet</div>
+              <div class="cat-count">14 recipes</div>
             </div>
           </a>
           <a href="/rezepte" class="cat-card c6">
             <div class="cat-emoji">🔧</div>
             <div>
-              <div class="cat-name">Hilfe</div>
-              <div class="cat-count">12 Rezepte</div>
+              <div class="cat-name">Help</div>
+              <div class="cat-count">12 recipes</div>
             </div>
           </a>
           <a href="/rezepte" class="cat-card c7">
             <div class="cat-emoji">🌍</div>
             <div>
               <div class="cat-name">International</div>
-              <div class="cat-count">6 Rezepte</div>
+              <div class="cat-count">6 recipes</div>
             </div>
           </a>
           <a href="/rezepte" class="cat-card c8">
             <div class="cat-emoji">♻️</div>
             <div>
-              <div class="cat-name">Reste</div>
-              <div class="cat-count">4 Rezepte</div>
+              <div class="cat-name">Leftovers</div>
+              <div class="cat-count">4 recipes</div>
             </div>
           </a>
         </div>
@@ -137,8 +136,8 @@ const featuredPost = (await getCollection('blog'))
 
     <!-- Featured -->
     <div class="section-head">
-      <div class="section-title">Empfohlen für dich</div>
-      <a href="/rezepte" class="section-link">Mehr</a>
+      <div class="section-title">Recommended for you</div>
+      <a href="/rezepte" class="section-link">More</a>
     </div>
     <div class="featured-scroll">
       {featuredRecipes.map((recipe) => (
@@ -161,7 +160,7 @@ const featuredPost = (await getCollection('blog'))
 
     {featuredPost && (
       <a href={`/blog/${featuredPost.slug}`} class="blog-teaser">
-        <div class="blog-tag">Aus dem Magazin</div>
+        <div class="blog-tag">From the magazine</div>
         <div class="blog-headline">{featuredPost.data.title}</div>
         <div class="blog-desc">{featuredPost.data.description}</div>
       </a>

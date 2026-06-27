@@ -9,7 +9,7 @@ const showTimer = isEnabled('timerPage');
 {!showTimer ? (
   <FeatureUnavailable
     title="Hermann Timer"
-    message="Der Sauerteig-Timer wird bald verfügbar sein."
+    message="The sourdough timer will be available soon."
     activeNav="timer"
   />
 ) : (
@@ -19,52 +19,52 @@ const showTimer = isEnabled('timerPage');
       <div class="head">
         <div>
           <div class="head-greet">Hermann</div>
-          <div class="head-name">Sauerteig-Timer</div>
+          <div class="head-name">Sourdough Timer</div>
         </div>
         <a href="/profil" class="head-avatar">B</a>
       </div>
 
       <div class="timer-display">
-        <div class="timer-label">Nächste Fütterung in</div>
+        <div class="timer-label">Next feed in</div>
         <div class="timer-clock" id="timerClock">02:14:38</div>
-        <div class="timer-next">Heute, 18:30 Uhr</div>
+        <div class="timer-next">Today, 6:30 PM</div>
       </div>
 
       {isEnabled('timerActions') && (
         <div class="timer-actions">
           <button class="timer-btn">
             <div class="timer-btn-emoji">🥄</div>
-            <div>Gefüttert</div>
+            <div>Fed</div>
           </button>
           <button class="timer-btn">
             <div class="timer-btn-emoji">📸</div>
-            <div>Foto</div>
+            <div>Photo</div>
           </button>
           <button class="timer-btn">
             <div class="timer-btn-emoji">📝</div>
-            <div>Notiz</div>
+            <div>Note</div>
           </button>
         </div>
       )}
 
       {isEnabled('timerJournal') && (
         <div class="journal">
-          <div class="journal-title">Tagebuch</div>
+          <div class="journal-title">Journal</div>
           <div class="journal-entry">
-            <div class="journal-date">Heute<br/>12:00</div>
-            <div class="journal-text">Hermann zeigt schöne Bläschen. Verdoppelung in 4 Stunden — bereit zum Backen!</div>
+            <div class="journal-date">Today<br/>12:00</div>
+            <div class="journal-text">Hermann shows nice bubbles. Doubled in 4 hours — ready to bake!</div>
           </div>
           <div class="journal-entry">
-            <div class="journal-date">Gestern<br/>18:30</div>
-            <div class="journal-text">50g Mehl + 50g Wasser gefüttert. Raum 23°C.</div>
+            <div class="journal-date">Yesterday<br/>6:30 PM</div>
+            <div class="journal-text">Fed 50g flour + 50g water. Room 23°C.</div>
           </div>
           <div class="journal-entry">
-            <div class="journal-date">13. Mai<br/>18:00</div>
-            <div class="journal-text">Klassisches Bauernbrot gebacken — bestes Ergebnis bisher! ⭐</div>
+            <div class="journal-date">May 13<br/>6:00 PM</div>
+            <div class="journal-text">Baked classic farmhouse bread — best result yet! ⭐</div>
           </div>
           <div class="journal-entry">
-            <div class="journal-date">12. Mai<br/>09:00</div>
-            <div class="journal-text">Fütterung nach 24h Kühlschrank. Hermann wacht langsam auf.</div>
+            <div class="journal-date">May 12<br/>9:00 AM</div>
+            <div class="journal-text">Fed after 24h in the fridge. Hermann is waking up slowly.</div>
           </div>
         </div>
       )}

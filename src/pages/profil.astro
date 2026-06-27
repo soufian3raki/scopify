@@ -3,46 +3,46 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { isEnabled } from '../config/feature-flags';
 ---
 
-<BaseLayout title="Profil — Superbaking" activeNav="profile">
+<BaseLayout title="Profile — Superbaking" activeNav="profile">
   <div class="fade-in">
 
     <div class="profile-head">
       <div class="profile-pic">B</div>
       <div class="profile-name">Baker</div>
-      <div class="profile-since">Mitglied seit Mai 2026</div>
+      <div class="profile-since">Member since May 2026</div>
     </div>
 
     {isEnabled('profileStats') && (
       <div class="stats-grid">
-        <div class="stat-card"><div class="stat-num">12</div><div class="stat-name">Brote</div></div>
-        <div class="stat-card"><div class="stat-num">28</div><div class="stat-name">Tage</div></div>
-        <div class="stat-card"><div class="stat-num">7</div><div class="stat-name">Favoriten</div></div>
+        <div class="stat-card"><div class="stat-num">12</div><div class="stat-name">Loaves</div></div>
+        <div class="stat-card"><div class="stat-num">28</div><div class="stat-name">Days</div></div>
+        <div class="stat-card"><div class="stat-num">7</div><div class="stat-name">Favorites</div></div>
       </div>
     )}
 
     <div class="menu-list">
       {isEnabled('profileFavorites') && (
-        <a href="#" class="menu-item"><div class="menu-emoji">❤️</div><div class="menu-text">Meine Favoriten</div><div class="menu-arrow">›</div></a>
+        <a href="#" class="menu-item"><div class="menu-emoji">❤️</div><div class="menu-text">My Favorites</div><div class="menu-arrow">›</div></a>
       )}
       {isEnabled('profileMyRecipes') && (
-        <a href="#" class="menu-item"><div class="menu-emoji">📝</div><div class="menu-text">Meine Rezepte</div><div class="menu-arrow">›</div></a>
+        <a href="#" class="menu-item"><div class="menu-emoji">📝</div><div class="menu-text">My Recipes</div><div class="menu-arrow">›</div></a>
       )}
-      <a href="/kit" class="menu-item"><div class="menu-emoji">🧰</div><div class="menu-text">Mein Kit</div><div class="menu-arrow">›</div></a>
+      <a href="/kit" class="menu-item"><div class="menu-emoji">🧰</div><div class="menu-text">My Kit</div><div class="menu-arrow">›</div></a>
       {isEnabled('profileShoppingList') && (
-        <a href="#" class="menu-item"><div class="menu-emoji">🛒</div><div class="menu-text">Einkaufsliste</div><div class="menu-arrow">›</div></a>
+        <a href="#" class="menu-item"><div class="menu-emoji">🛒</div><div class="menu-text">Shopping List</div><div class="menu-arrow">›</div></a>
       )}
     </div>
 
     {(isEnabled('profileNotifications') || isEnabled('profileLanguage') || isEnabled('profileUnits') || isEnabled('profileDarkMode')) && (
       <div class="menu-list">
         {isEnabled('profileNotifications') && (
-          <a href="#" class="menu-item"><div class="menu-emoji">🔔</div><div class="menu-text">Benachrichtigungen</div><div class="menu-arrow">›</div></a>
+          <a href="#" class="menu-item"><div class="menu-emoji">🔔</div><div class="menu-text">Notifications</div><div class="menu-arrow">›</div></a>
         )}
         {isEnabled('profileLanguage') && (
-          <a href="#" class="menu-item"><div class="menu-emoji">🌍</div><div class="menu-text">Sprache · Deutsch</div><div class="menu-arrow">›</div></a>
+          <a href="#" class="menu-item"><div class="menu-emoji">🌍</div><div class="menu-text">Language · English</div><div class="menu-arrow">›</div></a>
         )}
         {isEnabled('profileUnits') && (
-          <a href="#" class="menu-item"><div class="menu-emoji">⚖️</div><div class="menu-text">Einheiten · Gramm</div><div class="menu-arrow">›</div></a>
+          <a href="#" class="menu-item"><div class="menu-emoji">⚖️</div><div class="menu-text">Units · Grams</div><div class="menu-arrow">›</div></a>
         )}
         {isEnabled('profileDarkMode') && (
           <a href="#" class="menu-item"><div class="menu-emoji">🌙</div><div class="menu-text">Dark Mode</div><div class="menu-arrow">›</div></a>
@@ -52,12 +52,12 @@ import { isEnabled } from '../config/feature-flags';
 
     <div class="menu-list">
       {isEnabled('profilePremium') && (
-        <a href="#" class="menu-item"><div class="menu-emoji">💎</div><div class="menu-text">Premium upgraden</div><div class="menu-arrow">›</div></a>
+        <a href="#" class="menu-item"><div class="menu-emoji">💎</div><div class="menu-text">Upgrade to Premium</div><div class="menu-arrow">›</div></a>
       )}
       {isEnabled('profileSupport') && (
-        <a href="#" class="menu-item"><div class="menu-emoji">📧</div><div class="menu-text">Support kontaktieren</div><div class="menu-arrow">›</div></a>
+        <a href="#" class="menu-item"><div class="menu-emoji">📧</div><div class="menu-text">Contact Support</div><div class="menu-arrow">›</div></a>
       )}
-      <a href="/geschichte" class="menu-item"><div class="menu-emoji">📜</div><div class="menu-text">Über Superbaking</div><div class="menu-arrow">›</div></a>
+      <a href="/geschichte" class="menu-item"><div class="menu-emoji">📜</div><div class="menu-text">About Superbaking</div><div class="menu-arrow">›</div></a>
     </div>
 
   </div>

@@ -10,7 +10,7 @@ export interface Props {
 }
 
 const { 
-  title = 'Superbaking — Deine Sauerteig App', 
+  title = 'Superbaking — Your Sourdough App', 
   activeNav = '', 
   showNav = true,
   noBottomPad = false
@@ -18,7 +18,7 @@ const {
 ---
 
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -44,7 +44,7 @@ const {
         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
         </svg>
-        <span class="nav-label">Rezepte</span>
+        <span class="nav-label">Recipes</span>
       </a>
       <a href="/blog" class:list={['nav-item', { active: activeNav === 'blog' }]}>
         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -67,7 +67,7 @@ const {
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
           <circle cx="12" cy="7" r="4"/>
         </svg>
-        <span class="nav-label">Profil</span>
+        <span class="nav-label">Profile</span>
       </a>
     </nav>
   )}

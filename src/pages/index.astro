@@ -3,23 +3,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { isEnabled } from '../config/feature-flags';
 ---
 
-<BaseLayout title="Superbaking — Deine Sauerteig App" showNav={false}>
+<BaseLayout title="Superbaking — Your Sourdough App" showNav={false}>
   <div class="onboarding fade-in">
     <div class="onb-content">
       <div class="onb-logo">S</div>
-      <h1 class="onb-title">Brot backen<br><em>leicht gemacht.</em></h1>
-      <p class="onb-sub">Dein digitaler Begleiter für perfektes Sauerteigbrot — von Hermann bis zum ersten Laib.</p>
+      <h1 class="onb-title">Bread baking<br><em>made easy.</em></h1>
+      <p class="onb-sub">Your digital companion for perfect sourdough — from Hermann to your first loaf.</p>
       {isEnabled('onboardingFeaturePills') && (
         <div class="feature-pills">
-          <div class="pill"><span class="dot"></span>100+ Rezepte</div>
-          <div class="pill"><span class="dot"></span>KI-Coach</div>
-          <div class="pill"><span class="dot"></span>Smart-Timer</div>
+          <div class="pill"><span class="dot"></span>100+ Recipes</div>
+          <div class="pill"><span class="dot"></span>AI Coach</div>
+          <div class="pill"><span class="dot"></span>Smart Timer</div>
           <div class="pill"><span class="dot"></span>Offline</div>
-          <div class="pill"><span class="dot"></span>Werbefrei</div>
+          <div class="pill"><span class="dot"></span>Ad-free</div>
         </div>
       )}
-      <a href="/home" class="onb-cta">Loslegen →</a>
-      <a href="/home" class="onb-skip">Später</a>
+      <a href="/home" class="onb-cta">Get started →</a>
+      <a href="/home" class="onb-skip">Later</a>
     </div>
   </div>
 </BaseLayout>

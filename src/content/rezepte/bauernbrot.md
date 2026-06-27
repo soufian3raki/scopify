@@ -1,72 +1,72 @@
 ---
-title: Klassisches Bauernbrot
-description: Das perfekte erste Sauerteigbrot — knusprige Kruste, offene Krume und dieser unverwechselbare Sauerteiggeschmack. Unser meistgebackenes Rezept.
-category: Klassiker
-tag: KLASSIKER · ANFÄNGER
+title: Classic Farmhouse Bread
+description: The perfect first sourdough loaf — crisp crust, open crumb, and that unmistakable sourdough flavour. Our most-baked recipe.
+category: Classics
+tag: CLASSIC · BEGINNER
 cover: ./covers/bauernbrot.webp
 thumb: 🍞
-featuredBadge: Anfänger
-difficulty: Einfach
+featuredBadge: Beginner
+difficulty: Easy
 times:
-  prep: 45 Min
-  rest: 22h 30 Min
-  bake: 45 Min
+  prep: 45 min
+  rest: 22h 30 min
+  bake: 45 min
   total: 24h
 yield: 750g
 rating: "4.9"
 featured: true
 ingredients:
-  - name: Weizenmehl Type 550
+  - name: Bread flour (Type 550)
     amount: 500g
-  - name: Wasser (lauwarm)
+  - name: Water (lukewarm)
     amount: 350g
-  - name: Aktiver Sauerteig
+  - name: Active sourdough starter
     amount: 100g
-  - name: Salz
+  - name: Salt
     amount: 10g
-  - name: Reismehl (für Gärkorb)
+  - name: Rice flour (for banneton)
     amount: 20g
 steps:
-  - text: 500g Mehl mit 350g lauwarmem Wasser mischen. Abgedeckt ruhen lassen.
-    time: ⏱ 1 Stunde Autolyse
-    cookTitle: Autolyse vorbereiten
-    cookText: 500g Mehl mit 350g lauwarmem Wasser in einer Schüssel verrühren, bis kein trockenes Mehl mehr sichtbar ist. Abgedeckt ruhen lassen.
-    cookTime: ⏱ 1 Stunde ruhen
-  - text: 100g aktiven Sauerteig und 10g Salz hinzufügen. Mit nassen Händen einkneten.
-    time: ⏱ 10 Minuten kneten
-    cookTitle: Sauerteig & Salz
-    cookText: 100g aktiven Sauerteig und 10g Salz hinzufügen. Mit nassen Händen gründlich einkneten.
-    cookTime: ⏱ 10 Minuten kneten
-  - text: Alle 30 Min dehnen und falten, insgesamt 4 Sets. Teig soll sich um 50% vergrößern.
-    time: ⏱ 4-5 Stunden bei 24°C
-    cookTitle: Stockgare
-    cookText: Den Teig alle 30 Minuten dehnen und falten. Insgesamt 4 Sets. Bis er sich um 50% vergrößert hat.
-    cookTime: ⏱ 4-5 Stunden bei 24°C
-  - text: Teig vorformen, zu einer Kugel formen, entspannen lassen.
-    time: ⏱ 30 Min Bench Rest
-    cookTitle: Vorformen
-    cookText: Teig vorsichtig auf bemehlte Fläche stürzen. Zu einer Kugel vorformen. 30 Min entspannen lassen.
-    cookTime: ⏱ 30 Minuten Bench Rest
-  - text: Endgültig formen, in bemehlten Gärkorb legen, abdecken.
-    time: ⏱ 12-16h Kühlschrank bei 4°C
-    cookTitle: Kühlschrank-Gare
-    cookText: Endgültig formen, in bemehlten Gärkorb legen. Mit Tuch abdecken, in den Kühlschrank.
-    cookTime: ⏱ 12-16 Stunden bei 4°C
-  - text: Topf auf 240°C vorheizen. Brot einschneiden. 25 Min mit Deckel, 20 Min ohne.
-    time: ⏱ 45 Minuten backen
-    cookTitle: Backen
-    cookText: Topf bei 240°C aufheizen. Brot stürzen, mit Lame einschneiden. 25 Min mit Deckel, 20 Min ohne.
-    cookTime: ⏱ 45 Minuten Backen
+  - text: Mix 500g flour with 350g lukewarm water. Cover and rest.
+    time: ⏱ 1 hour autolyse
+    cookTitle: Prepare autolyse
+    cookText: Stir 500g flour with 350g lukewarm water in a bowl until no dry flour remains. Cover and rest.
+    cookTime: ⏱ 1 hour rest
+  - text: Add 100g active starter and 10g salt. Knead with wet hands.
+    time: ⏱ 10 minutes kneading
+    cookTitle: Starter & salt
+    cookText: Add 100g active starter and 10g salt. Knead thoroughly with wet hands.
+    cookTime: ⏱ 10 minutes kneading
+  - text: Stretch and fold every 30 minutes, 4 sets total. Dough should rise ~50%.
+    time: ⏱ 4-5 hours at 24°C
+    cookTitle: Bulk fermentation
+    cookText: Stretch and fold the dough every 30 minutes. Four sets total until it has risen about 50%.
+    cookTime: ⏱ 4-5 hours at 24°C
+  - text: Pre-shape into a ball and bench rest.
+    time: ⏱ 30 min bench rest
+    cookTitle: Pre-shape
+    cookText: Turn dough onto a floured surface. Pre-shape into a ball and rest 30 minutes.
+    cookTime: ⏱ 30 minutes bench rest
+  - text: Final shape, place in floured banneton, cover.
+    time: ⏱ 12-16h fridge at 4°C
+    cookTitle: Cold proof
+    cookText: Shape the loaf, place in a floured banneton, cover, and refrigerate.
+    cookTime: ⏱ 12-16 hours at 4°C
+  - text: Preheat Dutch oven to 240°C. Score and bake 25 min covered, 20 min uncovered.
+    time: ⏱ 45 minutes baking
+    cookTitle: Bake
+    cookText: Preheat pot to 240°C. Turn out loaf, score with a lame. Bake 25 min covered, 20 min uncovered.
+    cookTime: ⏱ 45 minutes baking
 tips:
   - icon: 💧
     title: Hydration
-    text: 70% Hydration ist ideal für Anfänger. Der Teig ist klebrig — das ist normal. Mit nassen Händen arbeiten.
+    text: 70% hydration is ideal for beginners. The dough will be sticky — that's normal. Work with wet hands.
   - icon: 🌡️
-    title: Temperatur
-    text: Bei 24°C gärt der Teig optimal. Im Sommer kürzer, im Winter länger gären lassen.
+    title: Temperature
+    text: At 24°C the dough ferments optimally. Shorter in summer, longer in winter.
   - icon: ⏰
     title: Timing
-    text: Für frisches Frühstücksbrot abends formen, morgens backen. Die lange Kühlschrankgare entwickelt mehr Aroma.
+    text: For fresh breakfast bread, shape in the evening and bake in the morning. Long cold proof builds more flavour.
 ---
 
-Zusätzliche Notizen zum Rezept können hier als Markdown ergänzt werden.
+Additional recipe notes can be added here as Markdown.

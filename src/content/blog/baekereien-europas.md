@@ -1,29 +1,29 @@
 ---
-title: Auf den Spuren der besten Bäckereien Europas
-description: Von Paris bis Kopenhagen — eine Reise durch europäische Backkultur
+title: In Search of Europe's Best Bakeries
+description: From Paris to Copenhagen — a journey through European baking culture
 cover: ./covers/SCL3UUDQSZESPN42KWECGYBDAY.avif
-category: Reisen
-badge: Reisen
+category: Travel
+badge: Travel
 imgClass: b4
-readTime: 12 Min
+readTime: 12 min read
 pubDate: 2026-05-01
 featured: false
 ---
 
-Europa ist das Mekka des handwerklichen Backens. Von rustikalen Landbroten in Frankreich bis zu modernen Sauerteig-Bäckereien in Skandinavien — jede Region hat ihre Geheimnisse.
+Europe is the mecca of artisan baking. From rustic country loaves in France to modern sourdough bakeries in Scandinavia — every region has its secrets.
 
-## Paris: Poilâne und die Tradition
+## Paris: Poilâne and tradition
 
-Die berühmte Pain Poilâne wird noch heute in Holzöfen gebacken. Der Sauerteig ist seit Generationen unverändert — ein lebendiges Stück Backgeschichte.
+The famous Pain Poilâne is still baked in wood-fired ovens. The starter has been unchanged for generations — a living piece of baking history.
 
-## Kopenhagen: Neue Nordic Baking
+## Copenhagen: New Nordic baking
 
-Skandinavische Bäcker setzen auf lokales Getreide, lange Fermentation und reduzierte Zutatenlisten. Weniger ist mehr — und der Geschmack überzeugt.
+Scandinavian bakers focus on local grain, long fermentation, and short ingredient lists. Less is more — and the flavour speaks for itself.
 
-## Deutschland: Sauerteig im Herzen
+## Germany: Sourdough at heart
 
-Bei uns zuhause haben wir eine der reichsten Brotkulturen der Welt. Roggen, Dinkel und Weizen vereinen sich in unzähligen regionalen Varianten.
+At home we have one of the richest bread cultures in the world. Rye, spelt, and wheat combine in countless regional varieties.
 
-## Tipps für Bäcker-Reisende
+## Tips for baking travellers
 
-Frag nach dem Starter, probiere das Tagesbrot und notiere Hydration und Backzeiten — so nimmst du Inspiration für deinen nächsten Laib mit nach Hause.
+Ask about the starter, try the daily loaf, and note hydration and bake times — you'll bring inspiration home for your next bake.

@@ -1,25 +1,25 @@
 ---
-title: Warum San Francisco Sourdough so besonders ist
-description: Die Geschichte und Mikrobiologie des berühmtesten Sauerteigs der Welt
+title: Why San Francisco Sourdough Is So Special
+description: The history and microbiology of the world's most famous sourdough
 cover: ./covers/SCL3UUDQSZESPN42KWECGYBDAY.avif
-category: Geschichte
-badge: Geschichte
+category: History
+badge: History
 imgClass: b2
-readTime: 5 Min
+readTime: 5 min read
 pubDate: 2026-05-10
 featured: false
 ---
 
-San Francisco Sourdough ist mehr als ein Brot — es ist ein Symbol einer Stadt. Die Kombination aus lokalem Klima, Meeresluft und jahrzehntelanger Kultur macht den Starter hier einzigartig.
+San Francisco sourdough is more than bread — it's a symbol of a city. The combination of local climate, sea air, and decades of culture makes the starter here unique.
 
 ## Lactobacillus sanfranciscensis
 
-Der berühmte Milchsäurebakterien-Stamm wurde erstmals in San Francisco identifiziert. Er arbeitet ideal mit wilden Hefen zusammen und erzeugt das typische, leicht säuerliche Aroma.
+The famous lactic acid bacteria strain was first identified in San Francisco. It works ideally with wild yeasts and creates the typical, slightly tangy aroma.
 
-## Nebel und Temperatur
+## Fog and temperature
 
-Die kühle, feuchte Luft der Bay Area verlangsamt die Gärung und gibt dem Teig mehr Zeit, Aroma aufzubauen. Bäcker dort nutzen diese Bedingungen seit über 150 Jahren.
+The cool, humid air of the Bay Area slows fermentation and gives the dough more time to develop flavour. Bakers there have used these conditions for over 150 years.
 
-## Was wir daraus lernen können
+## What we can learn
 
-Auch zu Hause können wir durch längere, kühlere Gare ähnliche Aromen entwickeln — unser Hermann reagiert sensibel auf Temperatur und Zeit.
+At home we can develop similar flavours through longer, cooler proofing — Hermann responds sensitively to temperature and time.
