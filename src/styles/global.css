@@ -15,7 +15,7 @@
 
   --bg: var(--cream);
   --bg-2: #ebe2cc;
-  --paper: #faf6ec;
+  --paper: #fff;
   --ink: var(--burgundy);
   --ink-2: var(--burgundy);
   --muted: color-mix(in srgb, var(--brown) 80%, var(--cream));
