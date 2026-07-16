@@ -1,7 +1,7 @@
 ---
 title: Light & Airy Sourdough Waffles
 description: Crisp on the outside, pillowy inside — the ultimate discard waffle.
-cover: ./covers/bauernbrot.webp # sourdough_waffles.webp
+cover: ./covers/20.Light & Airy Sourdough Waffles.png
 category: Waffles
 tag: BREAKFAST · EASY
 thumb: 🧇

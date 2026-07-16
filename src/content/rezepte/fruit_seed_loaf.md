@@ -1,7 +1,7 @@
 ---
 title: Dried Fruit & Seed Loaf
 description: Fruited everyday tin loaf with raisins, cranberries and crunchy seeds.
-cover: ./covers/bauernbrot.webp # fruit_seed_loaf.webp
+cover: ./covers/15.Dried Fruit & Seed Loaf.png
 category: Enriched Loaves
 tag: TIN LOAF · MEDIUM
 thumb: 🍇

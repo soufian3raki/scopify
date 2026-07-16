@@ -1,7 +1,7 @@
 ---
 title: No-Knead Sourdough Focaccia
 description: Dimpled, olive-oil-rich focaccia with a crackly top and pillowy crumb.
-cover: ./covers/bauernbrot.webp # sourdough_focaccia.webp
+cover: ./covers/23.No-Knead Sourdough Focaccia Dimpled.png
 category: No-Knead Breads
 tag: NO-KNEAD · EASY
 thumb: 🍞

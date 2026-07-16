@@ -1,7 +1,7 @@
 ---
 title: Sourdough Carrot Cake
 description: Moist, warmly spiced carrot loaf with cream cheese frosting and subtle tang.
-cover: ./covers/bauernbrot.webp # carrot_cake.webp
+cover: ./covers/90.Beetroot sourdough loaf cut open.png
 category: Quick Bakes
 tag: CARROT CAKE · MEDIUM
 thumb: 🥕

@@ -1,7 +1,7 @@
 ---
 title: Blueberry Sourdough Muffins
 description: Tall, domed bakery-style muffins bursting with juicy blueberries.
-cover: ./covers/bauernbrot.webp # blueberry_muffins.webp
+cover: ./covers/3.Blueberry Sourdough Muffins.png
 category: Muffins
 tag: MUFFINS · MEDIUM
 thumb: 🧁

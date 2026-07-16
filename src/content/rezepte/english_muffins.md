@@ -1,7 +1,7 @@
 ---
 title: Sourdough English Muffins
 description: Grid-patterned, nook-and-cranny-filled muffins — toast-ready perfection.
-cover: ./covers/bauernbrot.webp # english_muffins.webp
+cover: ./covers/65.Golden sourdough crumpets.png
 category: English Muffins
 tag: SOURDOUGH ENGLISH · ADVANCED
 thumb: 🥯

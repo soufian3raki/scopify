@@ -1,7 +1,7 @@
 ---
 title: Black Sesame Swirl Loaf
 description: Striking black sesame paste swirled through a soft white tin loaf.
-cover: ./covers/bauernbrot.webp # sesame_swirl.webp
+cover: ./covers/2.Black Sesame Swirl Loaf.png
 category: Sesame
 tag: SESAME · MEDIUM
 thumb: 🌀

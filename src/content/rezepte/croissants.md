@@ -1,7 +1,7 @@
 ---
 title: Sourdough Croissants
 description: Laminated, shatteringly flaky croissants with honeycomb layers and a buttery scent.
-cover: ./covers/bauernbrot.webp # croissants.webp
+cover: ./covers/95.Caramelised croissant morning buns rolled.png
 category: Patisserie
 tag: PATISSERIE · ADVANCED
 thumb: 🥐

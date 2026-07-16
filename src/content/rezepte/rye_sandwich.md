@@ -1,7 +1,7 @@
 ---
 title: Soft Rye Sourdough Sandwich
 description: Dark, moist, sliceable rye sandwich loaf — earthy and long-keeping.
-cover: ./covers/bauernbrot.webp # rye_sandwich.webp
+cover: ./covers/30.Soft Rye Sourdough Sandwich Dark.png
 category: Rye Breads
 tag: RYE MIX · MEDIUM
 thumb: 🍞

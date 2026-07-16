@@ -1,7 +1,7 @@
 ---
 title: Sourdough Banana Bread
 description: Moist, mellow banana loaf with a gentle sourdough tang in every slice.
-cover: ./covers/bauernbrot.webp # banana_bread.webp
+cover: ./covers/69.Sliced sourdough pumpkin bread.png
 category: Discard & Breakfast
 tag: BANANA BREAD · EASY
 thumb: 🍌

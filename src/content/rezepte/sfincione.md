@@ -1,7 +1,7 @@
 ---
 title: Sourdough Sfincione
 description: Thick, spongy Sicilian pizza with a complex tomato, onion and anchovy topping.
-cover: ./covers/bauernbrot.webp # sfincione.webp
+cover: ./covers/85.Sun-dried tomato and feta sourdough loaf.png
 category: Sicilian Pizza
 tag: SFINCIONE · ADVANCED
 thumb: 🍕

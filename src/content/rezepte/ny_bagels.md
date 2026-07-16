@@ -1,7 +1,7 @@
 ---
 title: New York-Style Sourdough Bagels
 description: Boiled, chewy, dense-crumbed classic New York-style bagels.
-cover: ./covers/bauernbrot.webp # ny_bagels.webp
+cover: ./covers/22.New York-Style Sourdough Bagels.png
 category: Bagels
 tag: BAGELS · ADVANCED
 thumb: 🥯

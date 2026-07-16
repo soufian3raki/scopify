@@ -1,7 +1,7 @@
 ---
 title: Mint Sourdough Bread
 description: Fresh, herby pull-apart loaf perfect for a weekend table.
-cover: ./covers/bauernbrot.webp # mint_sourdough.webp
+cover: ./covers/21.Mint Sourdough Bread Fresh.png
 category: Breakfast Bread
 tag: BREAKFAST · EASY
 thumb: 🌿

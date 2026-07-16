@@ -1,7 +1,7 @@
 ---
 title: Whole Wheat Almond Focaccia
 description: Sweet almond-topped wholemeal focaccia — a nutty, nourishing take on a classic.
-cover: ./covers/bauernbrot.webp # almond_focaccia.webp
+cover: ./covers/80.Golden leaf-shaped sourdough fougasse.png
 category: Walnut Almond
 tag: FOCACCIA · EASY
 thumb: 🥨

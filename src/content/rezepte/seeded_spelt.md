@@ -1,7 +1,7 @@
 ---
 title: Spelt & Sunflower Seed Bread
 description: Nutty spelt loaf packed with crunchy sunflower seeds throughout.
-cover: ./covers/bauernbrot.webp # seeded_spelt.webp
+cover: ./covers/78.Golden Turkish simit bread rings.png
 category: Mixed Grain
 tag: SEEDED · EASY
 thumb: 🌻

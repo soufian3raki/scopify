@@ -1,7 +1,7 @@
 ---
 title: Sourdough Cornbread
 description: Golden, slightly sweet cornbread with a crispy crust baked in a skillet.
-cover: ./covers/bauernbrot.webp # cornbread.webp
+cover: ./covers/99.Mexican sourdough conchas with crackled shell.png
 category: Quick Loaves
 tag: CORNBREAD · EASY
 thumb: 🌽

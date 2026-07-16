@@ -1,7 +1,7 @@
 ---
 title: Braided Milk Loaf
 description: Pillowy, Japanese-inspired milk loaf braid — feather-soft inside.
-cover: ./covers/bauernbrot.webp # braided_milk.webp
+cover: ./covers/4.Braided Milk Loaf.png
 category: Enriched Breads
 tag: MILK LOAF · MEDIUM
 thumb: 🥨

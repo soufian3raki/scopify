@@ -1,7 +1,7 @@
 ---
 title: Caramelised Onion Sourdough Bread
 description: Sweet caramelised onions baked into a soft, golden no-knead loaf.
-cover: ./covers/bauernbrot.webp # onion_sourdough.webp
+cover: ./covers/6.Caramelised Onion Sourdough Bread.png
 category: Savoury
 tag: BREAKFAST · EASY
 thumb: 🧅

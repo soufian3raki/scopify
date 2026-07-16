@@ -1,7 +1,7 @@
 ---
 title: Cinnamon Swirl Bread
 description: Enriched sandwich loaf with a gooey cinnamon ribbon baked right through.
-cover: ./covers/bauernbrot.webp # cinnamon_swirl.webp
+cover: ./covers/9.Cinnamon Swirl Bread.png
 category: Sweet Loaves
 tag: CINNAMON · MEDIUM
 thumb: 🌀

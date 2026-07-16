@@ -1,7 +1,7 @@
 ---
 title: Sourdough Streusel Coffee Cake
 description: Crumbly, cinnamon-streusel-topped sour cream coffee cake for weekend mornings.
-cover: ./covers/bauernbrot.webp # coffee_cake.webp
+cover: ./covers/70.Glazed lemon poppy seed sourdough loaf .png
 category: Coffee Cake
 tag: COFFEE CAKE · MEDIUM
 thumb: ☕

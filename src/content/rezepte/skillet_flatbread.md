@@ -1,7 +1,7 @@
 ---
 title: Sourdough Skillet Flatbread
 description: Quick stovetop flatbread ready in 20 minutes — no oven needed.
-cover: ./covers/bauernbrot.webp # skillet_flatbread.webp
+cover: ./covers/67.SOURDOUGH DUTCH BABY.png
 category: Flatbread
 tag: FLATBREAD · EASY
 thumb: 🫓

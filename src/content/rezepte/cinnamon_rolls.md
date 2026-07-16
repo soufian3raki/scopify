@@ -1,7 +1,7 @@
 ---
 title: Sourdough Cinnamon Rolls
 description: Pillowy overnight rolls with a gooey cinnamon swirl and cream-cheese glaze.
-cover: ./covers/bauernbrot.webp # cinnamon_rolls.webp
+cover: ./covers/79.Twisted Swedish cardamom buns with pearl.png
 category: Sweet Bakes
 tag: SWEET · MEDIUM
 thumb: 🌀

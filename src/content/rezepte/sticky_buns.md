@@ -1,7 +1,7 @@
 ---
 title: Sourdough Pecan Sticky Buns
 description: Caramel-glazed pecan pull-apart buns — decadent, gooey, unforgettable.
-cover: ./covers/bauernbrot.webp # sticky_buns.webp
+cover: ./covers/88.Cheese and chive pull-apart bread in a loaf tin.png
 category: Sticky Buns
 tag: STICKY BUNS · MEDIUM
 thumb: 🍯

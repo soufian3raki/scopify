@@ -1,7 +1,7 @@
 ---
 title: Open-Crumb Rustic Boule
 description: A high-hydration showpiece with a lacy, wide-open crumb and blistered crust.
-cover: ./covers/bauernbrot.webp # open_crumb.webp
+cover: ./covers/24.Open-Crumb Rustic Boule.png
 category: Artisan Loaves
 tag: OPEN CRUMB · ADVANCED
 thumb: 🥖

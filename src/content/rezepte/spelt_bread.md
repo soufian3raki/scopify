@@ -1,7 +1,7 @@
 ---
 title: Dutch Oven Spelt Bread
 description: Nutty, slightly sweet spelt loaf with a beautiful burnished crust.
-cover: ./covers/bauernbrot.webp # spelt_bread.webp
+cover: ./covers/16.Dutch Oven Spelt Bread.png
 category: Spelt
 tag: SPELT · EASY
 thumb: 🌾

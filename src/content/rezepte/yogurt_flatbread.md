@@ -1,7 +1,7 @@
 ---
 title: Sourdough Greek Yogurt Flatbreads
 description: Soft, pillowy flatbreads using Greek yogurt for extra tenderness — no long proof.
-cover: ./covers/bauernbrot.webp # yogurt_flatbread.webp
+cover: ./covers/75.Blistered sourdough naan breads brushed.png
 category: Flatbreads
 tag: FLATBREAD · MEDIUM
 thumb: 🫓

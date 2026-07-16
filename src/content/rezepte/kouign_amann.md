@@ -1,7 +1,7 @@
 ---
 title: Sourdough Kouign Amann
 description: Caramelised, burnished Breton butter cake with crispy sugar crust.
-cover: ./covers/bauernbrot.webp # kouign_amann.webp
+cover: ./covers/96.Sourdough croissant cube loaf.png
 category: Breton Pastry
 tag: LAMINATED BRIOCHE · ADVANCED
 thumb: 🥮

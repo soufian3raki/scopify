@@ -1,7 +1,7 @@
 ---
 title: Wholegrain Sourdough Rye
 description: A dense, dark, deeply flavoured rye — hearty, healthy and long-keeping.
-cover: ./covers/bauernbrot.webp # sourdough_rye.webp
+cover: ./covers/86.Marble rye sourdough loaf sliced.png
 category: Whealgrain Breads
 tag: RYE · Advanced
 thumb: 🍞

@@ -1,7 +1,7 @@
 ---
 title: Chocolate Babka
 description: Swirled, glossy, show-stopping chocolate babka loaf.
-cover: ./covers/bauernbrot.webp # chocolate_babka.webp
+cover: ./covers/7.Chocolate Babka.png
 category: Babka
 tag: BABKA · MEDIUM
 thumb: 🍫

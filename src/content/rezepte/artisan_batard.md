@@ -1,7 +1,7 @@
 ---
 title: High-Hydration Batard
 description: Elegant oval batard with a dramatic bold ear — baker's prize loaf.
-cover: ./covers/bauernbrot.webp # artisan_batard.webp
+cover: ./covers/19.High-Hydration Batard.png
 category: Artisan Loaves
 tag: BATARD · ADVANCED
 thumb: 🥖

@@ -1,7 +1,7 @@
 ---
 title: Pan de Cristal
 description: Catalan crystal bread — impossibly open crumb, crispy shell, ultralight.
-cover: ./covers/bauernbrot.webp # pan_cristal.webp
+cover: ./covers/26.Pan de Cristal Catalan crystal bread.png
 category: Specialty Loaves
 tag: CATALAN · ADVANCED
 thumb: 🍞

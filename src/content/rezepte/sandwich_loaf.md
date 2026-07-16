@@ -1,7 +1,7 @@
 ---
 title: Soft Sourdough Sandwich Loaf
 description: A tender, square-topped milk loaf that slices clean for everyday sandwiches.
-cover: ./covers/bauernbrot.webp # sandwich_loaf.webp
+cover: ./covers/10.Classic Sourdough Sandwich Bread.png
 category: Sandwich Bread
 tag: SANDWICH · MEDIUM
 thumb: 🥪

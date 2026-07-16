@@ -1,7 +1,7 @@
 ---
 title: Sourdough Beer Bread
 description: Malty, crusty no-knead loaf ready in an hour — starter adds complexity.
-cover: ./covers/bauernbrot.webp # beer_bread.webp
+cover: ./covers/83.Jalapeño cheddar sourdough boule.png
 category: Quick Loaves
 tag: BEER BREAD · EASY
 thumb: 🍺

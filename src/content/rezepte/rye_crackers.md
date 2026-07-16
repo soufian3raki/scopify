@@ -1,7 +1,7 @@
 ---
 title: Rye & Flaxseed Sourdough Crackers
 description: Dark, crispy, fibre-rich snacking crackers with an earthy rye character.
-cover: ./covers/bauernbrot.webp # rye_crackers.webp
+cover: ./covers/29.Rye & Flaxseed Sourdough Crackers Dark.png
 category: Rye Crackers
 tag: CRACKERS · EASY
 thumb: 🥨

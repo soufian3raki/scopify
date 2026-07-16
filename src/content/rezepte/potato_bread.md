@@ -1,7 +1,7 @@
 ---
 title: Potato Bread
 description: Incredibly soft, pillowy loaf — potato starch keeps it fresh for days.
-cover: ./covers/bauernbrot.webp # potato_bread.webp
+cover: ./covers/27.Potato Bread Incredibly soft.png
 category: Potato Breads
 tag: POTATO · MEDIUM
 thumb: 🥔

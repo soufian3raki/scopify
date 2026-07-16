@@ -1,46 +1,121 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro"
 
 const timeline = [
-  { year: '4000 BC', title: 'Born in ancient Egypt', text: 'Egyptians accidentally discovered wild yeast. Bread became a staple food.' },
-  { year: '500 BC', title: 'Greece & Rome', text: 'Professional bakers developed over 70 bread varieties. Bakeries became social hubs.' },
-  { year: '800 AD', title: 'Monks preserve the knowledge', text: 'Monks across Europe refined sourdough culture. Rye bread became everyday food.' },
-  { year: '1849', title: 'Gold Rush in San Francisco', text: 'Gold miners brought their sourdough to California — the origin of famous San Francisco Sourdough.' },
-  { year: '1900', title: 'Industrial bread', text: 'Commercial yeast was mass-produced. Sourdough nearly disappeared.' },
-  { year: '2010', title: 'The renaissance', text: 'Home bakers rediscovered sourdough. Digestibility and flavour mattered again.' },
-  { year: '2026', title: 'Today with Superbaking', text: 'AI-powered apps and quality tools make sourdough accessible to everyone.' },
-];
+    {
+        year: "4000 BC",
+        title: "Born in ancient Egypt",
+        text: "Egyptians accidentally discovered wild yeast. Bread became a staple food.",
+    },
+    {
+        year: "500 BC",
+        title: "Greece & Rome",
+        text: "Professional bakers developed over 70 bread varieties. Bakeries became social hubs.",
+    },
+    {
+        year: "800 AD",
+        title: "Monks preserve the knowledge",
+        text: "Monks across Europe refined sourdough culture. Rye bread became everyday food.",
+    },
+    {
+        year: "1849",
+        title: "Gold Rush in San Francisco",
+        text: "Gold miners brought their sourdough to California — the origin of famous San Francisco Sourdough.",
+    },
+    {
+        year: "1900",
+        title: "Industrial bread",
+        text: "Commercial yeast was mass-produced. Sourdough nearly disappeared.",
+    },
+    {
+        year: "2010",
+        title: "The renaissance",
+        text: "Home bakers rediscovered sourdough. Digestibility and flavour mattered again.",
+    },
+    {
+        year: "2026",
+        title: "Today with Superbaking",
+        text: "AI-powered apps and quality tools make sourdough accessible to everyone.",
+    },
+]
 ---
 
 <BaseLayout title="History of Sourdough — Superbaking" showNav={false}>
-  <div class="fade-in">
-
-    <div class="page-head">
-      <a href="/home" class="page-back">←</a>
-      <div class="page-title">History of Sourdough</div>
-      <p class="page-sub">From ancient Egypt to your kitchen — a journey through 6,000 years of bread baking.</p>
-    </div>
-
-    <div class="timeline">
-      {timeline.map(item => (
-        <div class="time-item">
-          <div class="time-dot"></div>
-          <div class="time-year">{item.year}</div>
-          <div class="time-title">{item.title}</div>
-          <div class="time-text">{item.text}</div>
+    <div class="fade-in">
+        <div class="page-head">
+            <a href="/home" class="page-back">←</a>
+            <div class="page-title">History of Sourdough</div>
+            <p class="page-sub">
+                From ancient Egypt to your kitchen — a journey through 6,000
+                years of bread baking.
+            </p>
         </div>
-      ))}
-    </div>
 
-  </div>
+        <div class="timeline">
+            {
+                timeline.map(item => (
+                    <div class="time-item">
+                        <div class="time-dot" />
+                        <div class="time-year">{item.year}</div>
+                        <div class="time-title">{item.title}</div>
+                        <div class="time-text">{item.text}</div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
 </BaseLayout>
 
 <style>
-.timeline { padding: 0 var(--page-pad-x) 32px; position: relative; }
-.timeline::before { content: ""; position: absolute; left: 46px; top: 0; bottom: 0; width: 2px; background: var(--line); }
-.time-item { padding-left: 80px; margin-bottom: 28px; position: relative; }
-.time-dot { position: absolute; left: 36px; top: 8px; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); border: 4px solid var(--bg); box-shadow: 0 0 0 1px var(--line); }
-.time-year { font-family: var(--font-display); font-size: 13px; font-weight: var(--font-weight); color: var(--accent); letter-spacing: .04em; margin-bottom: 6px; }
-.time-title { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); margin-bottom: 6px; letter-spacing: 0.02em; }
-.time-text { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+    .timeline {
+        padding: 0 var(--page-pad-x) 32px;
+        position: relative;
+    }
+    .timeline::before {
+        content: "";
+        position: absolute;
+        left: 46px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--line);
+    }
+    .time-item {
+        padding-left: 80px;
+        margin-bottom: 28px;
+        position: relative;
+    }
+    .time-dot {
+        position: absolute;
+        left: 36px;
+        top: 8px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--accent);
+        border: 4px solid var(--bg);
+        box-shadow: 0 0 0 1px var(--line);
+    }
+    .time-year {
+        font-family: var(--font-display);
+        font-size: 13px;
+        font-weight: var(--font-weight);
+        color: var(--accent);
+        letter-spacing: 0.04em;
+        margin-bottom: 6px;
+    }
+    .time-title {
+        font-family: var(--font-display);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        font-weight: var(--font-weight);
+        color: var(--ink);
+        margin-bottom: 6px;
+        letter-spacing: 0.02em;
+    }
+    .time-text {
+        font-size: 13px;
+        color: var(--ink-2);
+        line-height: 1.5;
+    }
 </style>

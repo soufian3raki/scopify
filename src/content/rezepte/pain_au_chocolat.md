@@ -1,7 +1,7 @@
 ---
 title: Sourdough Pain au Chocolat
 description: Dark chocolate batons encased in shatteringly flaky laminated croissant dough.
-cover: ./covers/bauernbrot.webp # pain_au_chocolat.webp
+cover: ./covers/94.Danish spandauer pastries with glossy vanilla.png
 category: Laminated Pastry
 tag: LAMINATED · ADVANCED
 thumb: 🍫

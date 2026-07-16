@@ -1,7 +1,7 @@
 ---
 title: Buckwheat Sourdough Pancakes
 description: Earthy, nutty weekend pancakes with a satisfying sourdough tang.
-cover: ./covers/bauernbrot.webp # buckwheat_pancakes.webp
+cover: ./covers/5.Buckwheat & Oat Sourdough Pancakes.png
 category: Pancakes
 tag: BREAKFAST · EASY
 thumb: 🥞

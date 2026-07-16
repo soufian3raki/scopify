@@ -1,7 +1,7 @@
 ---
 title: Sourdough Soda Bread
 description: Fast Irish-style loaf ready in under an hour — no starter activity needed.
-cover: ./covers/bauernbrot.webp # soda_bread.webp
+cover: ./covers/11.Country Farmhouse Tin Loaf.png
 category: Soda Bread
 tag: SODA BREAD · EASY
 thumb: 🇮🇪

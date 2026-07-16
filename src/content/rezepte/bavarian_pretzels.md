@@ -1,7 +1,7 @@
 ---
 title: Bavarian Sourdough Pretzels
 description: Golden-brown lye pretzels with a soft interior and signature pretzel salt.
-cover: ./covers/bauernbrot.webp # bavarian_pretzels.webp
+cover: ./covers/1.Bavarian Sourdough Pretzels.png
 category: Pretzels
 tag: PRETZELS · ADVANCED
 thumb: 🥨

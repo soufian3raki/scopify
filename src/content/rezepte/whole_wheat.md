@@ -1,7 +1,7 @@
 ---
 title: Whole Wheat Sourdough Bread
 description: Hearty everyday wholemeal loaf — dense with nutrition, light in texture.
-cover: ./covers/bauernbrot.webp # whole_wheat.webp
+cover: ./covers/81.Traditional Moroccan khobz bread rounds.png
 category: Wholemeal
 tag: WHOLEMEAL · EASY
 thumb: 🍞

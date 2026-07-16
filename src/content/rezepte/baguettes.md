@@ -1,7 +1,7 @@
 ---
 title: Sourdough Baguettes
 description: Crackling, thin-crusted baguettes with a creamy, custard-like interior.
-cover: ./covers/bauernbrot.webp # baguettes.webp
+cover: ./covers/91.New York style sourdough bialys.png
 category: Artisan Loaves
 tag: BAGUETTES · Advanced
 thumb: 🥖

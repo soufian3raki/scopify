@@ -1,7 +1,7 @@
 ---
 title: Rustic Sourdough Crackers
 description: Crisp, shatteringly thin herb crackers — the easiest discard bake there is.
-cover: ./covers/bauernbrot.webp # sourdough_crackers.webp
+cover: ./covers/28.Rustic Sourdough Crackers Crisp.png
 category: Crackers
 tag: CRACKERS · EASY
 thumb: 🥨

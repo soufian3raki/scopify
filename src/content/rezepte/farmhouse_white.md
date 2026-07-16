@@ -1,7 +1,7 @@
 ---
 title: Country Farmhouse White
 description: A classic floured white loaf with a light, open crumb and crisp shell.
-cover: ./covers/bauernbrot.webp # farmhouse_white.webp
+cover: ./covers/12.Country Farmhouse White A classic floured.png
 category: White Loaves
 tag: WHITE LOAF · MEDIUM
 thumb: 🍞

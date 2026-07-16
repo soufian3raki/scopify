@@ -1,7 +1,7 @@
 ---
 title: Sourdough Discard Pancakes
 description: Fluffy, tangy breakfast pancakes that turn leftover starter into gold.
-cover: ./covers/bauernbrot.webp # discard_pancakes.webp
+cover: ./covers/66.Thin lacy sourdough crepes folded.png
 category: Breakfast
 tag: BREAKFAST · EASY
 thumb: 🥞

@@ -1,7 +1,7 @@
 ---
 title: Teff & Quinoa Sourdough Flatbread
 description: Protein-rich, gluten-light flatbread using ancient Ethiopian and Andean grains.
-cover: ./covers/bauernbrot.webp # ancient_flatbread.webp
+cover: ./covers/77.Paper-thin sourdough lavash sheets draped.png
 category: Teff & Quinoa
 tag: FLATBREAD · EASY
 thumb: 🌍

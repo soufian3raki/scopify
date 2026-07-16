@@ -1,7 +1,7 @@
 ---
 title: Sourdough Doughnuts
 description: Fried, sugar-dusted overnight doughnuts with a light, airy crumb.
-cover: ./covers/bauernbrot.webp # doughnuts.webp
+cover: ./covers/73.Stack of fudgy sourdough brownies .png
 category: Fried Doughs
 tag: DOUGHNUTS · MEDIUM
 thumb: 🍩

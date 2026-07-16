@@ -1,7 +1,7 @@
 ---
 title: Golden Semolina Sourdough
 description: Sunny, crisp-crusted Italian-style loaf with a chewy golden crumb.
-cover: ./covers/bauernbrot.webp # semolina_bread.webp
+cover: ./covers/18.Golden Semolina Sourdough.png
 category: Semolina
 tag: SEMOLINA · EASY
 thumb: 🇮🇹

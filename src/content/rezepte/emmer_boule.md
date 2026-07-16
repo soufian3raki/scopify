@@ -1,7 +1,7 @@
 ---
 title: Emmer Wheat Boule
 description: Dense, flavourful heritage grain boule with a complex, slightly sweet character.
-cover: ./covers/bauernbrot.webp # emmer_boule.webp
+cover: ./covers/17.Emmer Wheat Boule Dense.png
 category: Heritage Grains
 tag: EMMER · ADVANCED
 thumb: 🌾

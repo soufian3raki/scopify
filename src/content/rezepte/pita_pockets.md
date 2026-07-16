@@ -1,7 +1,7 @@
 ---
 title: Sourdough Pita Pockets
 description: Puffy, pocket-forming pitas — baked to order for stuffing with anything.
-cover: ./covers/bauernbrot.webp # pita_pockets.webp
+cover: ./covers/68.Stack of soft sourdough tortillas.png
 category: Pita
 tag: PITA · MEDIUM
 thumb: 🫓

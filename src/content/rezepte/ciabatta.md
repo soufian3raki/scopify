@@ -1,7 +1,7 @@
 ---
 title: Sourdough Ciabatta
 description: Wet-dough Italian slipper loaf — wildly open crumb, crispy shell.
-cover: ./covers/bauernbrot.webp # ciabatta.webp
+cover: ./covers/84.Olive and rosemary sourdough loaf.png
 category: Italian Breads
 tag: CIABATTA · ADVANCED
 thumb: 🥖

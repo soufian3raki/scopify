@@ -1,7 +1,7 @@
 ---
 title: Open-Face Cheese & Tomato Sourdough
 description: Tangy sourdough toast loaded with melted cheese and ripe tomato.
-cover: ./covers/bauernbrot.webp # cheese_tomato_toast.webp
+cover: ./covers/25.Open-Face Cheese & Tomato Sourdough.png
 category: Toast & Sandwiches
 tag: BREAKFAST · EASY
 thumb: 🍅

@@ -1,7 +1,7 @@
 ---
 title: Whole Wheat Sourdough Pizza Crust
 description: Thin, crispy-edged pizza base with wholemeal depth and sourdough tang.
-cover: ./covers/bauernbrot.webp # pizza_crust.webp
+cover: ./covers/82.Golden flaky Moroccan msemen squares stacked.png
 category: Pizza
 tag: PIZZA · MEDIUM
 thumb: 🍕

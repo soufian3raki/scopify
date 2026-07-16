@@ -1,7 +1,7 @@
 ---
 title: Sourdough Garlic Knots
 description: Soft, pull-apart sourdough knots drenched in garlic-herb butter.
-cover: ./covers/bauernbrot.webp # garlic_knots.webp
+cover: ./covers/87.Roasted garlic sourdough boule with golden scored crust.png
 category: Garlic
 tag: GARLIC · MEDIUM
 thumb: 🧄

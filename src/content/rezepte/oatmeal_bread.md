@@ -1,7 +1,7 @@
 ---
 title: Sourdough Oatmeal Bread
 description: Hearty, soft breakfast loaf with a tender oat-studded crumb.
-cover: ./covers/bauernbrot.webp # oatmeal_bread.webp
+cover: ./covers/71.Golden sourdough granola clusters spilling.png
 category: Oat Bread
 tag: BREAKFAST · EASY
 thumb: 🥣

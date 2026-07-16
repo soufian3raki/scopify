@@ -1,7 +1,7 @@
 ---
 title: Courgette & Herb Sourdough
 description: Moist, green-flecked savoury loaf — great for lunchboxes and picnics.
-cover: ./covers/bauernbrot.webp # courgette_bread.webp
+cover: ./covers/13.Courgette & Herb Sourdough.png
 category: Quick Loaves
 tag: COURGETTE · EASY
 thumb: 🥒

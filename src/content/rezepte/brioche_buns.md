@@ -1,7 +1,7 @@
 ---
 title: Sourdough Brioche Buns
 description: Rich, glossy, bakery-style brioche buns — perfect for burgers or French toast.
-cover: ./covers/bauernbrot.webp # brioche_buns.webp
+cover: ./covers/97.Roman maritozzi brioche buns split and filled.png
 category: Enriched Buns
 tag: BRIOCHE · MEDIUM
 thumb: 🥯

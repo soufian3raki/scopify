@@ -1,7 +1,7 @@
 ---
 title: Soft Sourdough Milk Rolls
 description: Fluffy, pull-apart dinner rolls for the family table.
-cover: ./covers/bauernbrot.webp # milk_rolls.webp
+cover: ./covers/31.Soft Sourdough Milk Rolls Fluffy.png
 category: Milk Bun
 tag: MILK BUN · MEDIUM
 thumb: 🥯

@@ -1,7 +1,7 @@
 ---
 title: Sourdough Miche
 description: Large, rustic French country miche — deeply flavoured, feeds a crowd.
-cover: ./covers/bauernbrot.webp # sourdough_miche.webp
+cover: ./covers/72.Rustic sourdough grissini breadsticks .png
 category: Large Format
 tag: MICHE · ADVANCED
 thumb: 🍞

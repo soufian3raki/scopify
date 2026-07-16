@@ -1,7 +1,7 @@
 ---
 title: Chocolate Chip Sourdough Scones
 description: Flaky, buttery morning scones with a subtle tang and pools of melted chocolate.
-cover: ./covers/bauernbrot.webp # chocolate_scones.webp
+cover: ./covers/8.Chocolate Chip Sourdough Scones.png
 category: Scones
 tag: BREAKFAST · EASY
 thumb: 🍪
