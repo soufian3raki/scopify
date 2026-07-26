@@ -1,189 +1,196 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro"
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-const tools = [
-    {
-        icon: "🧺",
-        name: "Rattan Proofing Basket (Banneton)",
-        desc: "Hand-woven from Indonesian rattan. Gives your bread shape and the classic spiral pattern.",
-        importance: "essential",
-        label: "Essential",
-    },
-    {
-        icon: "⚖️",
-        name: "Digital Kitchen Scale",
-        desc: "Precise to 1g. Sourdough needs exact baker's percentages.",
-        importance: "essential",
-        label: "Essential",
-    },
-    {
-        icon: "🔪",
-        name: "Dough Scraper (Metal)",
-        desc: "With wooden handle. Divides dough cleanly and lifts it from the work surface.",
-        importance: "essential",
-        label: "Essential",
-    },
-    {
-        icon: "🪒",
-        name: "Lame (Baker's Blade)",
-        desc: "With replacement blades for the perfect ear when scoring.",
-        importance: "essential",
-        label: "Essential",
-    },
-    {
-        icon: "🥄",
-        name: "Bowl Scraper",
-        desc: "Flexible silicone. Scrapes the bowl completely clean.",
-        importance: "helpful",
-        label: "Helpful",
-    },
-    {
-        icon: "🌀",
-        name: "Dough Whisk",
-        desc: "Danish-style whisk. Mixes stiff dough without lumps.",
-        importance: "helpful",
-        label: "Helpful",
-    },
-    {
-        icon: "🖌️",
-        name: "Pastry Brush",
-        desc: "For water, egg wash, or flour on the finished loaf.",
-        importance: "optional",
-        label: "Optional",
-    },
-]
+import imgBanneton from '../img/kit/ChatGPT Image Jul 7, 2026, 03_51_48 AM.png';
+import imgScale from '../img/kit/ChatGPT Image Jul 7, 2026, 03_37_49 AM.png';
+import imgScraper from '../img/kit/ChatGPT Image Jul 8, 2026, 03_19_36 PM.png';
+import imgLame from '../img/kit/ChatGPT Image Jul 11, 2026, 04_56_07 PM.png';
+import imgWhisk from '../img/kit/ChatGPT Image Jul 8, 2026, 04_05_41 AM.png';
+import imgHero from '../img/kit/ChatGPT Image Jul 7, 2026, 03_34_30 AM.png';
+import imgSteps from '../img/kit/ChatGPT Image Jul 10, 2026, 06_21_34 PM.png';
+
+const tools: {
+  name: string;
+  desc: string;
+  importance: 'essential' | 'helpful' | 'optional';
+  label: string;
+  image: ImageMetadata;
+}[] = [
+  {
+    name: 'Rattan Proofing Basket (Banneton)',
+    desc: 'Hand-woven from Indonesian rattan. Gives your bread shape and the classic spiral pattern.',
+    importance: 'essential',
+    label: 'Essential',
+    image: imgBanneton,
+  },
+  {
+    name: 'Digital Kitchen Scale',
+    desc: "Precise to 1g. Sourdough needs exact baker's percentages.",
+    importance: 'essential',
+    label: 'Essential',
+    image: imgScale,
+  },
+  {
+    name: 'Dough Scraper',
+    desc: 'Flexible food-safe scraper. Divides dough cleanly and lifts it from the work surface.',
+    importance: 'essential',
+    label: 'Essential',
+    image: imgScraper,
+  },
+  {
+    name: "Lame (Baker's Blade)",
+    desc: 'With replacement blades for the perfect ear when scoring.',
+    importance: 'essential',
+    label: 'Essential',
+    image: imgLame,
+  },
+  {
+    name: 'Danish Dough Whisk',
+    desc: 'Danish-style whisk. Mixes stiff dough without lumps.',
+    importance: 'helpful',
+    label: 'Helpful',
+    image: imgWhisk,
+  },
+  {
+    name: 'Complete Starter Kit',
+    desc: 'All tools together in one gift-ready set for first-time success.',
+    importance: 'helpful',
+    label: 'Helpful',
+    image: imgHero,
+  },
+  {
+    name: 'From Mix to Bake',
+    desc: 'Step-by-step guide: measure, mix, shape, proof, score and bake.',
+    importance: 'optional',
+    label: 'Guide',
+    image: imgSteps,
+  },
+];
 ---
 
-<BaseLayout title="My Kit — Superbaking" showNav={false}>
-    <div class="fade-in">
-        <div class="page-head">
-            <a href="/home" class="page-back">←</a>
-            <div class="page-title">My Kit</div>
-            <p class="page-sub">All 7 tools from your starter kit explained.</p>
-        </div>
+<BaseLayout title="My Kit — Trustbread" activeNav="profile" showNav={true}>
+  <div class="fade-in">
+    <div class="page-head">
+      <a href="/profil" class="page-back">←</a>
+      <div class="page-title">My Kit</div>
+      <p class="page-sub">All tools from your starter kit explained.</p>
+    </div>
 
-        <div class="kit-grid">
-            <div class="kit-card">
-                <img
-                    src="/img/kit/ChatGPT Image Jul 7, 2026, 03_34_30 AM.png"
-                    alt="My Kit"
-                />
-                <img
-                    src="/img/kit/ChatGPT Image Jul 7, 2026, 03_37_49 AM.png"
-                    alt="My Kit"
-                />
-                <img
-                    src="/img/kit/ChatGPT Image Jul 7, 2026, 03_51_48 AM.png"
-                    alt="My Kit"
-                />
-                <img
-                    src="/img/kit/ChatGPT Image Jul 8, 2026, 03_19_36 PM.png"
-                    alt="My Kit"
-                />
-                <img
-                    src="/img/kit/ChatGPT Image Jul 8, 2026, 04_05_41 AM.png"
-                    alt="My Kit"
-                />
-                <img
-                    src="/img/kit/ChatGPT Image Jul 9, 2026, 12_24_25 AM.png"
-                    alt="My Kit"
-                />
-                <img
-                    src="/img/kit/ChatGPT Image Jul 10, 2026, 06_21_34 PM.png"
-                    alt="My Kit"
-                />
-                <img
-                    src="/img/kit/ChatGPT Image Jul 10, 2026, 07_03_25 PM.png"
-                    alt="My Kit"
-                />
-                <img
-                    src="/img/kit/ChatGPT Image Jul 11, 2026, 04_56_07 PM.png"
-                    alt="My Kit"
-                />
-            </div>
-            {
-                /*tools.map(t => (
+    <div class="kit-grid">
+      {tools.map((t) => (
         <div class="kit-card">
-          <div class="kit-icon">{t.icon}</div>
+          <div class="kit-img-wrap">
+            <Image
+              src={t.image}
+              alt={t.name}
+              width={900}
+              height={1200}
+              class="kit-img"
+              loading="lazy"
+            />
+          </div>
           <div class="kit-info">
             <div class="kit-name">{t.name}</div>
             <div class="kit-desc">{t.desc}</div>
             <span class:list={['kit-importance', t.importance]}>{t.label}</span>
           </div>
         </div>
-      ))*/
-            }
-        </div>
+      ))}
     </div>
+
+    <div class="kit-shop-link">
+      <a href="/shop">See the full kit in the shop →</a>
+    </div>
+  </div>
 </BaseLayout>
 
 <style>
-    .kit-grid {
-        padding: 0 var(--page-pad-x) 32px;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 14px;
-    }
-    .kit-card {
-        display: flex;
-        gap: 14px;
-        padding: 16px;
-        background: var(--paper);
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        flex-direction: column;
-    }
-    .kit-icon {
-        width: 64px;
-        height: 64px;
-        border-radius: 14px;
-        flex-shrink: 0;
-        background: linear-gradient(135deg, var(--yeast), var(--crust));
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 30px;
-    }
-    .kit-info {
-        flex: 1;
-    }
-    .kit-name {
-        font-family: var(--font-display);
-        font-size: var(--font-size);
-        line-height: var(--line-height);
-        font-weight: var(--font-weight);
-        color: var(--ink);
-        margin-bottom: 4px;
-        letter-spacing: 0.02em;
-    }
-    .kit-desc {
-        font-size: 12px;
-        color: var(--ink-2);
-        line-height: 1.4;
-        margin-bottom: 8px;
-    }
-    .kit-importance {
-        display: inline-block;
-        padding: 3px 10px;
-        border-radius: 100px;
-        font-size: 10px;
-        font-weight: var(--font-weight);
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-    }
-    .kit-importance.essential {
-        background: color-mix(in srgb, var(--burgundy) 12%, var(--cream));
-        color: var(--red);
-    }
-    .kit-importance.helpful {
-        background: color-mix(in srgb, var(--brown) 12%, var(--cream));
-        color: var(--green);
-    }
-    .kit-importance.optional {
-        background: color-mix(in srgb, var(--sand) 25%, var(--cream));
-        color: var(--brown);
-    }
-    img {
-        width: 100%;
-    }
+.kit-grid {
+  padding: 0 var(--page-pad-x) 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+.kit-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+}
+.kit-img-wrap {
+  width: 100%;
+  background: var(--brand-secondary);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kit-img-wrap :global(.kit-img) {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  display: block;
+}
+.kit-info {
+  flex: 1;
+  padding: 14px 16px 16px;
+}
+.kit-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.1;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.kit-desc {
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+.kit-importance {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.kit-importance.essential {
+  background: color-mix(in srgb, var(--burgundy) 12%, var(--cream));
+  color: var(--red);
+}
+.kit-importance.helpful {
+  background: color-mix(in srgb, var(--brown) 12%, var(--cream));
+  color: var(--green);
+}
+.kit-importance.optional {
+  background: color-mix(in srgb, var(--sand) 25%, var(--cream));
+  color: var(--brown);
+}
+.kit-shop-link {
+  padding: 0 var(--page-pad-x) 32px;
+}
+.kit-shop-link a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--tb-burgundy);
+  color: var(--tb-cream);
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 14px 18px;
+  text-decoration: none;
+}
 </style>

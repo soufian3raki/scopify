@@ -120,12 +120,16 @@ const recipeSlug = recipe.slug;
 
 <style>
 .detail-hero {
-  height: 475px; position: relative; overflow: hidden;
-  background: linear-gradient(135deg, #e1ab7b, #87674a);
+  position: relative;
+  overflow: hidden;
+  background: var(--brand-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
 }
 .detail-hero::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.4) 100%);
+  display: none;
 }
 .detail-back {
   position: absolute; top: 16px; left: 20px; width: 40px; height: 40px;
@@ -141,7 +145,7 @@ const recipeSlug = recipe.slug;
 }
 .detail-content {
   padding: 24px var(--page-pad-x); background: var(--bg); position: relative;
-  border-radius: 24px 24px 0 0; margin-top: -24px; z-index: 1;
+  border-radius: 24px 24px 0 0; margin-top: -16px; z-index: 1;
 }
 .detail-tag { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); font-weight: var(--font-weight); margin-bottom: 8px; }
 .detail-title { font-family: var(--font-display); font-size: var(--font-size); font-weight: var(--font-weight); color: var(--ink); letter-spacing: 0.02em; line-height: var(--line-height); margin-bottom: 12px; }

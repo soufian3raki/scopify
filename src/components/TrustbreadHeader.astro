@@ -1,0 +1,64 @@
+---
+interface Props {
+  showActions?: boolean;
+}
+
+const { showActions = true } = Astro.props;
+---
+
+<header class="tb-header">
+  <svg class="tb-logo-mark" width="26" height="18" viewBox="0 0 26 18" fill="none" aria-hidden="true">
+    <ellipse cx="13" cy="11" rx="11" ry="6.5" fill="currentColor"></ellipse>
+    <path d="M6 8C8 5.5 11 4.5 13 4.5C15 4.5 18 5.5 20 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path>
+  </svg>
+  <div class="tb-brand">Trustbread</div>
+  {showActions && (
+    <div class="tb-actions">
+      <a href="/shop" class="tb-action" aria-label="Shop">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M4 5H6L7.5 13.5H15.5L17 7H6.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+          <circle cx="8.5" cy="16" r="1.2" fill="currentColor"></circle>
+          <circle cx="14.5" cy="16" r="1.2" fill="currentColor"></circle>
+        </svg>
+      </a>
+      <a href="/profil" class="tb-action" aria-label="Profile">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="10" cy="6.5" r="3.2" stroke="currentColor" stroke-width="1.7"></circle>
+          <path d="M3.5 17C4.3 13.8 7 12.3 10 12.3C13 12.3 15.7 13.8 16.5 17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path>
+        </svg>
+      </a>
+    </div>
+  )}
+</header>
+
+<style>
+.tb-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px 12px;
+  background: var(--tb-burgundy);
+  flex: none;
+}
+.tb-logo-mark { flex-shrink: 0; color: var(--brand-accent); }
+.tb-brand {
+  font-family: var(--font-display);
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: var(--tb-cream);
+  line-height: 1;
+  text-transform: uppercase;
+}
+.tb-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--tb-wheat);
+}
+.tb-action {
+  display: flex;
+  color: inherit;
+  text-decoration: none;
+}
+</style>

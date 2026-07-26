@@ -1,255 +1,328 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-import RecipeCover from '../components/RecipeCover.astro';
-import HomeImageSlider from '../components/HomeImageSlider.astro';
-import { isEnabled } from '../config/feature-flags';
-import { formatDifficulty } from '../lib/recipe-meta';
-import { getHomeSlides } from '../lib/home-slides';
+import TrustbreadHeader from '../components/TrustbreadHeader.astro';
+import HomeSubscribe from '../components/HomeSubscribe.astro';
 
-const featuredRecipes = (await getCollection('rezepte'))
-  .filter((r) => r.data.featured)
-  .slice(0, 4);
+import bannetonImg from '../img/kit/ChatGPT Image Jul 7, 2026, 03_51_48 AM.png';
+import lameImg from '../img/kit/ChatGPT Image Jul 11, 2026, 04_56_07 PM.png';
 
-const featuredPost = (await getCollection('blog'))
-  .filter((p) => p.data.featured)
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())[0];
+const tabs = [
+  { id: 'howtos', label: "How to's", href: '/home', active: true },
+  { id: 'recipes', label: 'Recipes', href: '/rezepte', active: false },
+  { id: 'guide', label: 'Baking guide', href: '/kit', active: false },
+  { id: 'blog', label: 'Blog', href: '/blog', active: false },
+];
 
-const homeSlides = getHomeSlides();
+const articles = [
+  {
+    href: '/kit',
+    image: bannetonImg,
+    alt: 'Banneton proofing basket',
+    date: 'July 10, 2026',
+    title: 'How to use your banneton: proofing for a better crust',
+    excerpt: 'Natural rattan wicks moisture from the dough surface and supports an even rise — here’s how to flour, fill and turn out your basket…',
+  },
+  {
+    href: '/kit',
+    image: lameImg,
+    alt: 'Bread lame scoring tool',
+    date: 'July 2, 2026',
+    title: 'Scoring 101: clean cuts from a single slash to wheat ears',
+    excerpt: 'The right blade angle decides how your loaf opens in the oven. With the Trustbread lame you hold it perfectly by default…',
+  },
+];
+
+const kitFeatures = [
+  {
+    title: 'Digital kitchen scale included',
+    text: 'The heart of the set: 1g precision, 5kg capacity, 6 units and USB-C charging — accurate dough starts here, every feeding and every hydration.',
+    icon: 'scale',
+  },
+  {
+    title: 'Natural & handcrafted',
+    text: 'Handmade Indonesian rattan banneton with linen liner — smooth, splinter-free and food-safe for you and your family.',
+    icon: 'leaf',
+  },
+  {
+    title: 'Beginner-friendly from day one',
+    text: '9 pieces, one system: lame, whisk, scraper, manuals and recipe booklet — designed for first-time success, no experience needed.',
+    icon: 'tools',
+  },
+  {
+    title: 'Gift-ready box',
+    text: 'Arrives in an elegant box — the ideal gift for baking lovers, beginners and seasoned sourdough bakers alike.',
+    icon: 'gift',
+  },
+];
 ---
 
-<BaseLayout title="Superbaking — Home" activeNav="home">
-  <div class="fade-in">
+<BaseLayout title="Trustbread — Home" activeNav="home" showHeader={true} noBottomPad={true}>
+  <TrustbreadHeader />
 
-    <!-- Header -->
-    <div class="head">
-      <div>
-        <div class="head-greet">Good morning</div>
-        <div class="head-name">Hello, Baker</div>
-      </div>
-      <a href="/profil" class="head-avatar">B</a>
-    </div>
+  <div class="tb-home-scroll fade-in">
+    <section class="tb-hero">
+      <p class="tb-hero-script">Real bakers · Real kitchens</p>
+      <h1 class="tb-hero-title">Recipes &amp; guides that actually work</h1>
+      <p class="tb-hero-lead">
+        Whether you’re feeding your very first starter or shaping your hundredth batard — the Trustbread kit and guides take the guesswork out of every loaf.
+      </p>
+    </section>
 
-    {isEnabled('homeHermannCard') && (
-      <a href="/timer" class="hermann-card">
-        <div class="hermann-row">
-          <div>
-            <div class="hermann-name">Your sourdough</div>
-            <div class="hermann-status">Hermann is active 🫧</div>
-            <div class="hermann-meta">Last fed 6h ago</div>
-          </div>
-          <div class="hermann-emoji">🍞</div>
-        </div>
-        <div class="hermann-progress"><div class="hermann-progress-fill"></div></div>
-        <div class="hermann-footer">
-          <span>68% ready to bake</span>
-          <span>Next feed in 2h</span>
-        </div>
-      </a>
-    )}
+    <nav class="tb-tabs" aria-label="Content sections">
+      {tabs.map((tab) => (
+        <a href={tab.href} class:list={['tb-tab', { active: tab.active }]} aria-current={tab.active ? 'page' : undefined}>
+          {tab.label}
+        </a>
+      ))}
+    </nav>
 
-    <HomeImageSlider slides={homeSlides} />
-
-    {(isEnabled('homeHermineQuickAccess') || isEnabled('homeTimerQuickAccess')) && (
-      <div class="quick-grid">
-        {isEnabled('homeHermineQuickAccess') && (
-          <a href="/hermine" class="quick-item">
-            <div class="quick-emoji">🤖</div>
-            <div class="quick-label">AI Coach</div>
-          </a>
-        )}
-        {isEnabled('homeTimerQuickAccess') && (
-          <a href="/timer" class="quick-item">
-            <div class="quick-emoji">⏱️</div>
-            <div class="quick-label">Timer</div>
-          </a>
-        )}
-      </div>
-    )}
-
-    {isEnabled('homeCategories') && (
-      <>
-        <div class="section-head">
-          <div class="section-title">Categories</div>
-          <a href="/rezepte" class="section-link">All</a>
-        </div>
-        <div class="cat-grid">
-          <a href="/rezepte" class="cat-card c1">
-            <div class="cat-emoji">🌾</div>
-            <div>
-              <div class="cat-name">Basics</div>
-              <div class="cat-count">12 recipes</div>
-            </div>
-          </a>
-          <a href="/rezepte" class="cat-card c2">
-            <div class="cat-emoji">🍞</div>
-            <div>
-              <div class="cat-name">Classics</div>
-              <div class="cat-count">28 recipes</div>
-            </div>
-          </a>
-          <a href="/rezepte" class="cat-card c3">
-            <div class="cat-emoji">🥐</div>
-            <div>
-              <div class="cat-name">Rolls</div>
-              <div class="cat-count">14 recipes</div>
-            </div>
-          </a>
-          <a href="/rezepte" class="cat-card c4">
-            <div class="cat-emoji">🍕</div>
-            <div>
-              <div class="cat-name">Pizza & Flat</div>
-              <div class="cat-count">10 recipes</div>
-            </div>
-          </a>
-          <a href="/rezepte" class="cat-card c5">
-            <div class="cat-emoji">🥨</div>
-            <div>
-              <div class="cat-name">Sweet</div>
-              <div class="cat-count">14 recipes</div>
-            </div>
-          </a>
-          <a href="/rezepte" class="cat-card c6">
-            <div class="cat-emoji">🔧</div>
-            <div>
-              <div class="cat-name">Help</div>
-              <div class="cat-count">12 recipes</div>
-            </div>
-          </a>
-          <a href="/rezepte" class="cat-card c7">
-            <div class="cat-emoji">🌍</div>
-            <div>
-              <div class="cat-name">International</div>
-              <div class="cat-count">6 recipes</div>
-            </div>
-          </a>
-          <a href="/rezepte" class="cat-card c8">
-            <div class="cat-emoji">♻️</div>
-            <div>
-              <div class="cat-name">Leftovers</div>
-              <div class="cat-count">4 recipes</div>
-            </div>
-          </a>
-        </div>
-      </>
-    )}
-
-    <!-- Featured -->
-    <div class="section-head">
-      <div class="section-title">Recommended for you</div>
-      <a href="/rezepte" class="section-link">More</a>
-    </div>
-    <div class="featured-scroll">
-      {featuredRecipes.map((recipe) => (
-        <a href={`/rezepte/${recipe.slug}`} class="feat-card">
-          <div class="feat-img">
-            <RecipeCover recipe={recipe} variant="card" />
-            {recipe.data.featuredBadge && <span class="feat-badge">{recipe.data.featuredBadge}</span>}
-          </div>
-          <div class="feat-content">
-            <div class="feat-title">{recipe.data.title}</div>
-            <div class="feat-meta">
-              <span>⏱ {recipe.data.times.total}</span>
-              <span>{formatDifficulty(recipe.data.difficulty)}</span>
-              <span>🍞 {recipe.data.yield}</span>
-            </div>
+    <section class="tb-articles" aria-label="Guides">
+      {articles.map((article) => (
+        <a href={article.href} class="tb-article">
+          <Image
+            src={article.image}
+            alt={article.alt}
+            width={900}
+            height={1200}
+            class="tb-article-img"
+            loading="lazy"
+          />
+          <div class="tb-article-body">
+            <p class="tb-article-meta">
+              <span class="tb-article-author">Your friends at Trustbread</span> · {article.date}
+            </p>
+            <h2 class="tb-article-title">{article.title}</h2>
+            <p class="tb-article-excerpt">{article.excerpt}</p>
           </div>
         </a>
       ))}
-    </div>
+    </section>
 
-    {featuredPost && (
-      <a href={`/blog/${featuredPost.slug}`} class="blog-teaser">
-        <div class="blog-tag">From the magazine</div>
-        <div class="blog-headline">{featuredPost.data.title}</div>
-        <div class="blog-desc">{featuredPost.data.description}</div>
-      </a>
-    )}
+    <section class="tb-kit" aria-labelledby="kit-heading">
+      <p class="tb-kit-script">Inside your kit</p>
+      <h2 id="kit-heading" class="tb-kit-title">Why bakers love this set</h2>
 
+      <div class="tb-kit-features">
+        {kitFeatures.map((feature) => (
+          <div class="tb-kit-feature">
+            {feature.icon === 'scale' && (
+              <svg class="tb-kit-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+                <rect x="5" y="20" width="24" height="8" rx="2" stroke="currentColor" stroke-width="1.9"></rect>
+                <rect x="9" y="22.5" width="8" height="3" rx="1" fill="currentColor"></rect>
+                <path d="M17 20V13M17 13C17 9 20 7 23 7M17 13C17 9 14 7 11 7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"></path>
+              </svg>
+            )}
+            {feature.icon === 'leaf' && (
+              <svg class="tb-kit-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+                <path d="M17 28C11 28 7 24 7 19C7 13 12 7 17 5C22 7 27 13 27 19C27 24 23 28 17 28Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"></path>
+                <path d="M17 28V12" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"></path>
+              </svg>
+            )}
+            {feature.icon === 'tools' && (
+              <svg class="tb-kit-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+                <path d="M11 8H23L21 26H13L11 8Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"></path>
+                <path d="M8 8H26" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"></path>
+                <path d="M14 13L20 21M20 13L14 21" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"></path>
+              </svg>
+            )}
+            {feature.icon === 'gift' && (
+              <svg class="tb-kit-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+                <rect x="6" y="13" width="22" height="14" rx="2" stroke="currentColor" stroke-width="1.9"></rect>
+                <path d="M6 18H28" stroke="currentColor" stroke-width="1.9"></path>
+                <path d="M13 13V10C13 8.3 14.3 7 16 7H18C19.7 7 21 8.3 21 10V13" stroke="currentColor" stroke-width="1.9"></path>
+                <path d="M17 21V24" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"></path>
+              </svg>
+            )}
+            <h3 class="tb-kit-feature-title">{feature.title}</h3>
+            <p class="tb-kit-feature-text">{feature.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <a href="/shop" class="tb-kit-cta">See the full kit in the shop →</a>
+    </section>
+
+    <HomeSubscribe />
+
+    <footer class="tb-footer">Trustbread — your partner in every loaf</footer>
   </div>
 </BaseLayout>
 
 <style>
-/* Hermann Card */
-.hermann-card {
-  margin: 8px var(--page-pad-x) 24px; padding: 20px; border-radius: 24px;
-  background: linear-gradient(135deg, var(--rye) 0%, var(--crust-dark) 100%);
-  color: var(--paper); position: relative; overflow: hidden; cursor: pointer;
-  box-shadow: 0 12px 32px rgba(62,40,23,.3); text-decoration: none; display: block;
+.tb-home-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding-bottom: calc(var(--nav-height) + var(--nav-inset-bottom) + 16px + env(safe-area-inset-bottom, 0px));
 }
-.hermann-card::before {
-  content: ""; position: absolute; top: -40px; right: -40px; width: 140px; height: 140px;
-  border-radius: 50%; background: radial-gradient(circle, rgba(225, 171, 123, .28), transparent 70%);
+.tb-hero {
+  padding: 26px 22px 0;
 }
-.hermann-row { display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 1; }
-.hermann-name { font-size: 12px; text-transform: uppercase; letter-spacing: .12em; opacity: .7; margin-bottom: 6px; }
-.hermann-status { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); margin-bottom: 4px; }
-.hermann-meta { font-size: 13px; opacity: .8; }
-.hermann-emoji { font-size: 42px; filter: drop-shadow(0 4px 8px rgba(0,0,0,.2)); }
-.hermann-progress { margin-top: 16px; height: 6px; background: rgba(255,255,255,.15); border-radius: 100px; overflow: hidden; position: relative; z-index: 1; }
-.hermann-progress-fill { height: 100%; width: 68%; background: linear-gradient(90deg, var(--yeast), var(--accent)); border-radius: 100px; }
-.hermann-footer { display: flex; justify-content: space-between; margin-top: 10px; font-size: 11px; opacity: .7; position: relative; z-index: 1; }
+.tb-hero-script {
+  font-family: var(--font-script);
+  font-size: 28px;
+  color: var(--tb-gold);
+  line-height: 1;
+}
+.tb-hero-title {
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 0.98;
+  color: var(--tb-burgundy);
+  text-transform: uppercase;
+  margin-top: 10px;
+  font-weight: 400;
+}
+.tb-hero-lead {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--tb-ink-soft);
+  margin-top: 12px;
+}
 
-/* Quick Grid */
-.quick-grid { margin: 0 var(--page-pad-x) 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(72px, 1fr)); gap: 12px; }
-.quick-item {
-  aspect-ratio: 1; background: var(--paper); border-radius: 18px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
-  cursor: pointer; border: 1px solid var(--line); transition: transform .2s; text-decoration: none;
+.tb-tabs {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 20px 22px 0;
+  border-bottom: 1px solid rgba(92, 31, 48, .15);
+  margin-bottom: 4px;
 }
-.quick-item:active { transform: scale(.95); }
-.quick-emoji { font-size: 24px; }
-.quick-label { font-size: 10px; font-weight: var(--font-weight); color: var(--ink-2); text-align: center; line-height: 1.2; }
+.tb-tab {
+  font-family: var(--font-display);
+  font-size: 17px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--tb-muted);
+  padding: 6px 4px 10px;
+  border-bottom: 3px solid transparent;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.tb-tab.active {
+  color: var(--tb-burgundy);
+  border-bottom-color: var(--tb-burgundy);
+}
 
-/* Categories */
-.cat-grid { padding: 0 var(--page-pad-x); display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 32px; }
-.cat-card {
-  padding: 18px; border-radius: 20px; background: var(--paper);
-  border: 1px solid var(--line); cursor: pointer; transition: transform .2s;
-  display: flex; flex-direction: column; gap: 8px; min-height: 100px;
-  justify-content: space-between; text-decoration: none;
+.tb-articles {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 16px 0;
 }
-.cat-card:active { transform: scale(.97); }
-.cat-card.c1 { background: linear-gradient(135deg, #f5eeda, #e1ab7b); }
-.cat-card.c2 { background: linear-gradient(135deg, #e1ab7b, #c99a6a); }
-.cat-card.c3 { background: linear-gradient(135deg, #e8c4a0, #e1ab7b); }
-.cat-card.c4 { background: linear-gradient(135deg, #e1ab7b, #87674a); }
-.cat-card.c5 { background: linear-gradient(135deg, #c4a07a, #87674a); }
-.cat-card.c6 { background: linear-gradient(135deg, #87674a, #6d5340); }
-.cat-card.c7 { background: linear-gradient(135deg, #d4b088, #87674a); }
-.cat-card.c8 { background: linear-gradient(135deg, #87674a, #591727); }
-.cat-emoji { font-size: 30px; }
-.cat-name { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); letter-spacing: 0.02em; }
-.cat-count { font-size: 12px; color: var(--ink-2); font-weight: var(--font-weight); }
+.tb-article {
+  background: var(--tb-card);
+  border: 1px solid rgba(92, 31, 48, .14);
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .2s;
+}
+.tb-article:active { border-color: var(--tb-burgundy); }
+.tb-article :global(.tb-article-img) {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: var(--brand-secondary);
+}
+.tb-article-body { padding: 14px 16px 16px; }
+.tb-article-meta {
+  font-size: 12px;
+  color: var(--tb-muted);
+}
+.tb-article-author {
+  color: var(--tb-accent);
+  font-weight: 700;
+}
+.tb-article-title {
+  font-family: var(--font-display);
+  font-size: 21px;
+  line-height: 1.05;
+  color: var(--tb-burgundy);
+  text-transform: uppercase;
+  margin-top: 6px;
+  font-weight: 400;
+}
+.tb-article-excerpt {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--tb-ink-soft);
+  margin-top: 6px;
+}
 
-/* Featured */
-.featured-scroll { display: flex; gap: 14px; padding: 0 var(--page-pad-x) 8px; overflow-x: auto; scroll-snap-type: x mandatory; margin-bottom: 28px; }
-.featured-scroll::-webkit-scrollbar { display: none; }
-.feat-card {
-  min-width: 260px; border-radius: 22px; overflow: hidden;
-  background: var(--paper); border: 1px solid var(--line); scroll-snap-align: start;
-  cursor: pointer; box-shadow: var(--shadow); transition: transform .2s; text-decoration: none;
+.tb-kit {
+  padding: 28px 22px 0;
+  text-align: center;
 }
-.feat-card:active { transform: scale(.97); }
-.feat-img { height: 160px; position: relative; overflow: hidden; }
-.feat-badge {
-  position: absolute; left: 14px; bottom: 14px; z-index: 1;
-  padding: 4px 10px; background: rgba(255,255,255,.95); border-radius: 100px; font-size: 10px; font-weight: var(--font-weight); color: var(--ink); text-transform: uppercase; letter-spacing: .08em;
+.tb-kit-script {
+  font-family: var(--font-script);
+  font-size: 24px;
+  color: var(--tb-gold);
+  line-height: 1;
 }
-.feat-content { padding: 16px; }
-.feat-title { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); color: var(--ink); margin-bottom: 6px; letter-spacing: 0.02em; }
-.feat-meta { display: flex; gap: 14px; font-size: 12px; color: var(--muted); }
-.feat-meta span { display: flex; align-items: center; gap: 4px; }
+.tb-kit-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--tb-burgundy);
+  text-transform: uppercase;
+  line-height: 1;
+  margin-top: 8px;
+  font-weight: 400;
+}
+.tb-kit-features {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 20px 12px 0;
+}
+.tb-kit-feature { text-align: center; }
+.tb-kit-icon {
+  margin: 0 auto;
+  color: var(--tb-burgundy);
+  display: block;
+}
+.tb-kit-feature-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--tb-burgundy);
+  text-transform: uppercase;
+  margin-top: 8px;
+  line-height: 1.1;
+  font-weight: 400;
+}
+.tb-kit-feature-text {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--tb-ink-soft);
+  margin-top: 4px;
+}
+.tb-kit-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin: 20px 16px 0;
+  background: var(--tb-burgundy);
+  color: var(--tb-cream);
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 14px 18px;
+  text-decoration: none;
+}
+.tb-kit-cta:active { background: var(--tb-burgundy-hover); }
 
-/* Blog Teaser */
-.blog-teaser {
-  margin: 0 var(--page-pad-x) 28px; padding: 20px; border-radius: 20px;
-  background: linear-gradient(135deg, var(--burgundy) 0%, var(--brown) 100%);
-  color: var(--paper); cursor: pointer; position: relative; overflow: hidden;
-  text-decoration: none; display: block;
+.tb-footer {
+  background: var(--tb-burgundy);
+  padding: 14px 22px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--tb-footer-text);
 }
-.blog-teaser::after { content: "📖"; position: absolute; right: -10px; bottom: -10px; font-size: 80px; opacity: .1; }
-.blog-tag { font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: var(--yeast); margin-bottom: 10px; font-weight: var(--font-weight); }
-.blog-headline { font-family: var(--font-display); font-size: var(--font-size); line-height: var(--line-height); font-weight: var(--font-weight); letter-spacing: 0.02em; margin-bottom: 6px; }
-.blog-desc { font-size: 13px; opacity: .7; }
 </style>

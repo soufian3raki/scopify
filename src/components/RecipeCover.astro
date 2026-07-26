@@ -11,9 +11,9 @@ const { recipe, variant = 'thumb' } = Astro.props;
 const { cover, thumb, thumbClass, title } = recipe.data;
 
 const sizes = {
-  hero: { width: 960, height: 560 },
-  thumb: { width: 160, height: 160 },
-  card: { width: 400, height: 320 },
+  hero: { width: 960, height: 1200 },
+  thumb: { width: 240, height: 240 },
+  card: { width: 640, height: 640 },
 } as const;
 
 const { width, height } = sizes[variant];
@@ -37,45 +37,45 @@ const { width, height } = sizes[variant];
 <style>
 .recipe-cover {
   display: block;
-  object-fit: cover;
+  object-fit: contain;
+  background: var(--brand-secondary, #f5eeda);
 }
 .recipe-cover--hero {
-  position: absolute;
-  inset: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 70vh;
 }
 .recipe-cover--thumb {
-  width: 80px;
-  height: 80px;
+  width: 96px;
+  height: 96px;
   border-radius: 14px;
+  flex-shrink: 0;
 }
 .recipe-cover--card {
-  position: absolute;
-  inset: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 220px;
 }
 
 .recipe-cover-fallback {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #e1ab7b, #87674a);
+  background: linear-gradient(135deg, var(--brand-accent, #e1ab7b), var(--brand-dark, #87674a));
 }
 .recipe-cover-fallback--hero {
-  position: absolute;
-  inset: 0;
+  width: 100%;
+  min-height: 280px;
 }
 .recipe-cover-fallback--thumb {
-  width: 80px;
-  height: 80px;
+  width: 96px;
+  height: 96px;
   border-radius: 14px;
   flex-shrink: 0;
 }
 .recipe-cover-fallback--card {
-  position: absolute;
-  inset: 0;
+  width: 100%;
+  min-height: 160px;
 }
 .recipe-cover-fallback.t2 { background: linear-gradient(135deg, #f5eeda, #e1ab7b); }
 .recipe-cover-fallback.t3 { background: linear-gradient(135deg, #e1ab7b, #591727); }
@@ -88,5 +88,5 @@ const { width, height } = sizes[variant];
 
 .recipe-cover-emoji { line-height: 1; filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .2)); }
 .recipe-cover-fallback--hero .recipe-cover-emoji { font-size: 120px; filter: drop-shadow(0 8px 20px rgba(0, 0, 0, .3)); }
-.recipe-cover-fallback--thumb .recipe-cover-emoji { font-size: 32px; }
+.recipe-cover-fallback--thumb .recipe-cover-emoji { font-size: 36px; }
 </style>

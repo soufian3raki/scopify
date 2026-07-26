@@ -1,36 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Karla:ital,wght@0,400;0,500;0,700;1,400&family=Passion+One:wght@400;700&display=swap');
 
 :root {
-  --font-body: 'Bricolage Grotesque', system-ui, sans-serif;
-  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Karla', sans-serif;
+  --font-display: 'Passion One', sans-serif;
+  --font-script: 'Dancing Script', cursive;
   --font-weight: 400;
   --font-size: 32px;
   --line-height: 37px;
 
-  /* Paleta de marca */
-  --burgundy: #591727;
-  --cream: #f5eeda;
-  --sand: #e1ab7b;
-  --brown: #87674a;
+  /* Superbaking brand palette (superbaking.com) */
+  --brand-primary: #591727;
+  --brand-secondary: #f5eeda;
+  --brand-accent: #e1ab7b;
+  --brand-dark: #87674a;
+  --brand-light-1: #c8a2ab;
+  --brand-light-2: #d7b6be;
 
-  --bg: var(--cream);
-  --bg-2: #ebe2cc;
-  --paper: #fff;
-  --ink: var(--burgundy);
-  --ink-2: var(--burgundy);
-  --muted: color-mix(in srgb, var(--brown) 80%, var(--cream));
-  --crust: var(--brown);
-  --crust-dark: var(--burgundy);
-  --yeast: var(--sand);
-  --rye: var(--burgundy);
-  --accent: var(--sand);
-  --green: color-mix(in srgb, var(--brown) 55%, #4a6b42);
-  --red: color-mix(in srgb, var(--burgundy) 70%, #c44);
-  --line: rgba(89, 23, 39, .12);
-  --shadow: 0 8px 24px rgba(89, 23, 39, .08);
-  --shadow-lg: 0 20px 60px rgba(89, 23, 39, .18);
+  --tb-burgundy: var(--brand-primary);
+  --tb-burgundy-hover: var(--brand-light-1);
+  --tb-cream: var(--brand-secondary);
+  --tb-wheat: #e8c4a0;
+  --tb-gold: var(--brand-accent);
+  --tb-orange: var(--brand-accent);
+  --tb-card: #fffdf8;
+  --tb-ink: #3a241a;
+  --tb-ink-soft: color-mix(in srgb, var(--brand-dark) 85%, #000);
+  --tb-muted: color-mix(in srgb, var(--brand-dark) 70%, var(--brand-secondary));
+  --tb-accent: var(--brand-dark);
+  --tb-footer-text: #e9c9a5;
 
-  --page-pad-x: 12px;
+  --burgundy: var(--brand-primary);
+  --cream: var(--brand-secondary);
+  --sand: var(--brand-accent);
+  --brown: var(--brand-dark);
+
+  --bg: var(--brand-secondary);
+  --bg-2: color-mix(in srgb, var(--brand-secondary) 88%, var(--brand-dark));
+  --paper: var(--tb-card);
+  --ink: var(--brand-primary);
+  --ink-2: var(--tb-ink-soft);
+  --muted: var(--tb-muted);
+  --crust: var(--brand-dark);
+  --crust-dark: var(--brand-primary);
+  --yeast: var(--tb-wheat);
+  --rye: var(--brand-primary);
+  --accent: var(--brand-accent);
+  --green: color-mix(in srgb, var(--brand-dark) 55%, #4a6b42);
+  --red: color-mix(in srgb, var(--brand-primary) 70%, #c44);
+  --line: color-mix(in srgb, var(--brand-primary) 15%, transparent);
+  --shadow: 0 8px 24px color-mix(in srgb, var(--brand-primary) 8%, transparent);
+  --shadow-lg: 0 20px 60px color-mix(in srgb, var(--brand-primary) 18%, transparent);
+
+  --page-pad-x: 16px;
   --nav-inset-x: 8px;
   --nav-inset-bottom: 12px;
   --nav-height: 68px;
@@ -45,6 +66,7 @@
 
 html, body {
   height: 100%;
+  overflow: hidden;
   font-family: var(--font-body);
   font-weight: var(--font-weight);
   font-size: 16px;
@@ -54,23 +76,57 @@ html, body {
   overscroll-behavior: none;
 }
 
+/* Force Trustbread fonts on every text control */
+button,
+input,
+textarea,
+select,
+option,
+label,
+a,
+p,
+span,
+li,
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+}
+
 .display,
 .serif,
 .head-name,
 .page-title,
-.section-title {
+.section-title,
+h1, h2, h3 {
   font-family: var(--font-display);
   font-weight: var(--font-weight);
+  letter-spacing: 0.02em;
+}
+
+.head-name,
+.page-title,
+.section-title {
   font-size: var(--font-size);
   line-height: var(--line-height);
-  letter-spacing: 0.02em;
+}
+
+.script {
+  font-family: var(--font-script);
 }
 
 /* ─── APP SHELL ─── */
 .app {
-  min-height: 100vh;
+  height: 100%;
+  max-height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   padding-bottom: calc(var(--nav-height) + var(--nav-inset-bottom) + 16px + env(safe-area-inset-bottom, 0px));
   scroll-behavior: smooth;
   max-width: 480px;
@@ -78,6 +134,12 @@ html, body {
   position: relative;
 }
 .app.no-pad { padding-bottom: 0; }
+.app.with-header {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-bottom: 0;
+}
 .app::-webkit-scrollbar { display: none; }
 
 /* ─── BOTTOM NAV (floating) ─── */
@@ -89,14 +151,14 @@ html, body {
   width: calc(100% - var(--nav-inset-x) * 2);
   max-width: calc(480px - var(--nav-inset-x) * 2);
   height: var(--nav-height);
-  background: rgba(250, 246, 236, .94);
+  background: color-mix(in srgb, var(--brand-secondary) 94%, transparent);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(89, 23, 39, .1);
+  border: 1px solid color-mix(in srgb, var(--brand-primary) 12%, transparent);
   border-radius: 999px;
   box-shadow:
-    0 4px 6px rgba(89, 23, 39, .04),
-    0 16px 40px rgba(89, 23, 39, .14);
+    0 4px 6px color-mix(in srgb, var(--brand-primary) 4%, transparent),
+    0 16px 40px color-mix(in srgb, var(--brand-primary) 14%, transparent);
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -113,16 +175,21 @@ html, body {
   cursor: pointer;
   padding: 8px 4px;
   text-decoration: none;
+  color: var(--tb-muted);
+  font-size: 11px;
+  font-weight: 700;
   border-radius: 999px;
-  transition: background .2s;
+  transition: background .2s, color .2s;
 }
-.nav-item:active { background: rgba(89, 23, 39, .06); }
-.nav-icon { width: 22px; height: 22px; color: var(--muted); transition: color .2s; }
-.nav-label { font-size: 9px; color: var(--muted); font-weight: var(--font-weight); transition: color .2s; letter-spacing: .02em; }
-.nav-item.active .nav-icon,
-.nav-item.active .nav-label { color: var(--ink); }
-.nav-item.active { position: relative; background: rgba(225, 171, 123, .22); }
-.nav-item.active::before {
+.nav-item:active { background: color-mix(in srgb, var(--brand-primary) 6%, transparent); }
+.nav-icon { width: 20px; height: 20px; color: currentColor; }
+.nav-label { font-size: 10px; color: currentColor; font-weight: 700; letter-spacing: 0; }
+.nav-item.active {
+  color: var(--tb-burgundy);
+  position: relative;
+  background: color-mix(in srgb, var(--brand-accent) 22%, transparent);
+}
+.nav-item.active::after {
   content: "";
   position: absolute;
   bottom: 6px;
@@ -130,7 +197,7 @@ html, body {
   transform: translateX(-50%);
   width: 18px;
   height: 3px;
-  background: var(--accent);
+  background: var(--brand-accent);
   border-radius: 100px;
 }
 
