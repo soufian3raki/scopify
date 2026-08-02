@@ -49,8 +49,8 @@
   --shadow: 0 8px 24px color-mix(in srgb, var(--brand-primary) 8%, transparent);
   --shadow-lg: 0 20px 60px color-mix(in srgb, var(--brand-primary) 18%, transparent);
 
-  --page-pad-x: 16px;
-  --nav-inset-x: 8px;
+  --page-pad-x: clamp(14px, 4vw, 22px);
+  --nav-inset-x: clamp(8px, 2.5vw, 16px);
   --nav-inset-bottom: 12px;
   --nav-height: 68px;
 }
@@ -69,10 +69,11 @@ html, body {
   font-weight: var(--font-weight);
   font-size: 16px;
   line-height: 1.5;
-  background: var(--bg);/* #000;*/
+  background: var(--bg);
   color: var(--ink);
   overscroll-behavior: none;
-  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) 0 env(safe-area-inset-left, 0px);
+  /* Side safe areas only — top is handled by the header so burgundy goes edge-to-edge */
+  padding: 0 env(safe-area-inset-right, 0px) 0 env(safe-area-inset-left, 0px);
 }
 
 /* Force Trustbread fonts on every text control */
@@ -123,13 +124,13 @@ h1, h2, h3 {
 .app {
   height: 100%;
   max-height: 100%;
+  width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   padding-bottom: calc(var(--nav-height) + var(--nav-inset-bottom) + 16px + env(safe-area-inset-bottom, 0px));
   scroll-behavior: smooth;
-  max-width: 480px;
-  margin: 0 auto;
+  margin: 0;
   position: relative;
 }
 .app.no-pad { padding-bottom: 0; }
@@ -145,10 +146,11 @@ h1, h2, h3 {
 .bottom-nav {
   position: fixed;
   bottom: calc(var(--nav-inset-bottom) + env(safe-area-inset-bottom, 0px));
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - var(--nav-inset-x) * 2);
-  max-width: calc(480px - var(--nav-inset-x) * 2);
+  left: var(--nav-inset-x);
+  right: var(--nav-inset-x);
+  transform: none;
+  width: auto;
+  max-width: none;
   height: var(--nav-height);
   background: color-mix(in srgb, var(--brand-secondary) 94%, transparent);
   backdrop-filter: blur(24px);
@@ -201,7 +203,12 @@ h1, h2, h3 {
 }
 
 /* ─── HEADER ─── */
-.head { padding: 8px var(--page-pad-x) 16px; display: flex; justify-content: space-between; align-items: center; }
+.head {
+  padding: calc(8px + env(safe-area-inset-top, 0px)) var(--page-pad-x) 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .head-greet { font-size: 13px; color: var(--muted); font-weight: var(--font-weight); }
 .head-name { color: var(--ink); margin-bottom: 0; }
 .head-avatar {
@@ -214,7 +221,7 @@ h1, h2, h3 {
 }
 
 /* ─── PAGE HEAD (inner pages) ─── */
-.page-head { padding: 8px var(--page-pad-x) 24px; }
+.page-head { padding: calc(8px + env(safe-area-inset-top, 0px)) var(--page-pad-x) 24px; }
 .page-back {
   width: 40px; height: 40px; background: var(--paper); border: 1px solid var(--line);
   border-radius: 50%; display: flex; align-items: center; justify-content: center;

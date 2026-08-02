@@ -33,7 +33,7 @@ function buildBlogSearchText(
         <div class="head-greet">Magazine</div>
         <div class="head-name">Blog</div>
       </div>
-      <a href="/profil" class="head-avatar">B</a>
+      <a href="/profil/" class="head-avatar">B</a>
     </div>
 
     <!--div class="search-bar">
@@ -63,7 +63,7 @@ function buildBlogSearchText(
         );
         return (
           <a
-            href={`/blog/${post.slug}`}
+            href={`/blog/${post.slug}/`}
             class="blog-card"
             data-search={searchText}
             data-category={post.data.category.toLowerCase()}

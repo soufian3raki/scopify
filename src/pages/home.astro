@@ -8,15 +8,15 @@ import bannetonImg from '../img/kit/ChatGPT Image Jul 7, 2026, 03_51_48 AM.png';
 import lameImg from '../img/kit/ChatGPT Image Jul 11, 2026, 04_56_07 PM.png';
 
 const tabs = [
-  { id: 'howtos', label: "How to's", href: '/home', active: true },
-  { id: 'recipes', label: 'Recipes', href: '/rezepte', active: false },
-  { id: 'guide', label: 'Baking guide', href: '/kit', active: false },
-  { id: 'blog', label: 'Blog', href: '/blog', active: false },
+  { id: 'howtos', label: "How to's", href: '/home/', active: true },
+  { id: 'recipes', label: 'Recipes', href: '/rezepte/', active: false },
+  { id: 'guide', label: 'Baking guide', href: '/kit/', active: false },
+  { id: 'blog', label: 'Blog', href: '/blog/', active: false },
 ];
 
 const articles = [
   {
-    href: '/kit',
+    href: '/kit/',
     image: bannetonImg,
     alt: 'Banneton proofing basket',
     date: 'July 10, 2026',
@@ -24,7 +24,7 @@ const articles = [
     excerpt: 'Natural rattan wicks moisture from the dough surface and supports an even rise — here’s how to flour, fill and turn out your basket…',
   },
   {
-    href: '/kit',
+    href: '/kit/',
     image: lameImg,
     alt: 'Bread lame scoring tool',
     date: 'July 2, 2026',
@@ -140,7 +140,7 @@ const kitFeatures = [
         ))}
       </div>
 
-      <a href="/shop" class="tb-kit-cta">See the full kit in the shop →</a>
+      <a href="/shop/" class="tb-kit-cta">See the full kit in the shop →</a>
     </section>
 
     <HomeSubscribe />
@@ -160,17 +160,17 @@ const kitFeatures = [
   padding-bottom: calc(var(--nav-height) + var(--nav-inset-bottom) + 16px + env(safe-area-inset-bottom, 0px));
 }
 .tb-hero {
-  padding: 26px 22px 0;
+  padding: 22px var(--page-pad-x) 0;
 }
 .tb-hero-script {
   font-family: var(--font-script);
-  font-size: 28px;
+  font-size: clamp(22px, 6vw, 28px);
   color: var(--tb-gold);
   line-height: 1;
 }
 .tb-hero-title {
   font-family: var(--font-display);
-  font-size: 40px;
+  font-size: clamp(28px, 8.5vw, 40px);
   line-height: 0.98;
   color: var(--tb-burgundy);
   text-transform: uppercase;
@@ -188,13 +188,13 @@ const kitFeatures = [
   display: flex;
   justify-content: space-between;
   gap: 4px;
-  padding: 20px 22px 0;
+  padding: 20px var(--page-pad-x) 0;
   border-bottom: 1px solid rgba(92, 31, 48, .15);
   margin-bottom: 4px;
 }
 .tb-tab {
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: clamp(13px, 4vw, 17px);
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: var(--tb-muted);
@@ -212,7 +212,7 @@ const kitFeatures = [
   display: flex;
   flex-direction: column;
   gap: 14px;
-  padding: 16px 16px 0;
+  padding: 16px var(--page-pad-x) 0;
 }
 .tb-article {
   background: var(--tb-card);
@@ -257,7 +257,7 @@ const kitFeatures = [
 }
 
 .tb-kit {
-  padding: 28px 22px 0;
+  padding: 28px var(--page-pad-x) 0;
   text-align: center;
 }
 .tb-kit-script {

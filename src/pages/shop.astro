@@ -70,7 +70,7 @@ const tags = ['Beginner friendly', 'Natural rattan', 'Gift-ready box'];
 
 <BaseLayout title="Shop — Trustbread" activeNav="shop" showHeader={true} noBottomPad={true}>
   <header class="shop-head">
-    <a href="/home" class="shop-back" aria-label="Back">
+    <a href="/home/" class="shop-back" aria-label="Back">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
         <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
@@ -171,7 +171,7 @@ const tags = ['Beginner friendly', 'Natural rattan', 'Gift-ready box'];
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 16px 10px;
+  padding: calc(14px + env(safe-area-inset-top, 0px)) var(--page-pad-x) 10px;
   background: var(--brand-secondary);
   border-bottom: 1px solid var(--line);
   flex: none;

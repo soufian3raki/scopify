@@ -18,8 +18,8 @@ import { isEnabled } from '../config/feature-flags';
           <div class="pill"><span class="dot"></span>Ad-free</div>
         </div>
       )}
-      <a href="/home" class="onb-cta">Get started →</a>
-      <a href="/home" class="onb-skip">Later</a>
+      <a href="/home/index.html" class="onb-cta">Get started →</a>
+      <a href="/home/index.html" class="onb-skip">Later</a>
     </div>
   </div>
 </BaseLayout>
@@ -48,7 +48,7 @@ import { isEnabled } from '../config/feature-flags';
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 40px var(--page-pad-x);
+  padding: calc(40px + env(safe-area-inset-top, 0px)) var(--page-pad-x) 40px;
   position: relative;
   z-index: 1;
 }

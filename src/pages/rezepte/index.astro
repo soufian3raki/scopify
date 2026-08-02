@@ -19,7 +19,7 @@ const recipes = (await getCollection('rezepte')).sort((a, b) =>
         <div class="head-greet">Browse</div>
         <div class="head-name">All Recipes</div>
       </div>
-      <a href="/profil" class="head-avatar">B</a>
+      <a href="/profil/" class="head-avatar">B</a>
     </div>
 
     <div class="search-bar">
@@ -54,7 +54,7 @@ const recipes = (await getCollection('rezepte')).sort((a, b) =>
         );
         return (
           <a
-            href={`/rezepte/${recipe.slug}`}
+            href={`/rezepte/${recipe.slug}/`}
             class="recipe-row"
             data-search={searchText}
             data-category={recipe.data.category}
