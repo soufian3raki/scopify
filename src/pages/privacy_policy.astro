@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const lastUpdated = 'August 9, 2026';
+---
+
+<BaseLayout title="Privacy Policy — Trustbread" showNav={false}>
+  <div class="fade-in">
+    <div class="page-head">
+      <a href="/profil/" class="page-back">←</a>
+      <div class="page-title">Privacy Policy</div>
+      <p class="page-sub">Last updated: {lastUpdated}</p>
+    </div>
+
+    <article class="policy">
+      <p>
+        This Privacy Policy describes how <strong>Trustbread</strong> (“we”, “us”, or “our”)
+        handles information when you use the Trustbread mobile application and related website
+        (the “App”).
+      </p>
+
+      <h2>1. Who we are</h2>
+      <p>
+        Trustbread is a sourdough baking companion that provides recipes, guides, blog articles,
+        and product information. Contact for privacy questions:
+        <a href="mailto:privacy@trustbread.app">privacy@trustbread.app</a>.
+      </p>
+
+      <h2>2. Information we collect</h2>
+      <p>Depending on how you use the App, we may process:</p>
+      <ul>
+        <li>
+          <strong>Usage data</strong> — basic technical information such as device type, operating
+          system version, and general App interaction needed to keep the App running.
+        </li>
+        <li>
+          <strong>Local preferences</strong> — settings stored only on your device (for example
+          language or display preferences, when those features are enabled).
+        </li>
+        <li>
+          <strong>Information you choose to provide</strong> — for example if you contact support
+          by email, we receive the content of that message and your email address.
+        </li>
+      </ul>
+      <p>
+        The App does <strong>not</strong> require creating an account to browse recipes, guides,
+        or blog content. We do not sell your personal data.
+      </p>
+
+      <h2>3. How we use information</h2>
+      <p>We use information only to:</p>
+      <ul>
+        <li>Provide and improve App features and content</li>
+        <li>Maintain security and diagnose technical issues</li>
+        <li>Respond to support requests</li>
+        <li>Comply with legal obligations</li>
+      </ul>
+
+      <h2>4. Third-party services</h2>
+      <p>
+        The App may contain links to external sites or stores (for example Amazon product pages).
+        Those services have their own privacy policies. We are not responsible for their practices.
+      </p>
+      <p>
+        If the App is distributed through Google Play or the Apple App Store, those platforms may
+        collect analytics or crash data according to their own policies.
+      </p>
+
+      <h2>5. Data storage and retention</h2>
+      <p>
+        Local preferences remain on your device until you clear App data or uninstall the App.
+        Support emails are kept only as long as needed to resolve your request, unless a longer
+        period is required by law.
+      </p>
+
+      <h2>6. Children’s privacy</h2>
+      <p>
+        The App is not directed at children under 13 (or the minimum age required in your country).
+        We do not knowingly collect personal information from children. If you believe a child has
+        provided personal data, contact us and we will delete it.
+      </p>
+
+      <h2>7. Your rights</h2>
+      <p>
+        Depending on where you live (for example the EEA, UK, or California), you may have rights
+        to access, correct, delete, or restrict processing of your personal data, and to lodge a
+        complaint with a supervisory authority. To exercise these rights, email
+        <a href="mailto:privacy@trustbread.app">privacy@trustbread.app</a>.
+      </p>
+
+      <h2>8. Changes to this policy</h2>
+      <p>
+        We may update this Privacy Policy from time to time. The “Last updated” date at the top
+        will change when we do. Continued use of the App after changes means you accept the
+        updated policy.
+      </p>
+
+      <h2>9. Contact</h2>
+      <p>
+        Trustbread — Privacy<br />
+        Email: <a href="mailto:privacy@trustbread.app">privacy@trustbread.app</a>
+      </p>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .policy {
+    padding: 0 var(--page-pad-x) 40px;
+    max-width: 720px;
+  }
+  .policy p,
+  .policy li {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    margin-bottom: 12px;
+  }
+  .policy h2 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--ink);
+    margin: 28px 0 10px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .policy ul {
+    padding-left: 1.2em;
+    margin-bottom: 12px;
+  }
+  .policy li {
+    margin-bottom: 8px;
+  }
+  .policy a {
+    color: var(--tb-burgundy);
+    font-weight: 700;
+  }
+  .policy strong {
+    color: var(--ink);
+  }
+</style>
