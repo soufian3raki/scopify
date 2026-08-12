@@ -4,10 +4,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="Open Trustbread" showNav={false} noBottomPad={true}>
   <div class="qr-page fade-in">
-    <div class="qr-card">
+    <div class="qr-card" id="qr-card">
       <img src="/favicon.png" alt="Trustbread" class="qr-logo" width="96" height="96" />
       <h1 class="qr-title">Trustbread</h1>
       <p class="qr-sub" id="qr-status">Detecting your device…</p>
+
+      <ol class="qr-steps" id="qr-steps" hidden></ol>
 
       <button type="button" class="qr-cta" id="qr-cta" hidden>
         Continue
@@ -28,23 +30,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
   };
 
+  const cardEl = document.getElementById('qr-card')!;
   const statusEl = document.getElementById('qr-status')!;
+  const stepsEl = document.getElementById('qr-steps') as HTMLOListElement;
   const ctaEl = document.getElementById('qr-cta') as HTMLButtonElement;
   const hintEl = document.getElementById('qr-hint')!;
+  const skipEl = document.getElementById('qr-skip') as HTMLAnchorElement;
   const APP_URL = '/home/';
+  const INSTALLED_KEY = 'tb_pwa_installed';
 
   function isMobile(): boolean {
     const ua = navigator.userAgent || '';
     const touch = navigator.maxTouchPoints > 1;
     const mobileUa = /Android|iPhone|iPad|iPod|Mobile|webOS|BlackBerry|IEMobile|Opera Mini/i.test(ua);
-    // iPadOS 13+ reports as Mac — treat wide touch Macs as mobile
     const iPadDesktop = /Macintosh/i.test(ua) && touch;
     return mobileUa || iPadDesktop;
   }
 
   function isIos(): boolean {
-    return /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
-      (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+    return (
+      /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+      (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints > 1)
+    );
+  }
+
+  function isAndroid(): boolean {
+    return /Android/i.test(navigator.userAgent);
   }
 
   function isStandalone(): boolean {
@@ -55,12 +66,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     );
   }
 
+  function deviceKind(): 'ios' | 'android' | 'desktop' {
+    if (isIos()) return 'ios';
+    if (isAndroid()) return 'android';
+    return 'desktop';
+  }
+
   async function registerSw() {
     if (!('serviceWorker' in navigator)) return;
     try {
       await navigator.serviceWorker.register('/sw.js');
     } catch {
-      // ignore — install may still work later
+      // ignore
     }
   }
 
@@ -68,37 +85,111 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     window.location.assign(APP_URL);
   }
 
+  function setSteps(items: string[]) {
+    stepsEl.innerHTML = '';
+    for (const text of items) {
+      const li = document.createElement('li');
+      li.innerHTML = text;
+      stepsEl.appendChild(li);
+    }
+    stepsEl.hidden = items.length === 0;
+  }
+
+  /** Success screen after the web app is installed */
+  function showInstalled() {
+    try {
+      localStorage.setItem(INSTALLED_KEY, '1');
+    } catch {
+      // ignore
+    }
+
+    cardEl.classList.add('is-installed');
+    statusEl.textContent = 'Trustbread is installed ✓';
+    hintEl.hidden = false;
+    skipEl.hidden = true;
+
+    const kind = deviceKind();
+
+    if (kind === 'ios') {
+      hintEl.textContent = 'Look for the Trustbread icon on your Home Screen.';
+      setSteps([
+        'Leave Safari and go to your <strong>Home Screen</strong> (press the home button or swipe up).',
+        'Find the black <strong>Trustbread</strong> icon among your apps.',
+        'Tap it anytime to open the app like a native app.',
+        'Tip: press and hold the icon to move it to your Dock for quicker access.',
+      ]);
+    } else if (kind === 'android') {
+      hintEl.textContent = 'You can open Trustbread from your Home screen or app drawer.';
+      setSteps([
+        'Go to your phone’s <strong>Home screen</strong> or open the <strong>App drawer</strong> (swipe up on home).',
+        'Look for the <strong>Trustbread</strong> icon.',
+        'Tap it to open — it runs full screen without the browser bar.',
+        'Tip: press and hold the icon → <strong>Add to Home</strong> or pin it to your favorites if it is only in the drawer.',
+      ]);
+    } else {
+      hintEl.textContent = 'Open Trustbread from your computer like any other app.';
+      setSteps([
+        '<strong>Windows:</strong> open the Start menu and search for <strong>Trustbread</strong>, or check the desktop / taskbar.',
+        '<strong>Mac:</strong> open Launchpad or Applications and look for <strong>Trustbread</strong>.',
+        'You can also pin it to the taskbar (Windows) or Dock (Mac) for next time.',
+      ]);
+    }
+
+    ctaEl.hidden = false;
+    ctaEl.textContent = 'Open Trustbread now';
+    ctaEl.onclick = () => openApp();
+  }
+
   let deferredPrompt: DeferredPrompt | null = null;
+  let mode: 'install' | 'open' | 'ios-guide' | 'installed' = 'open';
 
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e as DeferredPrompt;
-    if (isMobile() && !isStandalone()) {
+    if (isMobile() && !isStandalone() && mode !== 'installed') {
+      mode = 'install';
       statusEl.textContent = 'Install Trustbread on your phone';
       ctaEl.hidden = false;
       ctaEl.textContent = 'Install web app';
       hintEl.hidden = true;
+      setSteps([]);
     }
   });
 
+  window.addEventListener('appinstalled', () => {
+    deferredPrompt = null;
+    mode = 'installed';
+    showInstalled();
+  });
+
   ctaEl.addEventListener('click', async () => {
-    if (deferredPrompt) {
+    if (mode === 'installed') {
+      openApp();
+      return;
+    }
+
+    if (deferredPrompt && mode === 'install') {
       await deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
       deferredPrompt = null;
       if (outcome === 'accepted') {
-        statusEl.textContent = 'Installed — opening Trustbread…';
-        ctaEl.hidden = true;
-        setTimeout(openApp, 600);
+        mode = 'installed';
+        // appinstalled usually fires; show success even if it is delayed
+        showInstalled();
       } else {
-        openApp();
+        statusEl.textContent = 'Install cancelled';
+        hintEl.hidden = false;
+        hintEl.textContent = 'You can try again, or open Trustbread in the browser.';
+        ctaEl.textContent = 'Try install again';
+        mode = 'install';
       }
       return;
     }
 
-    if (isIos() && !isStandalone()) {
-      // Already showing instructions — open app as fallback
-      openApp();
+    if (mode === 'ios-guide') {
+      // User confirms they added it to the Home Screen
+      mode = 'installed';
+      showInstalled();
       return;
     }
 
@@ -106,7 +197,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   });
 
   async function boot() {
-    // Native Capacitor shell: just open the app
     if (Capacitor.isNativePlatform()) {
       openApp();
       return;
@@ -114,43 +204,67 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     await registerSw();
 
+    // Already running as installed PWA
     if (isStandalone()) {
       statusEl.textContent = 'Opening Trustbread…';
       openApp();
       return;
     }
 
+    // Returning after a previous install (not yet opened as standalone)
+    try {
+      if (localStorage.getItem(INSTALLED_KEY) === '1' && isMobile()) {
+        mode = 'installed';
+        showInstalled();
+        return;
+      }
+    } catch {
+      // ignore
+    }
+
     if (!isMobile()) {
+      mode = 'open';
       statusEl.textContent = 'Opening Trustbread on your computer…';
       ctaEl.hidden = false;
       ctaEl.textContent = 'Open app';
       hintEl.hidden = true;
-      // Auto-open on desktop after a short beat
       setTimeout(openApp, 900);
       return;
     }
 
-    // Mobile web
     if (isIos()) {
-      statusEl.textContent = 'Install Trustbread as a web app';
+      mode = 'ios-guide';
+      statusEl.textContent = 'Install Trustbread on your iPhone / iPad';
       ctaEl.hidden = false;
-      ctaEl.textContent = 'Open Trustbread';
+      ctaEl.textContent = 'I’ve added it to Home Screen';
       hintEl.hidden = false;
-      hintEl.innerHTML =
-        'On iPhone/iPad: tap <strong>Share</strong> → <strong>Add to Home Screen</strong>, then open the Trustbread icon.';
+      hintEl.textContent = 'Follow the steps below, then tap the button.';
+      setSteps([
+        'Tap the <strong>Share</strong> button in Safari (square with an arrow).',
+        'Scroll and tap <strong>Add to Home Screen</strong>.',
+        'Confirm with <strong>Add</strong>.',
+        'Then tap <strong>I’ve added it to Home Screen</strong> below.',
+      ]);
+      skipEl.textContent = 'Open in Safari instead →';
       return;
     }
 
-    // Android / other — wait briefly for beforeinstallprompt
+    // Android / other
     statusEl.textContent = 'Preparing install…';
     setTimeout(() => {
-      if (deferredPrompt) return;
-      statusEl.textContent = 'Install or open Trustbread';
+      if (deferredPrompt || mode === 'installed') return;
+      mode = 'install';
+      statusEl.textContent = 'Install Trustbread on your phone';
       ctaEl.hidden = false;
-      ctaEl.textContent = 'Open Trustbread';
+      ctaEl.textContent = 'Install web app';
       hintEl.hidden = false;
       hintEl.textContent =
-        'If install is available, use your browser menu → “Install app” or “Add to Home screen”.';
+        'If the install button does not appear, open the browser menu (⋮) → Install app / Add to Home screen.';
+      setSteps([
+        'Tap <strong>Install web app</strong> when prompted, or use the browser menu.',
+        'Accept the install dialog.',
+        'Afterwards we will show you exactly where to find Trustbread.',
+      ]);
     }, 1200);
   }
 
@@ -172,8 +286,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
   }
   .qr-card {
-    width: min(100%, 380px);
+    width: min(100%, 400px);
     text-align: center;
+  }
+  .qr-card.is-installed .qr-logo {
+    box-shadow: 0 0 0 3px var(--brand-accent), var(--shadow-lg);
   }
   .qr-logo {
     width: 96px;
@@ -198,7 +315,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-size: 15px;
     color: var(--ink-2);
     line-height: 1.5;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
+  }
+  .qr-steps {
+    text-align: left;
+    margin: 0 0 22px;
+    padding: 16px 16px 16px 36px;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    list-style: decimal;
+  }
+  .qr-steps li {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin-bottom: 10px;
+  }
+  .qr-steps li:last-child {
+    margin-bottom: 0;
+  }
+  .qr-steps strong {
+    color: var(--ink);
   }
   .qr-cta {
     appearance: none;
