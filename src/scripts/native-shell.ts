@@ -33,6 +33,12 @@ function fixDirectoryLinks() {
 }
 
 async function initNativeShell() {
+  if (Capacitor.isNativePlatform()) {
+    // Native Capacitor shell
+  } else if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  }
+
   if (!Capacitor.isNativePlatform()) return;
 
   fixDirectoryLinks();

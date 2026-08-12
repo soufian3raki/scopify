@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Open Trustbread" showNav={false} noBottomPad={true}>
+  <div class="qr-page fade-in">
+    <div class="qr-card">
+      <img src="/favicon.png" alt="Trustbread" class="qr-logo" width="96" height="96" />
+      <h1 class="qr-title">Trustbread</h1>
+      <p class="qr-sub" id="qr-status">Detecting your device…</p>
+
+      <button type="button" class="qr-cta" id="qr-cta" hidden>
+        Continue
+      </button>
+
+      <p class="qr-hint" id="qr-hint" hidden></p>
+
+      <a class="qr-skip" id="qr-skip" href="/home/">Open in browser →</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import { Capacitor } from '@capacitor/core';
+
+  type DeferredPrompt = Event & {
+    prompt: () => Promise<void>;
+    userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
+  };
+
+  const statusEl = document.getElementById('qr-status')!;
+  const ctaEl = document.getElementById('qr-cta') as HTMLButtonElement;
+  const hintEl = document.getElementById('qr-hint')!;
+  const APP_URL = '/home/';
+
+  function isMobile(): boolean {
+    const ua = navigator.userAgent || '';
+    const touch = navigator.maxTouchPoints > 1;
+    const mobileUa = /Android|iPhone|iPad|iPod|Mobile|webOS|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+    // iPadOS 13+ reports as Mac — treat wide touch Macs as mobile
+    const iPadDesktop = /Macintosh/i.test(ua) && touch;
+    return mobileUa || iPadDesktop;
+  }
+
+  function isIos(): boolean {
+    return /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+      (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+  }
+
+  function isStandalone(): boolean {
+    return (
+      window.matchMedia('(display-mode: standalone)').matches ||
+      // @ts-expect-error iOS Safari
+      window.navigator.standalone === true
+    );
+  }
+
+  async function registerSw() {
+    if (!('serviceWorker' in navigator)) return;
+    try {
+      await navigator.serviceWorker.register('/sw.js');
+    } catch {
+      // ignore — install may still work later
+    }
+  }
+
+  function openApp() {
+    window.location.assign(APP_URL);
+  }
+
+  let deferredPrompt: DeferredPrompt | null = null;
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e as DeferredPrompt;
+    if (isMobile() && !isStandalone()) {
+      statusEl.textContent = 'Install Trustbread on your phone';
+      ctaEl.hidden = false;
+      ctaEl.textContent = 'Install web app';
+      hintEl.hidden = true;
+    }
+  });
+
+  ctaEl.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      await deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      if (outcome === 'accepted') {
+        statusEl.textContent = 'Installed — opening Trustbread…';
+        ctaEl.hidden = true;
+        setTimeout(openApp, 600);
+      } else {
+        openApp();
+      }
+      return;
+    }
+
+    if (isIos() && !isStandalone()) {
+      // Already showing instructions — open app as fallback
+      openApp();
+      return;
+    }
+
+    openApp();
+  });
+
+  async function boot() {
+    // Native Capacitor shell: just open the app
+    if (Capacitor.isNativePlatform()) {
+      openApp();
+      return;
+    }
+
+    await registerSw();
+
+    if (isStandalone()) {
+      statusEl.textContent = 'Opening Trustbread…';
+      openApp();
+      return;
+    }
+
+    if (!isMobile()) {
+      statusEl.textContent = 'Opening Trustbread on your computer…';
+      ctaEl.hidden = false;
+      ctaEl.textContent = 'Open app';
+      hintEl.hidden = true;
+      // Auto-open on desktop after a short beat
+      setTimeout(openApp, 900);
+      return;
+    }
+
+    // Mobile web
+    if (isIos()) {
+      statusEl.textContent = 'Install Trustbread as a web app';
+      ctaEl.hidden = false;
+      ctaEl.textContent = 'Open Trustbread';
+      hintEl.hidden = false;
+      hintEl.innerHTML =
+        'On iPhone/iPad: tap <strong>Share</strong> → <strong>Add to Home Screen</strong>, then open the Trustbread icon.';
+      return;
+    }
+
+    // Android / other — wait briefly for beforeinstallprompt
+    statusEl.textContent = 'Preparing install…';
+    setTimeout(() => {
+      if (deferredPrompt) return;
+      statusEl.textContent = 'Install or open Trustbread';
+      ctaEl.hidden = false;
+      ctaEl.textContent = 'Open Trustbread';
+      hintEl.hidden = false;
+      hintEl.textContent =
+        'If install is available, use your browser menu → “Install app” or “Add to Home screen”.';
+    }, 1200);
+  }
+
+  boot();
+</script>
+
+<style>
+  .qr-page {
+    min-height: 100%;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(24px + env(safe-area-inset-top, 0px)) var(--page-pad-x)
+      calc(24px + env(safe-area-inset-bottom, 0px));
+    background:
+      radial-gradient(circle at 80% 10%, rgba(225, 171, 123, 0.22), transparent 50%),
+      radial-gradient(circle at 15% 90%, rgba(89, 23, 39, 0.1), transparent 45%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  }
+  .qr-card {
+    width: min(100%, 380px);
+    text-align: center;
+  }
+  .qr-logo {
+    width: 96px;
+    height: 96px;
+    border-radius: 22px;
+    object-fit: cover;
+    box-shadow: var(--shadow-lg);
+    margin: 0 auto 20px;
+    display: block;
+    background: #000;
+  }
+  .qr-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 8vw, 36px);
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  .qr-sub {
+    font-size: 15px;
+    color: var(--ink-2);
+    line-height: 1.5;
+    margin-bottom: 28px;
+  }
+  .qr-cta {
+    appearance: none;
+    border: none;
+    width: 100%;
+    padding: 16px 22px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .qr-cta:active {
+    transform: scale(0.98);
+  }
+  .qr-hint {
+    margin-top: 18px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .qr-skip {
+    display: inline-block;
+    margin-top: 22px;
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: none;
+  }
+</style>
